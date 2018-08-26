@@ -1,0 +1,10 @@
+.MainBlock{
+    width: 100%;
+    min-height: 700px;
+    float: left;
+}
+/* .MainBlock ::after{
+    clear: both;
+    content: "";
+    display: table;
+} */
