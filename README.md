@@ -1,9 +1,9 @@
 ## KeepTyping 
 This appliction is a website for user communicate with the prople who have samilar interast.
-* to be start: `npm start`
+* To be start: `npm start`
 
 ## Dependency
-''' json
+``` json
 "dependencies": {
   "react": "^16.4.2",
   "react-dom": "^16.4.2",
@@ -11,8 +11,9 @@ This appliction is a website for user communicate with the prople who have samil
   "react-router-dom": "^4.3.1",
   "react-scripts": "1.1.4"
 }
-'''
-looking `package.json` file for more detail
+```
+Looking `package.json` file for more detail
+Looking `http://localhost:3000/#/test` for overview of all components
 
 ## Structure of App Resouse File
 ```

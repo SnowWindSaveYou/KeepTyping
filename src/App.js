@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import logo from './img/icons/logo.svg';
+//import logo from './img/icons/logo.svg';
 import './styles/App.css';
 
 /** Components of page */
-import HeaderBlock from './components/main_block_components/header_block';
-import TopBlock from './components/main_block_components/top_block';
-import MainBlock from './components/main_block_components/main_block';
-import SideBlock from './components/main_block_components/side_block';
-
-
+import HeaderBlock from './components/layout_components/header_block.js';
+import TopBlock from './components/layout_components/top_block.js';
+import MainBlock from './components/layout_components/main_block.js';
+import SideBlock from './components/layout_components/side_block.js';
+import ContainerBlock from './components/layout_components/container_block.js';
+import FooterBlock from './components/layout_components/footer_block.js';
 
 class App extends Component {
   constructor(props){
@@ -26,19 +26,22 @@ class App extends Component {
           HeaderBlock
         </HeaderBlock>
         <TopBlock>
-          <p>TopBlock</p>
+          
         </TopBlock>
 
-        <MainBlock style={this.state.mainBlockStyle}>
-          <p>MainBlock</p>
+        <ContainerBlock >
           <SideBlock>
             SideBlock
           </SideBlock>
-          <MainBlock>
+          <MainBlock >
             MainBlock
           </MainBlock>
-            
-        </MainBlock>
+          ContainerBlock
+        </ContainerBlock>
+        <FooterBlock>
+          FooterBlock
+        </FooterBlock>
+
       </div>
     );
   }

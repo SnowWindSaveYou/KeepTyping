@@ -1,29 +1,27 @@
 /**
- * Top Block
- * the block contain a row at the top
+ * Sub Block
  */
 
 import React, { Component } from "react";
 import './style.css';
 
-class TopBlock extends Component {
+class SubBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
-      style:this.props.style ? null: {
-        color:"#FFF",
-        background:"#ccc"
+      style:this.props.style ? this.props.style: {
+        
       }
     }
   }
 
   render() {
     return (
-      <div className="TopBlock block"
+      <div className="SubBlock"
         style={this.state.style}>
          { this.props.children }
       </div>
     );
   }
 }
-export default TopBlock;
+export default SubBlock;

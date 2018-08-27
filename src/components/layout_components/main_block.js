@@ -1,24 +1,27 @@
+/**
+ * Main Block
+ * the block put main things of page
+ */
 import React, { Component } from "react";
 import './style.css';
 
-class HeaderBlock extends Component {
+class MainBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
-      style: this.props.style ? null: {
-        color:"#FFF",
-        background:"#000"
+      child: this.props.children,
+      style:this.props.style ? this.props.style: {
+
       }
     }
   }
   render() {
     return (
-      <div className="HeaderBlock"
+      <div className="MainBlock"
       style= {this.state.style} >
         { this.props.children }
       </div>
     );
   }
 }
-
-export default HeaderBlock;
+export default MainBlock;

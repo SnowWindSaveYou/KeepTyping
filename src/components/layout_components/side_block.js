@@ -9,9 +9,8 @@ class SideBlock extends Component {
   constructor(props){
     super(props);
     this.state = {
-      style:this.props.style ? null: {
-        color:"#FFF",
-        background:"#000"
+      style:this.props.style ? this.props.style: {
+
       }
     }
   }

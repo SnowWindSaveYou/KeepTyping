@@ -1,0 +1,11 @@
+.UserInfo{
+    width: 210px;
+    height: 210px;
+}
+.UserInfo .user_pic{
+    height: 64px;
+    width: 210px;
+}
+.UserInfo .user_name{
+
+}
