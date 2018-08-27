@@ -9,7 +9,10 @@ import FooterBlock from '../../components/layout_components/footer_block.js';
 import PrimaryButton from '../../components/ui_components/buttons/primary_btn';
 import SecondaryButton from '../../components/ui_components/buttons/secondary_btn';
 
-import HeaderPanel from '../../components/container_components/header_panel'
+import HeaderPanel from '../../components/container_components/header_panel';
+import PostList from '../../components/container_components/post_list';
+import Announcement from '../../components/display_components/for_side_block/announcement';
+import UserInfo from '../../components/display_components/for_side_block/user_info'
 
 class TestPage extends Component {
 
@@ -29,6 +32,8 @@ class TestPage extends Component {
             <ContainerBlock style={{background:"#fff"}}>
                 <SideBlock style={{background:"#123"}}>
                     SideBlock
+                    <UserInfo/>
+                    <Announcement/>
                 </SideBlock>
                 <MainBlock style={{background:"#321"}}>
                     MainBlock
@@ -36,6 +41,9 @@ class TestPage extends Component {
                         <PrimaryButton onClick={()=>{alert("testing")}}> Primary </PrimaryButton>
                         <SecondaryButton>Secondary</SecondaryButton>
                     </TopBlock>
+                    <PostList>
+
+                    </PostList>
                     <FooterBlock style={{background:"#233"}}>
                         FooterBlock
                     </FooterBlock>

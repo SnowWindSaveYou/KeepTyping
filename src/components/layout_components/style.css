@@ -51,9 +51,15 @@
 }
 .SubBlock{
     position: relative;
-    height:auto;
-    width: auto;
     background: #fff;
     border-radius: 4px;
     z-index: 9;
+    box-sizing: border-box;
+}
+.SideBlock .SubBlock{
+    width: 210px;
+    margin-bottom: 10px;
+}
+.MainBlock .SubBlock{
+    width: 780px;
 }

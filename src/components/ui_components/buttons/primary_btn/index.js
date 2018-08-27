@@ -8,17 +8,20 @@
 import React, { Component } from "react";
 import './style.css';
 
+const DEFAULT_COLOR_ONE = "#fb7299";
+const DEFAULT_COLOR_TWO = "#ff85ad";
+
 class PrimaryButton extends Component {
   constructor(props){
     super(props);
     this.state = {
-      color1: this.props.color1 ? this.props.color1  : "#fb7299",
-      color2: this.props.color2 ? this.props.color2  : "#ff85ad",
+      color1: this.props.color1 ? this.props.color1  : DEFAULT_COLOR_ONE,
+      color2: this.props.color2 ? this.props.color2  : DEFAULT_COLOR_TWO,
       t_color1:this.props.t_color1 ? this.props.t_color1  : "#fff",
       t_color2:this.props.t_color2 ? this.props.t_color2  : "#fff",
       style:{ 
         color: this.props.t_color1 ? this.props.t_color1  : "#fff",
-        background: this.props.color1 ? this.props.color1  : "#fb7299"
+        background: this.props.color1 ? this.props.color1  : DEFAULT_COLOR_ONE
       },
       staticStyle:{
         height:"100px"

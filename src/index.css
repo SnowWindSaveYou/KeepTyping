@@ -26,3 +26,14 @@ body {
 .to_left{
   float: left;
 }
+
+.pair_row{
+  width: 100%; 
+  clear: both;
+  content: "";
+  display: table;
+}
+.pair_part{
+  width: 50%;
+  float: left;
+}

@@ -8,16 +8,18 @@
 import React, { Component } from "react";
 import './style.css';
 
+const DEFAULT_COLOR = "#00a1d6";
+
 class SecondaryButton extends Component {
   constructor(props){
     super(props);
     this.state = {
-      color1: this.props.color1 ? this.props.color1  : "#fb7299",
-      t_color1:this.props.t_color1 ? this.props.t_color1  : "#fb7299",
+      color1: this.props.color1 ? this.props.color1  : DEFAULT_COLOR,
+      t_color1:this.props.t_color1 ? this.props.t_color1  : DEFAULT_COLOR,
       t_color2:this.props.t_color2 ? this.props.t_color2  : "#fff",
       style:{ 
-        color: this.props.t_color1 ? this.props.t_color1  : "#fb7299",
-        borderColor: this.props.color1 ? this.props.color1  : "#fb7299"
+        color: this.props.t_color1 ? this.props.t_color1  : DEFAULT_COLOR,
+        borderColor: this.props.color1 ? this.props.color1  : DEFAULT_COLOR
       }
 
     }

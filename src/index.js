@@ -19,8 +19,8 @@ import TestPage from './page_templates/static_page/page_test';
 
 ReactDOM.render(
     <Router history={hashHistory}>
-        <Route exact path="/" component={App}/>   
-        <Route path="/TEST" component={TestPage}/>   
+        <Route exact path="/" component={TestPage}/>   
+        <Route path="/test" component={TestPage}/>   
         <Route path="*" component={Page404}/> 
     </Router>,
     document.getElementById('root'));

@@ -1,11 +1,31 @@
-.UserInfo{
-    width: 210px;
-    height: 210px;
+.UserInfo .SubBlock{
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #555;
 }
-.UserInfo .user_pic{
+.UserInfo .SubBlock .inner{
+    margin: -10px;
+    padding: 10px;
+    width: 210px;
+    box-sizing: border-box;
+}
+.UserInfo .SubBlock .top{
     height: 64px;
-    width: 210px;
+    
 }
-.UserInfo .user_name{
+.UserInfo .SubBlock .middle{
+    
+}
+.UserInfo .SubBlock .button{
+    
+}
 
+.UserInfo .SubBlock  .user_name{
+    color: #fff;
+    font-size: 24px;
+}
+.UserInfo .SubBlock .follow_info{
+    color: #111;
+    font-size: 16px;
 }
