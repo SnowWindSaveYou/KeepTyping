@@ -40,11 +40,12 @@ class PrimaryButton extends Component {
   }
   render() {
     return (
-      <a className="PrimaryButton" 
-      style={this.state.style}
-      onClick={()=>this.props.onClick()}
-      onMouseOver={this.handleMouseOver.bind(this)}
-      onMouseLeave={this.handleMouseOut.bind(this)}>
+      <a  className={ this.props.className + " PrimaryButton" }
+          id={this.props.id}
+          style={this.state.style}
+          onClick={()=>this.props.onClick()}
+          onMouseOver={this.handleMouseOver.bind(this)}
+          onMouseLeave={this.handleMouseOut.bind(this)}>
         { this.props.children }
       </a>
     );

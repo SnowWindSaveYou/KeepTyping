@@ -6,11 +6,10 @@
 }
 .PostRow .left{
     float: left;
-    width: 85%;
 }
 .PostRow .right{
-    float: left;
-    width: 15%;  
+    float: right;
+    
 }
 .PostRow .title{
     vertical-align: bottom;

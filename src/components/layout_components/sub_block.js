@@ -18,6 +18,7 @@ class SubBlock extends Component {
   render() {
     return (
       <div className={this.props.className +" SubBlock"}
+        key={this.props.key}
         style={this.state.style}>
          { this.props.children }
       </div>

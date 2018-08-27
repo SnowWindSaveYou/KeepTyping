@@ -1,0 +1,12 @@
+.MultiLineEditText{
+    padding: 10px;
+    width: 100%;
+    min-height: 100px;
+    border: none;
+    border-radius: 4px;
+    resize: none;
+    box-sizing: border-box;
+}
+.MultiLineEditText:focus{
+    outline: none;
+}

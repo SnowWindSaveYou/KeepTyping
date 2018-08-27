@@ -36,11 +36,12 @@ class SecondaryButton extends Component {
   }
   render() {
     return (
-      <a className="SecondaryButton" 
-      style={this.state.style}
-      onClick={()=>this.props.onClick()}
-      onMouseOver={this.handleMouseOver.bind(this)}
-      onMouseLeave={this.handleMouseOut.bind(this)}>
+      <a  className={ this.props.className + " SecondaryButton" }
+          id={this.props.id}
+          style={this.state.style}
+          onClick={()=>this.props.onClick()}
+          onMouseOver={this.handleMouseOver.bind(this)}
+          onMouseLeave={this.handleMouseOut.bind(this)}>
         { this.props.children }
       </a>
     );

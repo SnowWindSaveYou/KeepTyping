@@ -6,6 +6,7 @@ import PostRow from "./post_row";
 
 const postData =[
     {
+        post_id:"12345678ihv",
         author:"Alex",
         title:"Hello",
         content:"world",
@@ -13,6 +14,7 @@ const postData =[
         reply_num:10
     },
     {
+        post_id:"zxchgjfy7uig",
         author:"Alice",
         title:"This is a test Post",
         content:"this is some post contents",
@@ -20,6 +22,7 @@ const postData =[
         reply_num:15
     },
     {
+        post_id:"xrxycvobioh",
         author:"Bob",
         title:"Bob is here",
         content:"bobbobbo, just for test",
@@ -37,8 +40,10 @@ class PostList extends Component {
             }
       }
     }
-    renderPost(item){
+    renderPost(item, i){
         return <PostRow 
+            key= {i}
+            postId={item.post_id}
             author={item.author}
             title={item.title}
             content={item.content}
@@ -49,7 +54,7 @@ class PostList extends Component {
     renderPostList(){
         var post_list = [];
         for(var i in postData){
-            post_list.push(this.renderPost(postData[i]));
+            post_list.push(this.renderPost(postData[i],i));
         }
         return post_list;
     }

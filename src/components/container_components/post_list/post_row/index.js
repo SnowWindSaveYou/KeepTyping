@@ -5,9 +5,8 @@ import SubBlock from "../../../layout_components/sub_block";
 class PostRow extends Component {
     constructor(props){
         super(props);
-        console.log("sssss")
         this.state={
-            post_id: this.post_id,
+            post_id: this.props.postId,
             author: this.props.author,
             title:this.props.title,
             content:this.props.content,
@@ -17,7 +16,7 @@ class PostRow extends Component {
     }
     render(){
         return (
-            <SubBlock className="PostRow">
+            <SubBlock className="PostRow" key={this.state.postId}>
                 <div className="left">
                     {/* TODO: reset the connection to post by post id */}
                     <a className="title" href='/post/demo'><span className="reply_num">{this.state.reply_num}</span>

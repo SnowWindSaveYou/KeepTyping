@@ -11,6 +11,7 @@ import SecondaryButton from '../../components/ui_components/buttons/secondary_bt
 
 import HeaderPanel from '../../components/container_components/header_panel';
 import PostList from '../../components/container_components/post_list';
+import PublishPanel from '../../components/container_components/publish_panel';
 import Announcement from '../../components/display_components/for_side_block/announcement';
 import UserInfo from '../../components/display_components/for_side_block/user_info'
 
@@ -23,13 +24,13 @@ class TestPage extends Component {
 
     render() {
       return (
-        <div className="TestPage" style={{background:"#f7f7f7"}}>
+        <div className="TestPage" style={{background:"#aaa"}}>
             <HeaderPanel/>
 
             <TopBlock style={{height:"300px",marginBottom:"-100px",background:"#fb2"}}>
                 TopBlock
             </TopBlock>
-            <ContainerBlock style={{background:"#fff"}}>
+            <ContainerBlock style={{background:"#222"}}>
                 <SideBlock style={{background:"#123"}}>
                     SideBlock
                     <UserInfo/>
@@ -37,16 +38,12 @@ class TestPage extends Component {
                 </SideBlock>
                 <MainBlock style={{background:"#321"}}>
                     MainBlock
-                    <TopBlock style={{background:"#fff"}}>
+                    <TopBlock style={{background:"#ccc"}}>
                         <PrimaryButton onClick={()=>{alert("testing")}}> Primary </PrimaryButton>
                         <SecondaryButton>Secondary</SecondaryButton>
                     </TopBlock>
-                    <PostList>
-
-                    </PostList>
-                    <FooterBlock style={{background:"#233"}}>
-                        FooterBlock
-                    </FooterBlock>
+                    <PostList/>
+                    <PublishPanel/>
                 </MainBlock>
             </ContainerBlock>
             <FooterBlock style={{background:"#555",marginTop:"-20px"}}>
