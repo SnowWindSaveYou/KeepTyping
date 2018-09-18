@@ -1,0 +1,36 @@
+.PostRow {
+  padding: 10px;
+  height: 80px;
+  border-bottom: solid 1px #eee;
+  background-color: #fff;
+}
+.PostRow .left {
+  float: left;
+}
+.PostRow .right {
+  float: right;
+}
+.PostRow .title {
+  vertical-align: bottom;
+  font-size: 16px;
+  color: #ff94b1;
+}
+.PostRow .content {
+  font-size: 12px;
+  color: #ccc;
+  margin-left: 30px;
+}
+.PostRow .author {
+  font-size: 15px;
+  color: #00a1d6;
+}
+.PostRow .date {
+  font-size: 12px;
+  color: #ccc;
+}
+.PostRow .reply_num {
+  float: left;
+  margin-right: 5px;
+  font-size: 10px;
+  color: #ff94b1;
+}

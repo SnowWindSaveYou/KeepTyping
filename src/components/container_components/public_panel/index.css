@@ -1,0 +1,10 @@
+.PublishPanel {
+  padding: 5px;
+}
+.PublishPanel .bottom {
+  height: 16px;
+  padding: 5px;
+}
+.PublishPanel #submit_post {
+  float: right;
+}

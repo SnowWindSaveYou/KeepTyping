@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ThreadDetail extends Component {
+class ForumDetail extends Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class ThreadDetail extends Component {
 }
 console.log("arrived!");
 
-export default ThreadDetail;
+export default ForumDetail;

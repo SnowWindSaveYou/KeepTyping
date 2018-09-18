@@ -1282,7 +1282,7 @@ We recommend that you use a separate tool for browser end-to-end tests if you ne
 Jest will look for test files with any of the following popular naming conventions:
 
 * Files with `.js` suffix in `__tests__` folders.
-* Files with `.test.js` suffix.
+* Files with `.` suffix.
 * Files with `.spec.js` suffix.
 
 The `.test.js` / `.spec.js` files (or the `__tests__` folders) can be located at any depth under the `src` top level folder.

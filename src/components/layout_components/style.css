@@ -1,0 +1,61 @@
+.ContainerBlock {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+  height: auto !important;
+  min-height: 800px;
+  z-index: 1;
+}
+.ContainerBlock ::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.FooterBlock {
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  height: 120px;
+  width: 100%;
+}
+.HeaderBlock {
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  height: 35px;
+  width: 100%;
+}
+.MainBlock {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 800px;
+  width: 780px;
+  float: left;
+  z-index: 5;
+}
+.SideBlock {
+  position: relative;
+  height: auto;
+  width: 210px;
+  min-height: 800px;
+  float: left;
+  z-index: 5;
+}
+.TopBlock {
+  position: relative;
+  height: 120px;
+  width: 100%;
+}
+.SubBlock {
+  position: relative;
+  background: #fff;
+  border-radius: 4px;
+  z-index: 9;
+  box-sizing: border-box;
+}
+.SideBlock .SubBlock {
+  width: 210px;
+  margin-bottom: 10px;
+}

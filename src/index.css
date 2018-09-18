@@ -3,3 +3,37 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+/** Format row style 
+* use 'float:left' items in row class div
+*/
+.row ::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.block {
+  display: inline-block;
+}
+
+/** Format li in this ul horizontaly */
+.horizontal_ul li {
+  list-style-type: none;
+  float: left;
+}
+
+.to_left {
+  float: left;
+}
+
+.pair_row {
+  width: 100%;
+  clear: both;
+  content: "";
+  display: table;
+}
+.pair_part {
+  width: 50%;
+  float: left;
+}
