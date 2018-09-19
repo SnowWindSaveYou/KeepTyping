@@ -12,7 +12,7 @@ This appliction is a website for user communicate with the prople who have samil
   "react-scripts": "1.1.4"
 }
 ```
-Looking `package.json` file for more detail
+Looking `package.json` file for more detail`npm install -d`
 Looking `http://localhost:3000/#/test` for overview of all components
 
 ## Structure of App Resouse File

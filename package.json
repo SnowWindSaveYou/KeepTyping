@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
+    "express": "~4.16.3",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.13",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-router": "^3.2.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5"
   },
   "scripts": {
@@ -13,5 +21,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "/api/m": {
+      "target": "http://localhost:3001",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api/m": "/",
+        "_comment": "This define the forwarding of cross site request between front end and back end"
+      }
+    }
   }
 }

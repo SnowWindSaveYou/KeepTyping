@@ -1,0 +1,19 @@
+{
+    "front":{
+        "port":3000,
+        "theme":{
+            "primary_color":"#fff",
+            "primary_dark_color":"#ccc",
+            "secondary_color":"#fff",
+            "secondary_dark_color":"#ccc"
+        }
+    },
+    "back":{
+        "port":3001
+    },
+    "db":{
+        "port":27017,
+        "username":"admin123",
+        "password":"qwer12345~"
+    }
+}
