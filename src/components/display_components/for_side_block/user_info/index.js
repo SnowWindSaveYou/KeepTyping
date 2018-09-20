@@ -27,8 +27,7 @@ class UserInfo extends Component {
   
     render() {
       return (
-        <div className="UserInfo" >
-          <SubBlock style={this.state.style}>
+          <SubBlock className="UserInfo" style={this.state.style}>
             <div className="top inner" style={this.state.user_pic_style}>
               <a className="user_name">{this.userData.user_name}</a>
             </div>
@@ -52,8 +51,6 @@ class UserInfo extends Component {
             </div>
             
           </SubBlock>
-        </div>
-        
       );
     }
   }

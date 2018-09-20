@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const session = require('express-session');
-const secureConnection = require('./scripts/secure_connection');
+const secureConnection = require('../scripts/secure_connection');
+
+const token = require('../scripts/token')
 
 
-const UserModel = require('./models/user');
+const UserModel = require('../models/user');
 
 router.use(session({
     secret :  'secret 0v0 2333', 
@@ -44,10 +46,10 @@ router.post('/comformLogin',(req,res) =>{
         var my_private = new Buffer.from(req.session.my_private);
         var my_prime = new Buffer.from(req.session.my_prime);
         var client_keys = new Buffer.from(msg.client_keys.data);
-        var secret = secureConnection.computeSecret(client_keys ,my_private, my_prime,req.session.iv);
+        var my_iv = req.session.iv;
+        var secret = secureConnection.computeSecret(client_keys ,my_private, my_prime, my_iv);
         // decode secret message
         var secret_msg = secureConnection.decryptData(msg.cipher_msg, secret);
-        console.log("secret_msg: ",secret_msg);
         var secret_msg = JSON.parse(secret_msg)
         var res_user_id = secret_msg.user_id;
         var res_user_password = secret_msg.user_password;
@@ -55,30 +57,38 @@ router.post('/comformLogin',(req,res) =>{
         // find user account in db by id
         var user_password = null
         var user_salt = null
-        UserModel.find({id:res_user_id}).exec((err,user)=>{
+        UserModel.findOne({id:res_user_id}).exec((err,user)=>{
             if(err){
                 console.log(err);
                 return;
-            }else if(user.length===0){
-                res.json("user not exist");
+            }else if(!user){
+                res.json({state:false,notice:"user not exist"});
             }else{
-                console.log("user: ",user)
-                user_password = user[0].password;
-                user_salt = user[0].salt;
+                user_password = user.password;
+                user_salt = user.salt;
                 // hash the req password to check it 
-                var hashed_pasword = secureConnection.makeHash(res_user_password);
-                hashed_pasword = secureConnection.makeHash(hashed_pasword + user_salt);
-                if(hashed_pasword === user_password){
-                    res.json("login sucessful");
+                var hashed_password = secureConnection.makeHash(res_user_password);
+                hashed_password = secureConnection.makeHash(hashed_password + user_salt);
+                if(hashed_password === user_password){
+                    // if ture, return the signatited token by secret
+                    my_token = token.createToken({
+                        user_id:user._id,
+                        user_name:user.name,        
+                    },100*60*60*24*7);
+                    
+                    res.json({
+                        state:true,
+                        notice:"login sucessful",
+                        msg: secureConnection.encryptData(my_token,secret,my_iv)
+                    });
                 }else{
-                    console.log(user_password)
-                    res.json("password err");
+                    res.json({state:false,notice:"uncorrect password"});
                 }
             }
         })
         
     }else{
-        res.json("login session time out");
+        res.json({state:false, notice:"login session time out"});
     }
 });
 

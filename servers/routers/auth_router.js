@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const token = require('./scripts/token');
+const token = require('../scripts/token');
 
 router.post('/createToken',(req,res) =>{
     let msg = req.body;

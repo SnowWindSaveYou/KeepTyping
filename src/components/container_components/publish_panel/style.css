@@ -1,10 +1,13 @@
-.PublishPanel{
+.PostPublishPanel{
     padding: 5px;
 }
-.PublishPanel .bottom{
+.PostPublishPanel .top{
+    margin-bottom: 3px;
+}
+.PostPublishPanel .bottom{
     height: 16px;
     padding: 5px;
 }
-.PublishPanel #submit_post{
+.PostPublishPanel #submit_post{
     float: right;
 }

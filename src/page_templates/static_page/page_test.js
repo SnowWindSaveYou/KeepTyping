@@ -14,12 +14,29 @@ import PostList from '../../components/container_components/post_list';
 import PublishPanel from '../../components/container_components/publish_panel';
 import Announcement from '../../components/display_components/for_side_block/announcement';
 import UserInfo from '../../components/display_components/for_side_block/user_info'
+import LoginPanel from '../../components/container_components/login_panel'
+import RegistePanel from '../../components/container_components/registe_panel'
+
+
+import SecureTransfer from '../../helper/secure_transfer'
 
 class TestPage extends Component {
 
-    readJson(){
+    constructor(props){
+        super(props);
+        this.state = {
+            topic:'TEST',
+            token:null
+        }
+    }
+    componentDidMount(){
+        this.setState({
+            token:SecureTransfer.getToken()
+        })
+    }
 
-        //return String(ThemeData.bilibili_theme);
+    handleSubmitPost(e){
+        console.log(e.target.value)
     }
 
     render() {
@@ -28,26 +45,30 @@ class TestPage extends Component {
             <HeaderPanel/>
 
             <TopBlock style={{height:"300px",marginBottom:"-100px",background:"#fb2"}}>
-                TopBlock
             </TopBlock>
             <ContainerBlock style={{background:"#222"}}>
                 <SideBlock style={{background:"#123"}}>
-                    SideBlock
+                    <LoginPanel/>
+                    <RegistePanel/>
                     <UserInfo/>
                     <Announcement/>
+                    
+
                 </SideBlock>
                 <MainBlock style={{background:"#321"}}>
-                    MainBlock
                     <TopBlock style={{background:"#ccc"}}>
                         <PrimaryButton onClick={()=>{alert("testing")}}> Primary </PrimaryButton>
                         <SecondaryButton>Secondary</SecondaryButton>
                     </TopBlock>
-                    <PostList/>
-                    <PublishPanel/>
+
+                    {/* test the topic page */}
+                    <PostList topic={this.state.topic}/>
+                    <PublishPanel topic={this.state.topic} token={this.state.token}/>
+
                 </MainBlock>
             </ContainerBlock>
             <FooterBlock style={{background:"#555",marginTop:"-20px"}}>
-                FooterBlock
+
             </FooterBlock>
 
         </div>

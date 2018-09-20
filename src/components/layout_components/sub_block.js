@@ -10,7 +10,7 @@ class SubBlock extends Component {
     super(props);
     this.state = {
       style:this.props.style ? this.props.style: {
-        
+        color:"#aaa"
       }
     }
   }
@@ -19,6 +19,9 @@ class SubBlock extends Component {
     return (
       <div className={this.props.className +" SubBlock"}
         key={this.props.key}
+        onClick={()=>this.props.onClick? this.props.onClick:null}
+        onMouseOver={this.props.onMouseOver? this.props.onMouseOver.bind(this):null}
+        onMouseLeave={this.props.onMouseLeave? this.props.onMouseLeave.bind(this):null}
         style={this.state.style}>
          { this.props.children }
       </div>

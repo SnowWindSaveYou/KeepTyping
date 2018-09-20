@@ -2,10 +2,12 @@
     "front":{
         "port":3000,
         "theme":{
-            "primary_color":"#fff",
-            "primary_dark_color":"#ccc",
-            "secondary_color":"#fff",
-            "secondary_dark_color":"#ccc"
+            "primary_color":"#FD5B78",
+            "primary_dark_color":"#FE4C40",
+            "primary_light_color":"#ED859A",
+            "secondary_color":"#999",
+            "secondary_dark_color":"#222",
+            "secondary_light_color":"#fff"
         }
     },
     "back":{

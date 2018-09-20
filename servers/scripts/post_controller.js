@@ -1,6 +1,6 @@
-const UserModel = require('./models/user')
-const TopicModel = require('./models/topic')
-const PostModel = require('./models/post')
+const UserModel = require('../models/user')
+const TopicModel = require('../models/topic')
+const PostModel = require('../models/post')
 
 
 
@@ -15,13 +15,13 @@ var PostController ={
     },
 
     // create a post under topic & update author's notification
-    createPost(author,topic,content){
+    createPost(topic,author,title,content){
         // create post and registe under topic
-        post = new PostModel({post_author:author,post_content:content});
-        post.save();
-        TopicModel.update({topic_title:topic},
-            {$push:{topic_posts:post.id}})
-
+        new_post = new PostModel({post_topic:topic,
+                                    post_author:author,
+                                    post_title:title,
+                                    post_content:content});
+        new_post.save();
         //TODO: also register the post in author's detail
 
         //TODO: give notification to who follow the author

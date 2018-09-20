@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const session = require('express-session');
-const secureConnection = require('./scripts/secure_connection');
+const secureConnection = require('../scripts/secure_connection');
 
 
-const UserModel = require('./models/user');
+const UserModel = require('../models/user');
 
 router.use(session({
     secret :  'secret 0v0 2333', 

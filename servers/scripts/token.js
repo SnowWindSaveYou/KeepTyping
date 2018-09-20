@@ -5,8 +5,11 @@ var Token = {
     createToken(obj,timeout){
         console.log("timeout: "+ parseInt(timeout)||0);
         var new_obj={
-            data:obj,
-            created: parseInt(Date.now()/1000),
+            iss:"keeptyping.com",
+            sub:"my atm",
+            aud:"keeptyping.com",
+            msg:obj,
+            iat: parseInt(Date.now()/1000),
             exp:parseInt(timeout)||10
         }
         //payload message
@@ -44,7 +47,7 @@ var Token = {
         var decodeMsg = this.decodeToken(token);
         if(!decodeMsg)return false;
         // check the validity date
-        var expState = (parseInt(Date.now()/1000) - parseInt(decodeMsg.payload.created)) 
+        var expState = (parseInt(Date.now()/1000) - parseInt(decodeMsg.payload.iat)) 
                                         > parseInt(decodeMsg.payload.exp) ? false:true;
         
         if(decodeMsg.signature === decodeMsg.checkSignature && expState) return true;

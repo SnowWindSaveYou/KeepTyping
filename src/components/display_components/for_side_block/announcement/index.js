@@ -15,19 +15,16 @@ class Announcement extends Component {
   
     render() {
       return (
-          <div className="Announcement">
-            <SubBlock style={this.state.style}>
-                <div className="title">
-                    <h3>Announcement</h3>
-                </div>
-                <div className="content">
-                    {AnnouncementData}
+        <SubBlock className="Announcement" style={this.state.style}>
+            <div className="title">
+                <h3>Announcement</h3>
+            </div>
+            <div className="content">
+                {AnnouncementData}
 
-                    <br/><br/>
-                </div>
-            </SubBlock>
-          </div>
-        
+                <br/><br/>
+            </div>
+        </SubBlock>
       );
     }
   }

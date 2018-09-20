@@ -10,12 +10,9 @@ const Topic = new Schema({
     topic_description:{
         type:String
     },
-    topic_manager:{
-        type:String
-    },
-    topic_posts:{
+    topic_managers:{
         type:Array
-    },
+    }
 },{ timestamps: true , collection:'topic'})
 
 module.exports = Topic;
