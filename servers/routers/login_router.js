@@ -51,7 +51,7 @@ router.post('/comformLogin',(req,res) =>{
         // decode secret message
         var secret_msg = secureConnection.decryptData(msg.cipher_msg, secret);
         var secret_msg = JSON.parse(secret_msg)
-        var res_user_id = secret_msg.user_id;
+        var res_user_id = secret_msg.user_id.toLowerCase();
         var res_user_password = secret_msg.user_password;
 
         // find user account in db by id
@@ -62,7 +62,10 @@ router.post('/comformLogin',(req,res) =>{
                 console.log(err);
                 return;
             }else if(!user){
-                res.json({state:false,notice:"user not exist"});
+                res.json({
+                    success:false,
+                    message:"user not exist"
+                });
             }else{
                 user_password = user.password;
                 user_salt = user.salt;
@@ -77,18 +80,24 @@ router.post('/comformLogin',(req,res) =>{
                     },100*60*60*24*7);
                     
                     res.json({
-                        state:true,
-                        notice:"login sucessful",
-                        msg: secureConnection.encryptData(my_token,secret,my_iv)
+                        success:true,
+                        message:"login sucessful",
+                        data: secureConnection.encryptData(my_token,secret,my_iv)
                     });
                 }else{
-                    res.json({state:false,notice:"uncorrect password"});
+                    res.json({
+                        success:false,
+                        message:"uncorrect password"
+                    });
                 }
             }
         })
         
     }else{
-        res.json({state:false, notice:"login session time out"});
+        res.json({
+            success:false, 
+            message:"login session time out"
+        });
     }
 });
 

@@ -45,12 +45,15 @@ var Token = {
     },
     checkToken(token){
         var decodeMsg = this.decodeToken(token);
+        console.log("decodeMsg",decodeMsg)
         if(!decodeMsg)return false;
         // check the validity date
         var expState = (parseInt(Date.now()/1000) - parseInt(decodeMsg.payload.iat)) 
                                         > parseInt(decodeMsg.payload.exp) ? false:true;
         
-        if(decodeMsg.signature === decodeMsg.checkSignature && expState) return true;
+        if(decodeMsg.signature === decodeMsg.checkSignature && expState){
+            return decodeMsg.payload.msg;
+        } 
         return false;
     }
 

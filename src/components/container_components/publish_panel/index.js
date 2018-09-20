@@ -23,17 +23,30 @@ class PostPublishPanel extends Component {
   handleSubmitPost() {
     if(this.props.token){
       console.log("token",this.props.token);
+      var ic = this.props.token.ic;
+      var token = this.props.token.token;
+      console.log("my token", token)
+      let that = this;
+      console.log(this.refs.PostTitle.state.value)
+      console.log(this.refs.PostContent.state.value)
+      axios.post('/api/m/topic/post/'+this.props.topic,{
+        post_title:that.refs.PostTitle.state.value,
+        post_content:that.refs.PostContent.state.value
 
+      },{
+        headers: {'Token': token, 
+                  'IV':SecureTransfer.getRand()} 
+      }).then(function(res){
+
+      }).catch(function(err){
+        console.log(err)
+      })
+      
+    }else{
+      //TODO: notice to login
+      return
     }
-    let that = this;
-    console.log(this.refs.PostTitle.state.value)
-    console.log(this.refs.PostContent.state.value)
-    axios.post('/api/m/topic/post/'+this.props.topic,{
-      topic:'TEST',
-      author:'Tester',
-      post_title:that.refs.PostTitle.state.value,
-      post_content:that.refs.PostContent.state.value
-    })
+    
     
   }
 

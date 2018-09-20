@@ -48,31 +48,31 @@ class LoginPanel extends Component {
                 // comform Login 
                 axios.post('/api/m/login/comformLogin', {
                     cipher_msg: cipherResult,
-                    client_keys:my_public
+                    client_keys: my_public
                 }, {
                     headers: {'Content-Type': 'application/json'} 
                 })
                 .then(function (res) {
-                        if (res) {
-                            if(res.data.state){
-                                // if login success, decode responde msg to get token
-                                var decipher = crypto.createCipher('aes-128-cbc', my_secret,my_iv);
-                                var decipherResult = decipher.update(res.data.msg, 'utf8', 'hex');
-                                decipherResult += decipher.final('hex');
-                                console.log("successful",decipherResult);
-                                localStorage.setItem('token',decipherResult,{path:'/'})
-                                localStorage.setItem('ic',my_secret)                     
-                            }else{
-                                console.log(res.data.notice);
-                            }
+                        if(res.data.success){
+                            // if login success, decode responde msg to get token
+                            console.log("my_iv",my_iv)
+                            var decipher = crypto.createDecipher('aes-128-cbc',my_secret,my_iv);
+                            var decrypted = decipher.update(res.data.data,'hex','utf8');
+                            decrypted += decipher.final('utf8')
+
+                            console.log("successful",decrypted);
+                            localStorage.setItem('token',decrypted,{path:'/'})
+                            localStorage.setItem('ic',my_secret)                     
+                        }else{
+                            console.log(res.data.message);
                         }
+                        
                     }).catch(function (err) {
                         console.log(err);
                     })
 
             }).catch(function (err) {
                 console.log(err);
-                return;
             })
 
     }

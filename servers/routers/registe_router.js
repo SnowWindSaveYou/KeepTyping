@@ -28,6 +28,7 @@ router.get('/createKey',(req,res) =>{
     req.session.my_prime = keys[2] // save my private key to session
     req.session.iv = keys[3] // save my iv to session
     res.json({
+        success:true,
         server_key:keys[1],      // my public key
         prime:keys[2],
         iv:keys[3] 
@@ -49,15 +50,13 @@ router.post('/registeUser',(req,res) =>{
         var secret = secureConnection.computeSecret(client_keys ,my_private, my_prime);
         // decode the secret message
         var secret_msg = secureConnection.decryptData(msg.cipher_msg, secret,req.session.iv);
-        console.log("secret_msg: ",secret_msg);
         var secret_msg = JSON.parse(secret_msg)
-        var res_user_id = secret_msg.user_id;
+        var res_user_id = secret_msg.user_id.toLowerCase();
         var res_user_name = secret_msg.user_name;
         var res_user_password = secret_msg.user_password;
 
         // create salt
         var new_salt = secureConnection.getRandom()
-        console.log("salt: ",new_salt)
         // hash the req password 
         var hashed_pasword = secureConnection.makeHash(res_user_password);
         hashed_pasword = secureConnection.makeHash(hashed_pasword + new_salt);
@@ -66,12 +65,18 @@ router.post('/registeUser',(req,res) =>{
             if(err){
                 console.log(err);
             }else{
-                res.json("registe sucessful");
+                res.json({
+                        success:true,
+                        message:"registe sucessful"
+                    });
             }
         })
         
     }else{
-        res.json("registe session time out");
+        res.json({
+            success:false,
+            message:"registe session time out"
+        });
     }
 });
 

@@ -15,15 +15,17 @@ import {Route, BrowserRouter} from 'react-router-dom';
 import App from './App';
 import Page404 from './page_templates/static_page/page_404';
 import TestPage from './page_templates/static_page/page_test';
+import TopicPage from './page_templates/topic_page';
 
-const setTitle = title => () => document.title = title;
+const setTitle = title => () => {console.log('asdfasdf ' + title); document.title = title; };
 
 ReactDOM.render(
     <BrowserRouter basename="/">
     <div>
-        <Route exact path="/" component={App} onEnter={setTitle('Draw Search')}/>   
-        <Route path="/test" component={TestPage}/>   
-        <Route path="*" component={Page404}/> 
+        <Route exact path="/" component={App} onEnter={console.log('Keep Typing!')}/>   
+        <Route path="/topic/:name" component={TopicPage} />   
+        <Route path="/test" component={TestPage} title="TEST" />   
+        <Route path="*" component={Page404} title="404 not found" onEnter={console.log("asdf")}/> 
     </div>
     </BrowserRouter>,
     document.getElementById('root'));

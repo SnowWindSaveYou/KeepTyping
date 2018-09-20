@@ -25,6 +25,7 @@ class RegistePanel extends Component {
         /** registe the session and get AES encrypt key */
         axios.get('/api/m/registe/createKey')
             .then(function (res) {
+                // create secret key
                 var buffer = new Buffer.from(res.data.prime.data);
                 var DH = crypto.createDiffieHellman(buffer)
                 DH.generateKeys()
@@ -61,12 +62,15 @@ class RegistePanel extends Component {
             cipher_msg: cipherResult,
             client_keys:this.state.my_key
         }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: {'Content-Type': 'application/json'}
             }).then(function (res) {
                 if (res) {
-                    console.log(res)
+                    if(res.data.success){
+                        // registe success
+                        console.log("success")
+                    }else{
+                        console.log(res)
+                    }
                 }
             }).catch(function (err) {
                 console.log(err);

@@ -5,6 +5,7 @@ const PostModel = require('../models/post');
 const TopicModel = require('../models/topic');
 
 const PostContoller = require('../scripts/post_controller')
+const Token = require('../scripts/token')
 
 const PAGE_ROW_LIMIT = 10
 
@@ -67,11 +68,18 @@ router.get('/posts/:topicName',(req,res) =>{
  * @returns posts:[post_author,post_title,post_content,post_clicked]
  */
 router.post('/post/:topicName',(req,res) =>{
-    console.log(req.body)
-    PostContoller.createPost(   req.body.topic,
-                                req.body.author, 
-                                req.body.post_title,
-                                req.body.post_content)
+    console.log("tokenRaw",req.headers['token'] )
+    tokenMsg = Token.checkToken(req.headers['token'] );
+    console.log("tokenMsgRes",tokenMsg)
+    if(tokenMsg){
+        console.log(req.body)
+        PostContoller.createPost(   req.params.topicName,
+                                    tokenMsg.user_name, 
+                                    req.body.post_title,
+                                    req.body.post_content)
+    }
+
+
 });
 
 
