@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './style.css';
-import SubBlock from "../../../layout_components/sub_block";
+import {SubBlock} from "../../../layout_components";
 
 const AnnouncementData = "The website is building, Nice to meet you 0v0, this also is a test for SubBlock for SideBlock"
 

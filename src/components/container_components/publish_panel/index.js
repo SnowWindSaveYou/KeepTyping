@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import './style.css';
 import axios from 'axios';
 
-import SubBlock from "../../layout_components/sub_block";
+import {SubBlock} from "../../layout_components";
 import MultiLineEditText from "../../ui_components/textareas/multiline_edit_text"
 import SingleLineEditText from "../../ui_components/textareas/singleline_edit_text"
 import PrimaryButton from "../../ui_components/buttons/primary_btn";
 
-import SecureTransfer from '../../../helper/secure_transfer'
+import PostController from '../../../scripts/controllers/post_controller'
 
 class PostPublishPanel extends Component {
 
@@ -15,44 +15,42 @@ class PostPublishPanel extends Component {
     super(props);
     this.state = {
       topic:this.props.topic,
-      style: this.props.style ? null : {
-      }
+      notice:""
     }
   }
 
   handleSubmitPost() {
     if(this.props.token){
-      console.log("token",this.props.token);
-      var ic = this.props.token.ic;
-      var token = this.props.token.token;
-      console.log("my token", token)
-      let that = this;
-      console.log(this.refs.PostTitle.state.value)
-      console.log(this.refs.PostContent.state.value)
-      axios.post('/api/m/topic/post/'+this.props.topic,{
-        post_title:that.refs.PostTitle.state.value,
-        post_content:that.refs.PostContent.state.value
-
-      },{
-        headers: {'Token': token, 
-                  'IV':SecureTransfer.getRand()} 
-      }).then(function(res){
-
-      }).catch(function(err){
-        console.log(err)
-      })
-      
+      PostController.postPost(this.props.token,
+                              this.props.topic, 
+                              this.refs.PostTitle.state.value, 
+                              this.refs.PostContent.state.value)
     }else{
       //TODO: notice to login
       return
     }
-    
-    
+  }
+
+  switchLoginState(){
+    if(this.props.token){
+      console.log("yes login",this.props.token)
+      return(
+        <PrimaryButton id="submit_post" onClick={() => this.handleSubmitPost()} >Post</PrimaryButton>
+      )
+    }else{
+      console.log("un login",this.props.token)
+      return(
+        <div>
+          <PrimaryButton id="submit_post" onClick={() => this.handleSubmitPost()} >Login</PrimaryButton>
+          <p className="notice">Please Login to Join Us</p>
+        </div>
+       )
+    }
   }
 
   render() {
     return (
-      <SubBlock className="PostPublishPanel" style={this.state.style}>
+      <SubBlock className="PostPublishPanel" >
         <div className="top">
           <SingleLineEditText className="PostTitle" 
                               hint="What you want to say?"
@@ -64,9 +62,9 @@ class PostPublishPanel extends Component {
                               ref="PostContent"/>
         </div>
         <div className="bottom">
-          <PrimaryButton id="submit_post" onClick={() => this.handleSubmitPost()} >Post</PrimaryButton>
+          {this.switchLoginState()}
         </div>
-
+        
       </SubBlock>
     );
   }

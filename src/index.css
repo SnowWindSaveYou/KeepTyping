@@ -4,6 +4,11 @@ body {
   font-family: sans-serif;
 }
 
+.clearfix{
+  clear: both;
+  content: "";
+  display: table;
+}
 /** Format row style 
 * use 'float:left' items in row class div
 */

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 /** Components of page */
-//import HeaderBlock from '../../components/layout_components/header_block.js';
-import TopBlock from '../../components/layout_components/top_block.js';
-import MainBlock from '../../components/layout_components/main_block.js';
-import SideBlock from '../../components/layout_components/side_block.js';
-import ContainerBlock from '../../components/layout_components/container_block.js';
-import FooterBlock from '../../components/layout_components/footer_block.js';
+import {TopBlock,MainBlock,SideBlock,ContainerBlock,FooterBlock} from '../../components/layout_components/page_blocks'
+import CircleBlock from '../../components/layout_components/poly_blocks/circle_block'
+
 import PrimaryButton from '../../components/ui_components/buttons/primary_btn';
 import SecondaryButton from '../../components/ui_components/buttons/secondary_btn';
 
@@ -17,8 +14,8 @@ import UserInfo from '../../components/display_components/for_side_block/user_in
 import LoginPanel from '../../components/container_components/login_panel'
 import RegistePanel from '../../components/container_components/registe_panel'
 
-
-import SecureTransfer from '../../helper/secure_transfer'
+import SecureTransfer from '../../scripts/utils/secure_transfer'
+import LoginConroller from '../../scripts/controllers/login_controller'
 
 class TestPage extends Component {
 
@@ -45,6 +42,7 @@ class TestPage extends Component {
             <HeaderPanel/>
 
             <TopBlock style={{height:"300px",marginBottom:"-100px",background:"#fb2"}}>
+                <CircleBlock radiu="30"/>
             </TopBlock>
             <ContainerBlock style={{background:"#222"}}>
                 <SideBlock style={{background:"#123"}}>
@@ -58,7 +56,7 @@ class TestPage extends Component {
                 <MainBlock style={{background:"#321"}}>
                     <TopBlock style={{background:"#ccc"}}>
                         <PrimaryButton onClick={()=>{alert("testing")}}> Primary </PrimaryButton>
-                        <SecondaryButton>Secondary</SecondaryButton>
+                        <SecondaryButton onClick={()=>LoginConroller.userLogout()}>Logout</SecondaryButton>
                     </TopBlock>
 
                     {/* test the topic page */}

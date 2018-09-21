@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './style.css';
-import SubBlock from "../../../layout_components/sub_block";
+import {SubBlock} from "../../../layout_components";
 
 class PostRow extends Component {
     constructor(props){
@@ -21,11 +21,15 @@ class PostRow extends Component {
     handlerHoverOut(){
         this.setState({style:{backgroundColor:"#fff"}})
     }
+    handlerOnClick(){
+        console.log('click:',this.state.post_id)
+    }
     render(){
         return (
             <SubBlock className="PostRow" key={this.state.postId} 
-                onMouseOver={this.handlerHover}
-                onMouseLeave={this.handlerHoverOut}
+                onClick={()=>this.handlerOnClick()}
+                onMouseOver={this.handlerHover.bind(this)}
+                onMouseLeave={this.handlerHoverOut.bind(this)}
                 style={this.state.style}>
                 <div className="left">
                     {/* TODO: reset the connection to post by post id */}

@@ -47,9 +47,10 @@ router.post('/registeUser',(req,res) =>{
         var my_private = new Buffer.from(req.session.my_private);
         var my_prime = new Buffer.from(req.session.my_prime);
         var client_keys = new Buffer.from(msg.client_keys.data);
+        var iv = req.session.iv;
         var secret = secureConnection.computeSecret(client_keys ,my_private, my_prime);
         // decode the secret message
-        var secret_msg = secureConnection.decryptData(msg.cipher_msg, secret,req.session.iv);
+        var secret_msg = secureConnection.decryptData(msg.cipher_msg, secret,iv);
         var secret_msg = JSON.parse(secret_msg)
         var res_user_id = secret_msg.user_id.toLowerCase();
         var res_user_name = secret_msg.user_name;
@@ -61,13 +62,19 @@ router.post('/registeUser',(req,res) =>{
         var hashed_pasword = secureConnection.makeHash(res_user_password);
         hashed_pasword = secureConnection.makeHash(hashed_pasword + new_salt);
 
-        UserModel.create({id:res_user_id,name:res_user_name,password:hashed_pasword,salt:new_salt},(err)=>{
+        UserModel.create({id:res_user_id,name:res_user_name,password:hashed_pasword,salt:new_salt},(err,docs)=>{
             if(err){
                 console.log(err);
             }else{
+                my_token = token.createToken({
+                    user_id:docs._id,
+                    user_name:docs.name,        
+                },100*60*60*24*7);
+
                 res.json({
                         success:true,
-                        message:"registe sucessful"
+                        message:"registe sucessful",
+                        data: secureConnection.encryptData(my_token,secret,iv)
                     });
             }
         })

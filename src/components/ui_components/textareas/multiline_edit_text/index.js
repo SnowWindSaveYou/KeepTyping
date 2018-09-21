@@ -4,9 +4,10 @@
  */
 import React, { Component } from "react";
 import './style.css';
+import ThemeConfig from '../../../../configs/theme_config'
 
 const DEFAULT_COLOR_ONE = "#22222211";
-const DEFAULT_COLOR_TWO = "#00a1d6";
+const DEFAULT_COLOR_TWO = ThemeConfig.secondary_color;
 
 class MultiLineEditText extends Component {
   constructor(props){

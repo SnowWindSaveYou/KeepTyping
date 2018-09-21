@@ -39,7 +39,7 @@ class SecondaryButton extends Component {
       <a  className={ this.props.className + " SecondaryButton" }
           id={this.props.id}
           style={this.state.style}
-          onClick={()=>this.props.onClick()}
+          onClick={this.props.onClick? ()=>this.props.onClick():null}
           onMouseOver={this.handleMouseOver.bind(this)}
           onMouseLeave={this.handleMouseOut.bind(this)}>
         { this.props.children }

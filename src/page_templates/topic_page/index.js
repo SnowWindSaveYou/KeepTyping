@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-
-
-import TopBlock from '../../components/layout_components/top_block.js';
-import MainBlock from '../../components/layout_components/main_block.js';
-import SideBlock from '../../components/layout_components/side_block.js';
-import ContainerBlock from '../../components/layout_components/container_block.js';
-import FooterBlock from '../../components/layout_components/footer_block.js';
-import PrimaryButton from '../../components/ui_components/buttons/primary_btn';
-import SecondaryButton from '../../components/ui_components/buttons/secondary_btn';
-
+import {TopBlock,HeaderBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock} from '../../components/layout_components/page_blocks'
 import HeaderPanel from '../../components/container_components/header_panel';
 import PostList from '../../components/container_components/post_list';
 import PublishPanel from '../../components/container_components/publish_panel';
 import Announcement from '../../components/display_components/for_side_block/announcement';
 import UserInfo from '../../components/display_components/for_side_block/user_info'
-import LoginPanel from '../../components/container_components/login_panel'
-import RegistePanel from '../../components/container_components/registe_panel';
 
-import SecureTransfer from '../../helper/secure_transfer'
+import SecureTransfer from '../../scripts/utils/secure_transfer'
 
 class TopicPage extends Component {
   constructor(props) {

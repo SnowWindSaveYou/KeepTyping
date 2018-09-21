@@ -45,7 +45,15 @@ const Post = new Schema({
         type:String,
         default: ''
     },
+    post_state:{
+        type:String,
+        default: 'normal'
+    },
     post_clicked:{
+        type:Number,
+        default: 0
+    },
+    post_follower_num:{
         type:Number,
         default: 0
     },

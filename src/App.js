@@ -3,12 +3,8 @@ import React, { Component } from 'react';
 import './styles/App.css';
 
 /** Components of page */
-import HeaderBlock from './components/layout_components/header_block.js';
-import TopBlock from './components/layout_components/top_block.js';
-import MainBlock from './components/layout_components/main_block.js';
-import SideBlock from './components/layout_components/side_block.js';
-import ContainerBlock from './components/layout_components/container_block.js';
-import FooterBlock from './components/layout_components/footer_block.js';
+import {TopBlock,HeaderBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock} from './components/layout_components/page_blocks'
+
 
 class App extends Component {
   constructor(props){

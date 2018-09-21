@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import './style.css';
 
-
-
-import HeaderBlock from "../../layout_components/header_block"
+import {HeaderBlock} from '../../layout_components'
 import PrimaryButton from "../../ui_components/buttons/primary_btn";
 import SecondaryButton from "../../ui_components/buttons/secondary_btn";
-//import SubBlock from "../../../layout_components/sub_block";
 
 class HeaderPanel extends Component {
     constructor(props){

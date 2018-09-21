@@ -25,6 +25,28 @@ const User = new Schema({
         type:String,
         required:true
     },
+    avater:{
+        type:String,
+        default:""
+    },
+    topics:{
+        type:Array
+    },
+    following:{
+        type:Array
+    },
+    follower:{
+        type:Array
+    },
+    user_posts:{
+        type:Array
+    },
+    user_replys:{
+        type:Array
+    },
+    post_collections:{
+        type:Array
+    }
 },{ timestamps: true , collection:'user'})
 
 module.exports = User;

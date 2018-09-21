@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import './style.css';
-import axios from 'axios';
-import SubBlock from "../../layout_components/sub_block";
+
+import {SubBlock} from "../../layout_components";
 import PostRow from "./post_row";
+
+import PostController from "../../../scripts/controllers/post_controller";
+
 class PostList extends Component {
 
     constructor(props){
@@ -15,14 +18,10 @@ class PostList extends Component {
     }
     componentDidMount(){
         let that = this;
-        axios.get('/api/m/topic/posts/'+this.props.topic)
-        .then(function(res){
-            console.log(res.data);
-            that.setState({postData:res.data})
-
-        }).catch(function(err){
-            console.log(err);
+        PostController.getPosts(this.props.topic, posts=>{
+            that.setState({ postData: posts })
         })
+
     }
 
     renderPost(item, i){

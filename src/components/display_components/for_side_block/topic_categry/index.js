@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './style.css';
-import SubBlock from "../../../layout_components/sub_block";
+import {SubBlock} from "../../../layout_components";
 
 class TopicCategory extends Component {
     /** Test Only */

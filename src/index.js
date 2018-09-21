@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import {Route, BrowserRouter} from 'react-router-dom';
+import {Route, Switch, BrowserRouter} from 'react-router-dom';
 
 /** FOR TEST ONLY */
 //import './styles/show_location.css';
@@ -21,12 +21,12 @@ const setTitle = title => () => {console.log('asdfasdf ' + title); document.titl
 
 ReactDOM.render(
     <BrowserRouter basename="/">
-    <div>
-        <Route exact path="/" component={App} onEnter={console.log('Keep Typing!')}/>   
+    <Switch>
+        <Route exact path="/" component={App} />   
         <Route path="/topic/:name" component={TopicPage} />   
         <Route path="/test" component={TestPage} title="TEST" />   
-        <Route path="*" component={Page404} title="404 not found" onEnter={console.log("asdf")}/> 
-    </div>
+        <Route path="/*" component={Page404} title="TEST" />   
+    </Switch>
     </BrowserRouter>,
     document.getElementById('root'));
 registerServiceWorker();
