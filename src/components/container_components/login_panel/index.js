@@ -4,6 +4,7 @@ import {SubBlock} from "../../layout_components";
 import PrimaryButton from "../../ui_components/buttons/primary_btn";
 
 import LoginController from "../../../scripts/controllers/login_controller"
+import {SingleLineEditText} from "@/components/ui_components"
 
 class LoginPanel extends Component {
 
@@ -25,19 +26,20 @@ class LoginPanel extends Component {
 
     render() {
         return (
-            <SubBlock className="LoginPanel">
+            <SubBlock className="LoginPanel" {...this.props}>
                 <h3>Login</h3>
                 <table>
                     <tbody>
+                        <tr><td></td><td style={{width:"200px"}}></td></tr>
                         <tr>
                             <td>Account</td>
-                            <td><input value={this.state.accountID}
-                                onChange={this.handleInputAccountOnChange.bind(this)}></input> </td>
+                            <td><SingleLineEditText value={this.state.accountID}
+                                onChange={this.handleInputAccountOnChange.bind(this)}></SingleLineEditText> </td>
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td><input value={this.state.password}
-                                onChange={this.handleInputPasswordOnChange.bind(this)}></input> </td>
+                            <td><SingleLineEditText value={this.state.password}
+                                onChange={this.handleInputPasswordOnChange.bind(this)}></SingleLineEditText> </td>
                         </tr>
                         <tr><td><PrimaryButton onClick={() => this.handleLoginSubmit()}>Login</PrimaryButton></td></tr>
                     </tbody>

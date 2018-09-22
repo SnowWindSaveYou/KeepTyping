@@ -16,16 +16,21 @@ import App from './App';
 import Page404 from './page_templates/static_page/page_404';
 import TestPage from './page_templates/static_page/page_test';
 import TopicPage from './page_templates/topic_page';
+import RegistePagePage from './page_templates/registe_page';
 
-const setTitle = title => () => {console.log('asdfasdf ' + title); document.title = title; };
+
+global.setTitle = (title)=>{
+    document.title = title;
+}
 
 ReactDOM.render(
     <BrowserRouter basename="/">
     <Switch>
-        <Route exact path="/" component={App} />   
+        <Route exact path="/" component={RegistePagePage} />   
         <Route path="/topic/:name" component={TopicPage} />   
-        <Route path="/test" component={TestPage} title="TEST" />   
-        <Route path="/*" component={Page404} title="TEST" />   
+        <Route path="/test" component={TestPage} />   
+        <Route path="/registe" component={RegistePagePage} />   
+        <Route path="/*" component={Page404}/>   
     </Switch>
     </BrowserRouter>,
     document.getElementById('root'));

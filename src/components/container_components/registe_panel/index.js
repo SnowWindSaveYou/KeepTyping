@@ -3,9 +3,13 @@ import './style.css';
 
 import {SubBlock} from "../../layout_components";
 import PrimaryButton from "../../ui_components/buttons/primary_btn";
+import {SingleLineEditText} from "@/components/ui_components/"
 
-import RegisteController from "../../../scripts/controllers/registe_controller"
+import RegisteController from "@/scripts/controllers/registe_controller"
 
+/**
+ * @param props{  } 
+ */
 class RegistePanel extends Component {
 
     constructor(props) {
@@ -22,33 +26,45 @@ class RegistePanel extends Component {
     handleInputPasswordOnChange(e) {this.setState({ password: e.target.value })}
 
     handleRegisteSubmit() {
-        RegisteController.userRegiste(this.state.accountID, this.state.userName, this.state.password);
+        console.log(this.state.userName)
+       // RegisteController.userRegiste(this.state.accountID, this.state.userName, this.state.password);
     }
 
     render() {
         return (
-            <SubBlock className="RegistePanel">
-                <h3>Registe User Account</h3>
-                <table>
+            <SubBlock className="RegistePanel" style={this.props.style}>
+                <div className="top">
+                    <h3 className="title" style={this.props.titleStyle}>{this.props.title?this.props.title: "Registe User Account"}</h3>
+                    {this.props.children}
+                </div>
+                    <table className="RegisteTable" style={this.props.tableStyle}>
                     <tbody>
                         <tr>
-                            <td>Email</td>
-                            <td><input value={this.state.accountID}
-                                onChange={this.handleInputAccountOnChange.bind(this)}></input> </td>
+                            <td> </td><td style={{width:"700px"}}></td>
                         </tr>
                         <tr>
-                            <td>Username</td>
-                            <td><input value={this.state.userName}
-                                onChange={this.handleInputUserNameOnChange.bind(this)}></input> </td>
+                            <td style={this.props.rowTitStyle}>Email</td>
+                            <td><SingleLineEditText value={this.state.accountID}
+                                style={{width:"100%"}}
+                                onChange={this.handleInputAccountOnChange.bind(this)}></SingleLineEditText> </td>
                         </tr>
                         <tr>
-                            <td>Password</td>
-                            <td><input value={this.state.password}
-                                onChange={this.handleInputPasswordOnChange.bind(this)}></input> </td>
+                            <td style={this.props.rowTitStyle}>Username</td>
+                            <td><SingleLineEditText value={this.state.userName}
+                            style={{width:"100%"}}
+                                onChange={this.handleInputUserNameOnChange.bind(this)}></SingleLineEditText> </td>
                         </tr>
-                        <tr><td><PrimaryButton onClick={() => this.handleRegisteSubmit()}>Submit</PrimaryButton></td></tr>
+                        <tr>
+                            <td style={this.props.rowTitStyle}>Password</td>
+                            <td><SingleLineEditText value={this.state.password}
+                            style={{width:"100%"}}
+                                onChange={this.handleInputPasswordOnChange.bind(this)}></SingleLineEditText> </td>
+                        </tr> 
                     </tbody>
                 </table>
+                <PrimaryButton className="submitBtn" 
+                                style={this.props.submitStyle}
+                                onClick={() => this.handleRegisteSubmit()}>Submit</PrimaryButton>
             </SubBlock>
         )
     }

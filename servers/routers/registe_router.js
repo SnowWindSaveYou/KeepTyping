@@ -3,7 +3,7 @@ const router = express.Router();
 const session = require('express-session');
 const secureConnection = require('../scripts/secure_connection');
 
-
+const token = require('../scripts/token');
 const UserModel = require('../models/user');
 
 router.use(session({

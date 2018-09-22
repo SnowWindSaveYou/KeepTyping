@@ -2,7 +2,7 @@
  * Container Block
  * the row block contains the main block and side block
  */
-import React, { Component } from "react";
+import React from "react";
 import './style.css';
 
 const ContainerBlock = (props)=> (

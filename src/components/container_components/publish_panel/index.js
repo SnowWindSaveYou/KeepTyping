@@ -3,9 +3,8 @@ import './style.css';
 import axios from 'axios';
 
 import {SubBlock} from "../../layout_components";
-import MultiLineEditText from "../../ui_components/textareas/multiline_edit_text"
-import SingleLineEditText from "../../ui_components/textareas/singleline_edit_text"
-import PrimaryButton from "../../ui_components/buttons/primary_btn";
+import {MultiLineEditText,SingleLineEditText,PrimaryButton} from "../../ui_components"
+
 
 import PostController from '../../../scripts/controllers/post_controller'
 
@@ -15,16 +14,24 @@ class PostPublishPanel extends Component {
     super(props);
     this.state = {
       topic:this.props.topic,
+      post_title:"",
+      post_content:"",
       notice:""
     }
+  }
+  handleOnChangeTitle(e){
+    this.setState({post_title:e.target.value})
+  }
+  handleOnChangeContent(e){
+    this.setState({post_content:e.target.value})
   }
 
   handleSubmitPost() {
     if(this.props.token){
       PostController.postPost(this.props.token,
                               this.props.topic, 
-                              this.refs.PostTitle.state.value, 
-                              this.refs.PostContent.state.value)
+                              this.state.post_title, 
+                              this.state.post_content)
     }else{
       //TODO: notice to login
       return
@@ -53,13 +60,15 @@ class PostPublishPanel extends Component {
       <SubBlock className="PostPublishPanel" >
         <div className="top">
           <SingleLineEditText className="PostTitle" 
-                              hint="What you want to say?"
-                              ref="PostTitle"/>
+                              value={this.state.post_title}
+                              onChange={this.handleOnChangeTitle.bind(this)}>
+                              What you want to say?</SingleLineEditText>
         </div>
         <div className="middle">
           <MultiLineEditText  className="PostContent" 
-                              hint="some details..."
-                              ref="PostContent"/>
+                              value={this.state.post_content}
+                              onChange={this.handleOnChangeContent.bind(this)}>
+                              some details...</MultiLineEditText>
         </div>
         <div className="bottom">
           {this.switchLoginState()}

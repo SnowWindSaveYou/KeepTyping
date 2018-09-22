@@ -5,14 +5,14 @@
 import React from "react";
 import './style.css';
 
-const SubBlock = (props)=> (
-    <div className={props.className + " SubBlock"} style= {props.style} 
-        key={props.key}
-        onClick={props.onClick? ()=>props.onClick():null}
-        onMouseOver={props.onMouseOver?props.onMouseOver:null }
-        onMouseLeave={props.onMouseLeave ?props.onMouseLeave:null}>
-    { props.children }
-  </div>
-)
+
+const SubBlock = (props)=> {
+    var {className, ...other} = props;
+    return(
+        <div className={className + " SubBlock"} {...other}>
+            { props.children }
+        </div>
+    )
+}
 
 export default SubBlock;

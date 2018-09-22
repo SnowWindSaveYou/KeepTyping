@@ -1,5 +1,4 @@
 import React from "react";
-// import './style.css';
 
 const CircleBlock = (props)=> (
     <div className={props.className + " CircleBlock"} style= {props.style} 
@@ -8,7 +7,8 @@ const CircleBlock = (props)=> (
             width: (props.radiu*2)+"px",
             height: (props.radiu*2)+"px",
             borderRadius: (props.radiu)+"px",
-            background:props.background ?props.background:"#FFF"
+            background:props.background ?props.background:"#FFF",
+            overflow:"hidden"
         }}
         key={props.key}
         onClick={props.onClick? ()=>props.onClick():null}

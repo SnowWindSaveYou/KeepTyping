@@ -1,0 +1,41 @@
+.UserInfo {
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #555;
+}
+.UserInfo .inner{
+    margin: -10px;
+    padding: 10px;
+    width: 210px;
+    box-sizing: border-box;
+}
+.UserInfo .top{
+    height: 64px;
+    margin-bottom: 15px
+}
+.UserInfo .middle{
+    font-size: 8px;
+    height: auto;
+}
+
+.UserInfo .user_head{
+    margin-left: 5px;
+    float: left;
+}
+.UserInfo .user_name{
+    color: #fff;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+    margin-left: 5px;
+}
+.UserInfo .user_bias{
+    font-size: 12px;
+    color: #ccc;
+}
+.UserInfo .follow_info{
+    color: #111;
+    font-size: 12px;
+}

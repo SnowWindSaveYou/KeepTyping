@@ -19,6 +19,7 @@
     background-image: none;
     border: 1px solid;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 .SecondaryButton a{
     background-color: transparent;

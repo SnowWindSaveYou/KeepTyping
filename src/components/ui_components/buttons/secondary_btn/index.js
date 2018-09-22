@@ -7,8 +7,9 @@
 
 import React, { Component } from "react";
 import './style.css';
+import ThemeConfig from '@/configs/theme_config.js'
 
-const DEFAULT_COLOR = "#00a1d6";
+const DEFAULT_COLOR = ThemeConfig.secondary_color;
 
 class SecondaryButton extends Component {
   constructor(props){
