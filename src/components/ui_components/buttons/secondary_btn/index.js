@@ -7,20 +7,19 @@
 
 import React, { Component } from "react";
 import './style.css';
-import ThemeConfig from '@/configs/theme_config.js'
 
-const DEFAULT_COLOR = ThemeConfig.secondary_color;
+const PRIMARY_COLOR = global.theme.secondary_color;
 
 class SecondaryButton extends Component {
   constructor(props){
     super(props);
     this.state = {
-      color1: this.props.color1 ? this.props.color1  : DEFAULT_COLOR,
-      t_color1:this.props.t_color1 ? this.props.t_color1  : DEFAULT_COLOR,
+      color1: this.props.color1 ? this.props.color1  : PRIMARY_COLOR,
+      t_color1:this.props.t_color1 ? this.props.t_color1  : PRIMARY_COLOR,
       t_color2:this.props.t_color2 ? this.props.t_color2  : "#fff",
       style:{ 
-        color: this.props.t_color1 ? this.props.t_color1  : DEFAULT_COLOR,
-        borderColor: this.props.color1 ? this.props.color1  : DEFAULT_COLOR
+        color: this.props.t_color1 ? this.props.t_color1  : PRIMARY_COLOR,
+        borderColor: this.props.color1 ? this.props.color1  : PRIMARY_COLOR
       }
 
     }

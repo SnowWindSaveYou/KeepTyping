@@ -1,11 +1,24 @@
 import SecureTransfer from '../utils/secure_transfer';
+import CheckFormat from '../utils/check_format';
 import axios from 'axios';
 
 const CREATE_KEY_URL = '/api/m/login/createKey';
 const LOGIN_URL = '/api/m/login/comformLogin';
 
+
 var LoginController = {
     userLogin(account,password){
+        if(CheckFormat.checkEmail(account)){
+
+        }
+        if(CheckFormat.checkEmail(account)){
+            
+        }
+        if(CheckFormat.checkEmail(account)){
+            
+        }
+        
+
         /** registe the session and get AES encrypt key */
         axios.get(CREATE_KEY_URL)
         .then(function (res) {

@@ -1,6 +1,6 @@
 import React from 'react';
 const CoverBlock = (props) => {
-    var { onClick, ...other } = props;
+    var { onClick,background, ...other } = props;
     return (
         <div style={{
                 
@@ -8,7 +8,7 @@ const CoverBlock = (props) => {
             <div className="CoverBlock"
                 onClick={onClick ? onClick : null}
                 style={{
-                    background: props.background ? props.background : "#000000cc",
+                    background: background ? background : "#000000cc",
                     position: "absolute",
                     height: "100%",
                     width: "100%",

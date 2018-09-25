@@ -5,7 +5,7 @@ import SideBlock from './side_block';
 import HeaderBlock from './header_block';
 import FooterBlock from './footer_block';
 import SubBlock from './sub_block';
-
+import CoverBlock from './cover_block';
 export {
     ContainerBlock,
     TopBlock,
@@ -13,5 +13,6 @@ export {
     SideBlock, 
     HeaderBlock, 
     FooterBlock, 
-    SubBlock
+    SubBlock,
+    CoverBlock
 };

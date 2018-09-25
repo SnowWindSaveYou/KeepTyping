@@ -2,42 +2,27 @@ import React, { Component } from 'react';
 //import logo from './img/icons/logo.svg';
 import './styles/App.css';
 
+import BgImage from '@/asset/bg_res/zhihubg.png';
+
 /** Components of page */
-import {TopBlock,HeaderBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock} from './components/layout_components/page_blocks'
+import {TopBlock,HeaderBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock,CoverBlock} from './components/layout_components/page_blocks'
 
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mainBlockStyle:{
-        color:'#000'
-      }
+      
     }
   }
   render() {
     return (
       <div className="App">
-        <HeaderBlock>
-          HeaderBlock
-        </HeaderBlock>
-        <TopBlock>
-          
-        </TopBlock>
-
-        <ContainerBlock >
-          <SideBlock>
-            SideBlock
-          </SideBlock>
-          <MainBlock >
-            MainBlock
-          </MainBlock>
-          ContainerBlock
-        </ContainerBlock>
-        <FooterBlock>
-          FooterBlock
-        </FooterBlock>
-
+        <CoverBlock>
+          <div>
+            Hellow Keyborad Man
+          </div>
+        </CoverBlock>
       </div>
     );
   }

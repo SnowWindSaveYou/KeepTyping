@@ -2,45 +2,73 @@ const UserModel = require('../models/user')
 const TopicModel = require('../models/topic')
 const PostModel = require('../models/post')
 
-
+const PAGE_ROW_LIMIT = 10
 
 var PostController ={
-    // stucte a reply
-    reply_count(author,content){
-        return{
-            reply_content:content,
-            author:author,
-            date:Date.toString()
-        }
-    },
 
-    // create a post under topic & update author's notification
-    createPost(topic,author,title,content){
-        // create post and registe under topic
-        new_post = new PostModel({post_topic:topic,
-                                    post_author:author,
-                                    post_title:title,
-                                    post_content:content});
-        new_post.save();
-        //TODO: also register the post in author's detail
-
-        //TODO: give notification to who follow the author
-        
-        return true;
-    },
-
-    // create a reply under post & update author's notification
-    createReply(author,post,content){
-        //TODO: push data in post doc
-
+    /**
+     * create a reply under post & update author's notification
+     * @param {*} post 
+     * @param {*} author 
+     * @param {*} content 
+     */
+    createReply(post,author,content){
+        // push data in post doc
+        PostModel.findById(post)
+        .then((post)=>{
+            post.post_replys.push({reply_author:author,reply_content:content});
+            post.save()
+            return true;
+        })
+        .catch((err)=>{
+            return false;
+        })
         //TODO: give notification to uper layer's author(post author)
         
         return true;
     },
 
+    /**
+     * get the post and add the clicked count
+     * @param {*} postId 
+     * @param {*} callback 
+     */
+    getPost(postId, callback){
+        PostModel
+        .findOne({_id:postId},['post_author','post_title','post_content','post_clicked','updatedAt','post_replys'])
+        .limit(PAGE_ROW_LIMIT)
+        .exec((err,data)=>{
+            callback(err,data);
+        })
+    },
+    /**
+     * get post replys
+     * @param {*} postId 
+     * @param {*} page 
+     * @param {*} callback 
+     */
+    getReplys(postId,page=0, callback){
+        var skipCount = page * PAGE_ROW_LIMIT;
+        PostModel
+        .findOne({_id:postId},['post_replys'])
+        .limit(PAGE_ROW_LIMIT)
+        .skip(skipCount)
+        .exec((err,data)=>{
+            callback(err,data);
+        })
+    },
+
     // create a sub reply under reply & update author's notification
-    createSubReply(author,topic,replyLever,content){
+    createSubReply(post,replyLever,author,content){
         //TODO: push data in post doc
+        PostModel.findById(post)
+        .then((post)=>{
+            post.post_replys[replyLever].push({sub_author:author,sub_content:content});
+            post.save()
+        })
+        .catch((err)=>{
+            return false;
+        })
 
         //TODO: give notification to uper layer's author (post,reply author)
 

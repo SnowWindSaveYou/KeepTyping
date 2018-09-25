@@ -1,18 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-
-function DialogController(){
-    DialogController
-
-    const holder = document.createElement('div');
-    document.body.appendChild(holder);
-
-    const close = () => {
-        document.body.removeChild(holder)
-    }
-    ReactDOM.render()
+import NotificationDialog from '@/components/dialog_components/notification_dialog';
 
 
+function notificationShow(message,type){
+    NotificationDialog.show({message:message,type:type});
 }
 
-export default DialogController;
+export {notificationShow};

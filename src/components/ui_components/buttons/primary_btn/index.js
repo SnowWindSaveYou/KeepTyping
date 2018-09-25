@@ -7,10 +7,9 @@
  */
 import React, { Component } from "react";
 import './style.css';
-import ThemeConfig from '@/configs/theme_config.js'
 
-const DEFAULT_COLOR_ONE = ThemeConfig.primary_color;
-const DEFAULT_COLOR_TWO = ThemeConfig.primary_light_color;
+const PRIMARY_COLOR = global.theme.primary_color;
+const SECONDRY_COLOR = global.theme.primary_light_color;
 
 class PrimaryButton extends Component {
   constructor(props){
@@ -19,11 +18,11 @@ class PrimaryButton extends Component {
       curr_style: true,
       style:{ 
         color: this.props.t_color1 ? this.props.t_color1  : "#fff",
-        background: this.props.color1 ? this.props.color1  : DEFAULT_COLOR_ONE
+        background: this.props.color1 ? this.props.color1  : PRIMARY_COLOR
       },
       hoverStyle:{
         color: this.props.t_color2 ? this.props.t_color2  : "#fff",
-        background: this.props.color2 ? this.props.color2  : DEFAULT_COLOR_TWO
+        background: this.props.color2 ? this.props.color2  : SECONDRY_COLOR
       }
     }
   }

@@ -12,7 +12,7 @@ import HeaderPanel from '../../components/container_components/header_panel';
 import PostList from '../../components/container_components/post_list';
 import PublishPanel from '../../components/container_components/publish_panel';
 import Announcement from '../../components/display_components/for_side_block/announcement';
-import UserInfo from '../../components/display_components/for_side_block/user_info'
+import UserInfo from '../../components/display_components/user_info'
 import LoginPanel from '../../components/container_components/login_panel'
 import RegistePanel from '../../components/container_components/registe_panel'
 
@@ -20,6 +20,9 @@ import SecureTransfer from '../../scripts/utils/secure_transfer'
 import LoginConroller from '../../scripts/controllers/login_controller'
 
 import NotificationDialog from '../../components/dialog_components/notification_dialog'
+import {notificationShow} from '../../scripts/controllers/dialog_controller'
+
+import MoveBlock from '../../components/layout_components/page_blocks/move_block'
 
 class TestPage extends Component {
 
@@ -31,13 +34,15 @@ class TestPage extends Component {
         }
     }
     componentDidMount(){
+
         this.setState({
             token:SecureTransfer.getToken()
         })
     }
 
     handleTestDialog(){
-        NotificationDialog.show()
+        notificationShow("TEST",false)
+       // NotificationDialog.show()
     }
     handleTestToken(){
         console.log(global.token)
@@ -56,7 +61,11 @@ class TestPage extends Component {
                 <PrimaryButton onClick={()=>this.handleTestDialog()}> Dialog </PrimaryButton>
                 <PrimaryButton onClick={()=>this.handleTestToken()}> Token </PrimaryButton>
                 <SecondaryButton onClick={()=>LoginConroller.userLogout()}>Logout</SecondaryButton>
-                <CircleBlock radiu="30"/>
+                <MoveBlock top="50" left="70"><CircleBlock radiu="30"/></MoveBlock>
+                
+                <div>
+                    <SingleLineEditText/> 
+                </div>
             </TopBlock>
             <ContainerBlock style={{background:"#222"}}>
                 <SideBlock style={{background:"#123"}}>

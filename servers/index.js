@@ -38,6 +38,7 @@ const AuthRouter = require('./routers/auth_router');
 const LoginRouter = require('./routers/login_router');
 const RegisteRouter = require('./routers/registe_router');
 const TopicRouter = require('./routers/topic_router');
+const PostRouter = require('./routers/post_router');
 
 
 app.get('/', (req, res) => {
@@ -49,8 +50,11 @@ app.use('/auth',AuthRouter);
 app.use('/login',LoginRouter);
 // secure registe
 app.use('/registe',RegisteRouter);
-// secure registe
+// topic
 app.use('/topic',TopicRouter);
+// post 
+app.use('/post',PostRouter);
+
 
 // get all users in database
 app.get('/getUserList',(req,res,next)=>{

@@ -1,86 +1,61 @@
 const express = require('express');
 const router = express.Router();
 
-const PostModel = require('../models/post');
-const TopicModel = require('../models/topic');
-
-const PostContoller = require('../scripts/post_controller')
+const TopicContoller = require('../scripts/topic_controller')
 const Token = require('../scripts/token')
 
-const PAGE_ROW_LIMIT = 10
 
 /**
  * get Topic info in database
  * @param topicName 
  * @returns topic: topic description,manager, etc.
  */
-router.get('/topic/:topicName',(req,res,next)=>{
-    TopicModel.findOne({topic_title:req.params.topicName})
-    .exec((err,topic)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.json(topic);
-        }
+router.get('/getTopic/:topicName', (req, res) => {
+    TopicContoller.getTopic(req.param.topicName, (err, data) => {
+        res.json(data);
     })
 })
+
+
 /**
- * get Topic info in database
+ * create a new topic
  * @param topicName 
  * @returns topic: topic description,manager, etc.
  */
-router.post('/topic/:topicName',(req,res,next)=>{
-    new_topic = new TopicModel({topic_title:req.params.topicName});
-    new_topic.save();
+router.post('/createTopic/:topicName', (req, res, next) => {
+    TopicContoller.createTopic(req.params.topicName)
     res.json(true);
 })
 
-/** 
- * Get Posts in Topic
- * split search result by page
- * @param topicName, page
- * @returns posts:[post_author,post_title,post_content,post_clicked]
+/**
+ * post a post to the topic
+ * @param token, topicName, post_title,post_content
  */
-router.get('/posts/:topicName',(req,res) =>{
-    var skipCount = 0;
-    if(req.query.page){
-        skipCount = req.query.page * PAGE_ROW_LIMIT;
-    }
-
-    PostModel
-    .find({post_topic:req.params.topicName},['_id','post_author','post_title','post_content','post_clicked','updatedAt'])
-    .sort({'updatedAt':-1})
-    .limit(PAGE_ROW_LIMIT)
-    .skip(skipCount)
-    .exec((err,topic)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.json(topic);
-        }
-    })
-});
-
-/** 
- * Get Posts in Topic
- * split search result by page
- * @param topicName, page
- * @returns posts:[post_author,post_title,post_content,post_clicked]
- */
-router.post('/post/:topicName',(req,res) =>{
-    console.log("tokenRaw",req.headers['token'] )
-    tokenMsg = Token.checkToken(req.headers['token'] );
-    console.log("tokenMsgRes",tokenMsg)
-    if(tokenMsg){
+router.post('/postPost/:topicName', (req, res) => {
+    tokenMsg = Token.checkToken(req.headers['token']);
+    if (tokenMsg) {
         console.log(req.body)
-        PostContoller.createPost(   req.params.topicName,
-                                    tokenMsg.user_name, 
-                                    req.body.post_title,
-                                    req.body.post_content)
+        TopicContoller.createPost(req.params.topicName,
+            tokenMsg.user_name,
+            req.body.post_title,
+            req.body.post_content)
     }
-
-
 });
+
+/** 
+ * Get Posts in Topic
+ * split search result by page
+ * @param topicName, page
+ * @returns posts:[post_author,post_title,post_content,post_clicked]
+ */
+router.get('/getPosts/:topicName', (req, res) => {
+    TopicContoller.getPosts(req.params.topicName, 
+                            req.query.page, (err, data) => {
+                                res.json(data);
+                            })
+});
+
+
 
 
 

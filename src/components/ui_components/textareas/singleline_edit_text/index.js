@@ -6,7 +6,7 @@ import React, { Component } from "react";
 import './style.css';
 
 const DEFAULT_COLOR_ONE = "#22222511";
-const DEFAULT_COLOR_TWO = "#00a1d6"; 
+const DEFAULT_COLOR_TWO = global.theme.secondary_color; 
 
 class SingleLineEditText extends Component {
     constructor(props) {

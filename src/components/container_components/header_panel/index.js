@@ -4,7 +4,7 @@ import './style.css';
 import {HeaderBlock} from '../../layout_components'
 import PrimaryButton from "../../ui_components/buttons/primary_btn";
 import SecondaryButton from "../../ui_components/buttons/secondary_btn";
-import ThemeConifg from "@/configs/theme_config";
+
 
 class HeaderPanel extends Component {
     constructor(props){
@@ -18,7 +18,7 @@ class HeaderPanel extends Component {
       return (
         <HeaderBlock>
             <div className="HeaderPanel">
-                <div className="to_left" style={{color:ThemeConifg.primary_color,marginLeft:"10px"}}>
+                <div className="to_left" style={{color:global.theme.primary_color,marginLeft:"10px"}}>
                  KeepTyping
                 </div>
 

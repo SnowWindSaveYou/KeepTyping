@@ -16,6 +16,11 @@ const SubReply = new Schema({
 },{ timestamps: true})
 
 const Reply = new Schema({
+    reply_level:{
+        type:Number,
+        index:true,
+        required:true
+    },
     reply_author:{
         type:String,
         required:true
@@ -53,6 +58,10 @@ const Post = new Schema({
         type:Number,
         default: 0
     },
+    post_reply_count:{
+        type:Number,
+        default: 0
+    },
     post_follower_num:{
         type:Number,
         default: 0
@@ -60,4 +69,7 @@ const Post = new Schema({
     post_replys:[Reply]
 },{ timestamps: true , collection:'post'})
 
-module.exports = Post;
+// module.exports = Post;
+module.exports = {
+    Post,Reply,SubReply
+}

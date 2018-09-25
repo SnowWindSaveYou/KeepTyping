@@ -5,13 +5,13 @@
 import React, { Component } from "react";
 import './style.css';
 
-import ThemeConfig from '@/configs/theme_config'
-const DEFAULT_COLOR_ONE = "#22222511";
-const DEFAULT_COLOR_TWO = ThemeConfig.secondary_color; 
+const COVER_COLOR = "#22222511";
+const BORDER_COLOR = global.theme.secondary_color;
 
 class MultiLineEditText extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             hover:false,
             focus: false,
@@ -36,9 +36,9 @@ class MultiLineEditText extends Component {
             inputStyle:{
                 color:  this.state.color,
                 fontSize:this.state.fontSize,
-                background: this.state.hover || this.state.focus ? null: DEFAULT_COLOR_ONE,
+                background: this.state.hover || this.state.focus ? null: COVER_COLOR,
                 border: this.state.hover || this.state.focus ? "solid 1px" : null,
-                borderColor: this.state.hover ||this.state.focus ? DEFAULT_COLOR_TWO: null
+                borderColor: this.state.hover ||this.state.focus ? BORDER_COLOR: null
             }
         });
     }

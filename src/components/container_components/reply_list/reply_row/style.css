@@ -1,0 +1,36 @@
+.ReplyRow{
+    padding: 10px;
+    height: auto;
+    border-bottom: solid 1px #eee;
+}
+.ReplyRow .reply_left{
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+.ReplyRow .reply_right{
+    position: relative;
+    float: left;
+    width: calc(100% - 100px);
+    min-height: 120px;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.ReplyRow .reply_pannel{
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: 12px;
+    margin-left: 30px;
+}
+.ReplyRow .reply_content{
+    font-size: 14px;
+}
+.ReplyRow .reply_author{
+    font-size: 15px;
+}
+.ReplyRow .reply_date{
+    font-size: 12px;
+}

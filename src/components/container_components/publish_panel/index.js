@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import './style.css';
-import axios from 'axios';
 
 import {SubBlock} from "../../layout_components";
 import {MultiLineEditText,SingleLineEditText,PrimaryButton} from "../../ui_components"
-
-
+import {notificationShow} from '@/scripts/controllers/dialog_controller'
 import PostController from '../../../scripts/controllers/post_controller'
 
 class PostPublishPanel extends Component {
@@ -13,10 +11,8 @@ class PostPublishPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic:this.props.topic,
       post_title:"",
-      post_content:"",
-      notice:""
+      post_content:""
     }
   }
   handleOnChangeTitle(e){
@@ -33,7 +29,7 @@ class PostPublishPanel extends Component {
                               this.state.post_title, 
                               this.state.post_content)
     }else{
-      //TODO: notice to login
+      notificationShow("Please Login First","warn")
       return
     }
   }
