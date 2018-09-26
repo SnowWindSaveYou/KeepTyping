@@ -32,15 +32,16 @@ const NotificationDialog = (props) =>  {
                                                 position:"absolute",top:0, bottom:0,margin:"auto",marginLeft:15 }}
                                 src={(()=>{
                                         switch(props.type){
-                                                case true: return "svg/success.svg";
-                                                case false: return "svg/wrong.svg";
-                                                case "warn": return "svg/warning.svg";
-                                                case "notice": return "svg/information.svg";
-                                                default: return "logo.svg";
+                                                case true: return "/svg/success.svg";
+                                                case false: return "/svg/wrong.svg";
+                                                case "warn": return "/svg/warning.svg";
+                                                case "notice": return "/svg/information.svg";
+                                                default: return "/logo.svg";
                                         }
-                                })()} ></ReactSVG>
+                                })()} 
+                                ></ReactSVG>
 
-                        <div className="to_left" style={{padding:"0 0 5px 65px",color:"#fff"}}>
+                        <div className="to_left" style={{padding:"0 10px 5px 65px",color:"#fff"}}>
                                 {props.message}
                         </div>
                 </SubBlock>

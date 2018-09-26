@@ -29,24 +29,31 @@ const User = new Schema({
         type:String,
         default:""
     },
+    bias:{
+        type:String
+    },
     topics:{
         type:Array
     },
-    following:{
-        type:Array
-    },
-    follower:{
-        type:Array
-    },
-    user_posts:{
-        type:Array
-    },
+    following:[{
+        type:Schema.Types.ObjectId,
+        ref: 'user',
+    }],
+    follower:[{
+        type:Schema.Types.ObjectId,
+        ref: 'user',
+    }],
+    user_posts:[{
+        type:Schema.Types.ObjectId,
+        ref: 'post',
+    }],
     user_replys:{
         type:Array
     },
-    post_collections:{
-        type:Array
-    }
+    post_collections:[{
+        type:Schema.Types.ObjectId,
+        ref: 'post',
+    }]
 },{ timestamps: true , collection:'user'})
 
 module.exports = User;

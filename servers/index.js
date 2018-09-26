@@ -8,7 +8,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const config = require('config');
 
-const token = require('./scripts/token');
+const token = require('./scripts/utils/token');
 
 /** Configs */
 const MY_PORT = config.get("back.port");

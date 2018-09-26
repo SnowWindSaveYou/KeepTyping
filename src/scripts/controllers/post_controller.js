@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {notificationShow} from '@/scripts/controllers/dialog_controller'
+import LoginController from './login_controller'
 
 var PostController = {
     getPost(postId,callback){
@@ -6,42 +8,32 @@ var PostController = {
         .then(function(res){
             let data = res.data.data
             typeof callback === 'function' && callback.call(window,data);
-            return {
-                post:{
-                    post_title:data.post_title,
-                    post_content:data.post_content,
-                    post_author:data.post_author
-                },
-                replys:data.post_replys
-            };
+            return data;
         }).catch(function(err){
             console.log(err);
         })
     },
-    getPostReplys(postId,page=1,callback){
+    getReplys(postId,page=0,callback){
         axios.get('/api/m/post/getReplys/'+postId + "?page="+page)
         .then(function(res){
             let data = res.data.data
             typeof callback === 'function' && callback.call(window,data);
-            return {
-                replys:data.post_replys
-            };
+            return data;
         }).catch(function(err){
             console.log(err);
         })
     },
 
-    postPost(token,topic,post_title,post_content){
-        axios.post('/api/m/post/postReply/'+ topic,{
-            post_title:post_title,
-            post_content:post_content
+    postReply(postId,post_content){
+        axios.post('/api/m/post/postReply/'+ postId,{
+            reply_content:post_content
         },{
             headers: {
-            'Token': token, 
+            'Token': localStorage.getItem('token'), 
             'Content-Type': 'application/json'} 
         }).then(function(res){
-            //TODO: notice success
-    
+            LoginController.checkLogoutMsg(res.data.message);
+            notificationShow(res.data.message,res.data.success)
         }).catch(function(err){
             console.log(err)
         })

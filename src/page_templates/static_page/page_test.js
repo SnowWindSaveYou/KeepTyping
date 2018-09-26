@@ -10,7 +10,7 @@ import SecondaryButton from '../../components/ui_components/buttons/secondary_bt
 
 import HeaderPanel from '../../components/container_components/header_panel';
 import PostList from '../../components/container_components/post_list';
-import PublishPanel from '../../components/container_components/publish_panel';
+import PublishPanel from '../../components/container_components/post_publish_panel';
 import Announcement from '../../components/display_components/for_side_block/announcement';
 import UserInfo from '../../components/display_components/user_info'
 import LoginPanel from '../../components/container_components/login_panel'
@@ -30,7 +30,8 @@ class TestPage extends Component {
         super(props);
         this.state = {
             topic:'TEST',
-            token:null
+            token:null,
+            content:""
         }
     }
     componentDidMount(){
@@ -64,7 +65,7 @@ class TestPage extends Component {
                 <MoveBlock top="50" left="70"><CircleBlock radiu="30"/></MoveBlock>
                 
                 <div>
-                    <SingleLineEditText/> 
+                    
                 </div>
             </TopBlock>
             <ContainerBlock style={{background:"#222"}}>
@@ -87,7 +88,6 @@ class TestPage extends Component {
                     {/* test the topic page */}
                     <PostList topic={this.state.topic}/>
                     <PublishPanel topic={this.state.topic} token={this.state.token}/>
-
                 </MainBlock>
             </ContainerBlock>
             <FooterBlock style={{background:"#555",marginTop:"-20px"}}>

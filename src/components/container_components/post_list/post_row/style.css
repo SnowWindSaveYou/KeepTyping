@@ -1,15 +1,9 @@
 .PostRow{
     padding: 10px;
-    height: 60px;
+    min-height: 60px;
+    height:auto;
     border-bottom: solid 1px #eee;
     background-color: #fff;
-}
-.PostRow .left{
-    float: left;
-}
-.PostRow .right{
-    float: right;
-    
 }
 .PostRow .title{
     vertical-align: bottom;

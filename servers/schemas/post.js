@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 
 const SubReply = new Schema({
     sub_author:{
-        type:String,
+        type:Schema.Types.ObjectId,
+        ref: 'user',
         required:true
     },
     sub_content:{
@@ -22,7 +23,8 @@ const Reply = new Schema({
         required:true
     },
     reply_author:{
-        type:String,
+        type:Schema.Types.ObjectId,
+        ref: 'user',
         required:true
     },
     reply_content:{
@@ -39,7 +41,8 @@ const Post = new Schema({
         required:true
     },
     post_author:{
-        type:String,
+        type:Schema.Types.ObjectId,
+        ref: 'user',
         required:true
     },
     post_title:{

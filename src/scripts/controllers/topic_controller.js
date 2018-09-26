@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {notificationShow} from './dialog_controller'
+import LoginController from './login_controller'
 
 var TopicController = {
     
@@ -13,17 +15,17 @@ var TopicController = {
             console.log(err);
         })
     },
-    postPost(token,topic,post_title,post_content){
+    postPost(topic,post_title,post_content){
         axios.post('/api/m/topic/postPost/'+ topic,{
             post_title:post_title,
             post_content:post_content
         },{
             headers: {
-            'Token': token, 
+            'Token': localStorage.getItem('token'), 
             'Content-Type': 'application/json'} 
         }).then(function(res){
-            //TODO: notice success
-    
+            LoginController.checkLogoutMsg(res.data.message);
+            notificationShow(res.data.message,res.data.success)
         }).catch(function(err){
             console.log(err)
         })

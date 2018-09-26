@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './style.css';
 import {SubBlock} from "../../../layout_components";
-import {mongoToPost} from '@utils/date_formater'
+import {formateDate} from '@utils/formater'
 
 const PRIMARY_COLOR = global.theme.primary_color;
 const SECONDARY_COLOR = global.theme.secondary_color
@@ -33,17 +33,17 @@ class PostRow extends Component {
                 onClick={()=>this.handlerOnClick()}
                 onMouseOver={this.handlerHover.bind(this)}
                 onMouseLeave={this.handlerHoverOut.bind(this)}>
-                <div className="left">
+                <div className="to_left" style={{width:"70%"}}>
                     {/* TODO: reset the connection to post by post id */}
                     <a className="title" href={'/p/'+this.props.post_id} 
                         style={{color:PRIMARY_COLOR}}>
                         <span className="reply_num">{this.props.reply_num}</span>
                         {this.props.title}</a>
-                    <div className="content">{this.props.content}</div>
+                    <div className="content" style={{width:"calc(100% - 30px)",wordWrap:"break-word"}}>{this.props.content}</div>
                 </div>
-                <div className="right">
+                <div className="to_right">
                     <a className="author" style={{color:SECONDARY_COLOR}} >{this.props.author}</a>
-                    <p className="date">{mongoToPost(this.props.date)}</p>
+                    <p className="date">{formateDate(this.props.date)}</p>
                 </div>
             </SubBlock>
         );

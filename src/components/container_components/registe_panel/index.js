@@ -26,8 +26,7 @@ class RegistePanel extends Component {
     handleInputPasswordOnChange(e) {this.setState({ password: e.target.value })}
 
     handleRegisteSubmit() {
-        console.log(this.state.userName)
-       // RegisteController.userRegiste(this.state.accountID, this.state.userName, this.state.password);
+       RegisteController.userRegiste(this.state.accountID, this.state.userName, this.state.password);
     }
 
     render() {

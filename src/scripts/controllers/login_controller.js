@@ -1,6 +1,7 @@
 import SecureTransfer from '../utils/secure_transfer';
 import CheckFormat from '../utils/check_format';
 import axios from 'axios';
+import {notificationShow} from '@/scripts/controllers/dialog_controller'
 
 const CREATE_KEY_URL = '/api/m/login/createKey';
 const LOGIN_URL = '/api/m/login/comformLogin';
@@ -8,17 +9,14 @@ const LOGIN_URL = '/api/m/login/comformLogin';
 
 var LoginController = {
     userLogin(account,password){
-        if(CheckFormat.checkEmail(account)){
-
+        if(!account||!password){
+            notificationShow("Please fill all space","warn")
+            return;
         }
-        if(CheckFormat.checkEmail(account)){
-            
+        if(!CheckFormat.checkEmail(account)){
+            notificationShow("This is not a Currect Email","warn")
+            return;
         }
-        if(CheckFormat.checkEmail(account)){
-            
-        }
-        
-
         /** registe the session and get AES encrypt key */
         axios.get(CREATE_KEY_URL)
         .then(function (res) {
@@ -48,9 +46,11 @@ var LoginController = {
                     if(res.data.success){
                         // if login success, decode responde msg to get token
                         var decipherMsg = SecureTransfer.decodeMsg(res.data.data,DH_keys.my_secret,iv)
-                        localStorage.setItem('token',decipherMsg,{path:'/'})                   
+                        localStorage.setItem('token',decipherMsg,{path:'/'})  
+                        global.setLogin(true)    
+                        notificationShow("Login success",true)            
                     }else{
-                        console.log(res.data.message);
+                        notificationShow(res.data.message,false)
                     }
                     
                 }).catch(function (err) {
@@ -63,6 +63,13 @@ var LoginController = {
     },
     userLogout(){
         localStorage.clear();
+        sessionStorage.clear();
+        global.setLogin(false);
+    },
+    checkLogoutMsg(msg){
+        if(["login state overdue","token not found"].includes(msg)){
+            this.userLogout();
+        }
     }
 }
 

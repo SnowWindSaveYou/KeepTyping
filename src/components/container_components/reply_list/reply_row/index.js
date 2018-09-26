@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './style.css';
 import {SubBlock,CircleBlock} from "@/components/layout_components";
-import {mongoToPost} from '@utils/date_formater'
+import {formateDate,formateDoc} from '@utils/formater'
 
 import defaultHead from '@/asset/default_head.png'
 const PRIMARY_COLOR = global.theme.primary_color;
@@ -30,9 +30,10 @@ class ReplyRow extends Component {
                     <a className="reply_author" style={{color:PRIMARY_COLOR}} >{this.props.author}</a>
                 </div>
                 <div className="reply_right">
-                    <div className="reply_content" style={{color:FONT_COLOR}}>{this.props.content}</div> 
+                    <div className="reply_content" style={{color:FONT_COLOR}}>
+                    {formateDoc(this.props.content)}</div> 
                     <div className="reply_pannel" style={{color:FONT_LIGHT_COLOR}}>
-                        <p className="reply_date">{mongoToPost(this.props.date)}</p>
+                        <p className="reply_date">{formateDate(this.props.date)}</p>
                     </div>
                 </div>
             </SubBlock>

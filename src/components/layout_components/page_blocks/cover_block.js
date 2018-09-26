@@ -9,7 +9,7 @@ const CoverBlock = (props) => {
                 onClick={onClick ? onClick : null}
                 style={{
                     background: background ? background : "#000000cc",
-                    position: "absolute",
+                    position: "fixed",
                     height: "100%",
                     width: "100%",
                     top: "0px",
@@ -18,7 +18,7 @@ const CoverBlock = (props) => {
                 }}>
             </div>
             <div {...other} style={{
-                position: "absolute",
+                position: "fixed",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",

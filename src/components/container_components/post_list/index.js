@@ -12,11 +12,11 @@ class PostList extends Component {
         return <PostRow 
             key= {i}
             post_id={item._id}
-            author={item.post_author}
+            author={item.post_author[0].name}
             title={item.post_title}
             content={item.post_content}
             date={item.updatedAt}
-            reply_num={item.post_clicked}
+            reply_num={item.replyNum}
         ></PostRow>
     }
     renderPostList(){

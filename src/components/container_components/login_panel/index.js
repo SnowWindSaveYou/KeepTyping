@@ -26,8 +26,8 @@ class LoginPanel extends Component {
 
     render() {
         return (
-            <SubBlock className="LoginPanel" {...this.props}>
-                <h3>Login</h3>
+            <SubBlock className="LoginPanel" style={{background:global.theme.base_color}}>
+                <h3 style={{color:global.theme.primary_color}}>Login</h3>
                 <table>
                     <tbody>
                         <tr><td></td><td style={{width:"200px"}}></td></tr>

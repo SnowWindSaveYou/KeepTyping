@@ -1,0 +1,20 @@
+.PostPublishPanel{
+    padding: 5px;
+    background-color: #ffffff
+}
+.PostPublishPanel .top{
+    margin-bottom: 3px;
+}
+.PostPublishPanel .bottom{
+    height: 16px;
+    padding: 5px;
+}
+.PostPublishPanel .notice{
+    color: #ccc;
+    margin-right: 10px;
+    margin-top: 10px;
+    float: right;
+}
+.PostPublishPanel #submit_post{
+    float: right;
+}

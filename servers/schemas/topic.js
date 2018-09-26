@@ -11,13 +11,18 @@ const Topic = new Schema({
         type:String,
         default:'welcome'
     },
-    managers:{
-        type:Array
-    },
+    managers:[{
+        type:Schema.Types.ObjectId,
+        ref: 'user'
+    }],
     tags:{
         type:Array
     },
     member_num:{
+        type:Number,
+        default:0
+    },
+    post_num:{
         type:Number,
         default:0
     },
@@ -26,11 +31,12 @@ const Topic = new Schema({
         content:String
     }],
     blacklist:[{
-        user_id:String,
+        type:Schema.Types.ObjectId,
+        ref: 'user',
         time:Number,
         banAt:{
             type:Date,
-            default:Date.now()
+            default:Date.now
         }
     }],
 },{ timestamps: true , collection:'topic'})

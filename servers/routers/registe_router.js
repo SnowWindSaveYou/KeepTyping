@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const session = require('express-session');
-const secureConnection = require('../scripts/secure_connection');
-
-const token = require('../scripts/token');
-const UserModel = require('../models/user');
+const secureConnection = require('../scripts/utils/secure_connection');
+const token = require('../scripts/utils/token');
+const RegisteController = require('../scripts/controllers/registe_controller');
 
 router.use(session({
     secret :  'secret 0v0 2333', 
@@ -36,49 +35,48 @@ router.get('/createKey',(req,res) =>{
 });
 
 
-/**
- * 
- * cipher_msg{user_id,user_name,user_password}
+/** ser_password}
  */
 router.post('/registeUser',(req,res) =>{
     let msg = req.body
     // check session
     if(req.session.my_private){
+        // define nessasary msg & 
         var my_private = new Buffer.from(req.session.my_private);
-        var my_prime = new Buffer.from(req.session.my_prime);
         var client_keys = new Buffer.from(msg.client_keys.data);
+        var prime = new Buffer.from(req.session.my_prime);
         var iv = req.session.iv;
-        var secret = secureConnection.computeSecret(client_keys ,my_private, my_prime);
+        var secret = secureConnection.computeSecret(client_keys ,my_private, prime);
         // decode the secret message
         var secret_msg = secureConnection.decryptData(msg.cipher_msg, secret,iv);
-        var secret_msg = JSON.parse(secret_msg)
-        var res_user_id = secret_msg.user_id.toLowerCase();
-        var res_user_name = secret_msg.user_name;
-        var res_user_password = secret_msg.user_password;
+        var secret_msg = JSON.parse(secret_msg);
+        // got user input
+        var user_id = secret_msg.user_id.toLowerCase();
+        var user_name = secret_msg.user_name;
+        var user_password = secret_msg.user_password;
 
-        // create salt
-        var new_salt = secureConnection.getRandom()
-        // hash the req password 
-        var hashed_pasword = secureConnection.makeHash(res_user_password);
-        hashed_pasword = secureConnection.makeHash(hashed_pasword + new_salt);
-
-        UserModel.create({id:res_user_id,name:res_user_name,password:hashed_pasword,salt:new_salt},(err,docs)=>{
-            if(err){
-                console.log(err);
-            }else{
-                my_token = token.createToken({
-                    user_id:docs._id,
-                    user_name:docs.name,        
-                },100*60*60*24*7);
-
-                res.json({
+        // registe the user
+        RegisteController.registeUser(user_id,user_name,user_password,
+            (result)=>{
+                if(result.success){
+                    // create token for user login
+                    my_token = token.createToken({
+                        user_id:result.data._id,
+                        user_name:result.data.name,        
+                    },100*60*60*24*7);
+                    res.json({
                         success:true,
                         message:"registe sucessful",
-                        data: secureConnection.encryptData(my_token,secret,iv)
+                        data:my_token
                     });
-            }
-        })
-        
+
+                }else{
+                    res.json({
+                        success:false,
+                        message:"registe session time out"
+                    });
+                }
+            })
     }else{
         res.json({
             success:false,
@@ -86,8 +84,6 @@ router.post('/registeUser',(req,res) =>{
         });
     }
 });
-
-
 
 
 module.exports = router

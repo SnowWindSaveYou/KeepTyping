@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const TopicContoller = require('../scripts/topic_controller')
-const Token = require('../scripts/token')
+const TopicContoller = require('../scripts/controllers/topic_controller')
+const Token = require('../scripts/utils/token')
 
 
 /**
@@ -32,13 +32,27 @@ router.post('/createTopic/:topicName', (req, res, next) => {
  * @param token, topicName, post_title,post_content
  */
 router.post('/postPost/:topicName', (req, res) => {
-    tokenMsg = Token.checkToken(req.headers['token']);
-    if (tokenMsg) {
-        console.log(req.body)
-        TopicContoller.createPost(req.params.topicName,
-            tokenMsg.user_name,
-            req.body.post_title,
-            req.body.post_content)
+    if(!req.body.post_title){
+        res.json({
+            success:false,
+            message:"please say some thing"
+        });
+    }else{
+        tokenMsg = Token.checkToken(req.headers['token']);
+        console.log("tokenMsg",tokenMsg);
+        if (tokenMsg.success) {
+            TopicContoller.postPost(
+                req.params.topicName,
+                tokenMsg.data.user_id,
+                req.body.post_title,
+                req.body.post_content)
+            res.json({
+                success:true,
+                message:"post success"
+            });
+        }else{
+            res.json(tokenMsg);
+        }
     }
 });
 
