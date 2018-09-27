@@ -2,6 +2,7 @@ import SecureTransfer from '../utils/secure_transfer';
 import axios from 'axios';
 import {notificationShow} from '@/scripts/controllers/dialog_controller'
 import CheckFormat from '../utils/check_format';
+import {backLastPage} from '../utils/jump_page';
 
 const CREATE_KEY_URL = '/api/m/registe/createKey';
 const RIGESTE_URL = '/api/m/registe/registeUser';
@@ -51,16 +52,19 @@ var RegisteController = {
                         // if registe success, decode responde msg to get token
                         var decipherMsg = SecureTransfer.decodeMsg(res.data.data,DH_keys.my_secret,iv);
                         localStorage.setItem('token',decipherMsg,{path:'/'})  
-                        global.setLogin(true)               
+                        global.setLogin(true)   
+                        notificationShow("Registe success",true,()=> backLastPage()) 
                     }else{
-                        console.log(res.data.message);
+                        notificationShow(res.data.message,false)
                     }
                     
                 }).catch(function (err) {
+                    notificationShow(err,false)
                     console.log(err);
                 })
 
         }).catch(function (err) {
+            notificationShow(err,false)
             console.log(err);
         })
     }

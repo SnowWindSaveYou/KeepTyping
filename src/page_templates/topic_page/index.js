@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TopBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock} from '../../components/layout_components/page_blocks'
+import {TopBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock, SubBlock} from '../../components/layout_components/page_blocks'
 import HeaderPanel from '../../components/container_components/header_panel';
 import PostList from '../../components/container_components/post_list';
 import PublishPanel from '../../components/container_components/post_publish_panel';
@@ -56,7 +56,7 @@ class TopicPage extends Component {
           </SideBlock>
           {/* mail block show posts */}
           <MainBlock>
-            <TopBlock style={{ height: "60px",marginBottom: "5px",background: "#fff" }}></TopBlock>
+            <SubBlock style={{ height: "60px",marginBottom: "5px",background: "#fff" }}></SubBlock>
 
             <PostList topic={this.state.topic} posts={this.state.posts}/>
             <PublishPanel 

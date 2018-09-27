@@ -21,6 +21,7 @@ import LoginConroller from '../../scripts/controllers/login_controller'
 
 import NotificationDialog from '../../components/dialog_components/notification_dialog'
 import {notificationShow} from '../../scripts/controllers/dialog_controller'
+import {toHome} from '../../scripts/utils/jump_page'
 
 import MoveBlock from '../../components/layout_components/page_blocks/move_block'
 
@@ -42,7 +43,10 @@ class TestPage extends Component {
     }
 
     handleTestDialog(){
-        notificationShow("TEST",false)
+        notificationShow("TEST",false,()=>{
+            toHome(this)
+            console.log('test')
+        })
        // NotificationDialog.show()
     }
     handleTestToken(){

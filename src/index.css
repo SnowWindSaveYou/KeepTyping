@@ -34,6 +34,12 @@ body {
 .to_right{
   float: right;
 }
+.to_center{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .pair_row{
   width: 100%; 

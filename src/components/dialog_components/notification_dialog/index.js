@@ -3,15 +3,11 @@ import ReactSVG from 'react-svg'
 import BaseDialog from '../base_dialog';
 import CoverBlock from '@/components/layout_components/page_blocks/cover_block';
 import { SubBlock } from '../../layout_components';
-// import NOTICE_ICON from '@/asset/svg/information.svg'
-// import WARN_ICON from '@/asset/svg/warning.svg'
-// import ERROR_ICON from '@/asset/svg/wrong.svg'
-// import SUCCESS_ICON from '@/asset/svg/success.svg'
 
 const NotificationDialog = (props) =>  {
 
         return(
-            <CoverBlock onClick={()=>{props.onClose()}}>
+            <CoverBlock onClick={()=>{props.onClose(); props.onClick ?props.onClick():null}}>
                 <SubBlock className="NotificationDialog" 
                         onClick={()=>{console.log(props)}}
                         style={{minWidth:"250px",width:"auto",height:"70px",

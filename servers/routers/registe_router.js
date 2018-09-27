@@ -67,7 +67,7 @@ router.post('/registeUser',(req,res) =>{
                     res.json({
                         success:true,
                         message:"registe sucessful",
-                        data:my_token
+                        data:secureConnection.encryptData(my_token, secret,iv)
                     });
 
                 }else{
