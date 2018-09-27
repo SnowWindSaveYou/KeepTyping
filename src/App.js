@@ -29,16 +29,15 @@ class App extends Component {
       <LoginContext.Provider value={this.state}>
       <BrowserRouter basename="/">
         <Switch>
-            <Route exact path="/" component={HomePage}  props={{login:this.state.login}} />   
-            <Route path="/t/:name" component={TopicPage} login={this.state.login}/>   
-            <Route path="/p/:name" component={PostPage} props={{login:this.state.login}}/>   
-            <Route path="/test" component={TestPage} login={this.state.login}/>   
-            <Route path="/registe" component={RegistePagePage} login={this.state.login}/>   
+            <Route exact path="/" component={HomePage}   />   
+            <Route path="/t/:name" component={TopicPage} />   
+            <Route path="/p/:name" component={PostPage} />   
+            <Route path="/test" component={TestPage} />   
+            <Route path="/registe" component={RegistePagePage} />   
             <Route path="/*" component={Page404}/>   
         </Switch>
       </BrowserRouter>
       </LoginContext.Provider>
-
     );
   }
 }

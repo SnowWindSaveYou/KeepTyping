@@ -24,7 +24,7 @@ class RegistePage extends Component {
               <LoginContext.Consumer>
               { (value)=>( 
                 !value.login ? 
-                (<div className="RegistePanel to_center">
+                (<div className="to_center ">
                     <RegistePanel   title="Keep Typing" 
                     titleStyle={{color:global.theme.primary_color, fontSize:"45px"}}
                     sloganStyle={{color:global.theme.font_color}}
