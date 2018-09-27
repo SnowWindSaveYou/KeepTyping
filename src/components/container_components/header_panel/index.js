@@ -23,7 +23,7 @@ class HeaderPanel extends Component {
         <HeaderBlock>
             <div className="HeaderPanel">
                 <div className="to_left" style={{color:global.theme.primary_color,marginLeft:"10px"}}>
-                <Link to="/">KeepTyping</Link> 
+                <Link to="/">Week9</Link> 
                 </div>
                 <LoginContext.Consumer>
                   {value=>(!value.login ? (

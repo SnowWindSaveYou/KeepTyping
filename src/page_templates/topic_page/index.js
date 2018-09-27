@@ -37,15 +37,15 @@ class TopicPage extends Component {
 
   render() {
     return (
-      <div className="TopicPage" style={{ background: "#f2f2f2"}}>
+      <div className="TopicPage" style={{ background: global.theme.base_color}}>
         <HeaderPanel />
 
 
         
-        <TopBlock style={{ height: "300px", marginBottom: "-100px", background: "#fb2" }}></TopBlock>
+        <TopBlock style={{ height: "300px", marginBottom: "-100px", background: global.theme.base_color }}></TopBlock>
 
 
-        <ContainerBlock >
+        <ContainerBlock style={{background:global.theme.base_color}}>
           {/* show page & user detail, and extentions */}
           <SideBlock style={{ marginRight: "5px" }}>
 
@@ -56,7 +56,7 @@ class TopicPage extends Component {
           </SideBlock>
           {/* mail block show posts */}
           <MainBlock>
-            <SubBlock style={{ height: "60px",marginBottom: "5px",background: "#fff" }}></SubBlock>
+            <SubBlock style={{ height: "60px",marginBottom: "5px",background: global.theme.base_color }}></SubBlock>
 
             <PostList topic={this.state.topic} posts={this.state.posts}/>
             <PublishPanel 
