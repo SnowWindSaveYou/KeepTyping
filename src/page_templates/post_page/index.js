@@ -4,13 +4,13 @@ import {formateDate,formateDoc} from '@utils/formater'
 import {TopBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock, SubBlock, CircleBlock} from '@/components/layout_components'
 import HeaderPanel from '@/components/container_components/header_panel';
 import ReplyList from '@/components/container_components/reply_list';
-import UserInfo from '@/components/display_components/user_info';
+import UserInfo from '@/components/display_components/show_infos/user_info';
 import LoginPanel from '@/components/container_components/login_panel';
 
 import PostController from "@/scripts/controllers/post_controller";
 import UserController from '@/scripts/controllers/user_controller';
 import defaultHead from '@/asset/default_head.png'
-import MultiLinePublishPanel from '@/components/container_components/reply_publish_panel'
+import MultiLinePublishPanel from '@/components/display_components/publish_panels/reply_publish_panel'
 
 import {getQuerys} from '@utils/url';
 import {LoginContext} from '@/Contexts'
@@ -108,10 +108,10 @@ class PostPage extends Component {
 
         {/* show page & user detail, and extentions */}
         <SideBlock >
-          <LoginContext.Consumer>
+          {/* <LoginContext.Consumer>
             {value=>( value.login ? (<UserInfo />):(<LoginPanel/>))}
-          </LoginContext.Consumer>
-
+          </LoginContext.Consumer> */}
+          <UserInfo user={this.state.post_author}/>
         </SideBlock>
         </ContainerBlock>
 

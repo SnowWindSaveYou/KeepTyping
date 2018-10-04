@@ -1,30 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+import UnderLineEditText from '@ui/textareas/underline_edit_text'
 /** Components of page */
-import {TopBlock,MainBlock,SideBlock,ContainerBlock,FooterBlock} from '../../components/layout_components/page_blocks'
-import CircleBlock from '../../components/layout_components/poly_blocks/circle_block'
-
-import SingleLineEditText from '../../components/ui_components/textareas/singleline_edit_text';
-
-import PrimaryButton from '../../components/ui_components/buttons/primary_btn';
-import SecondaryButton from '../../components/ui_components/buttons/secondary_btn';
-
-import HeaderPanel from '../../components/container_components/header_panel';
-import PostList from '../../components/container_components/post_list';
-import PublishPanel from '../../components/container_components/post_publish_panel';
-import Announcement from '../../components/display_components/for_side_block/announcement';
-import UserInfo from '../../components/display_components/user_info'
-import LoginPanel from '../../components/container_components/login_panel'
-import RegistePanel from '../../components/container_components/registe_panel'
-
-import SecureTransfer from '../../scripts/utils/secure_transfer'
-import LoginConroller from '../../scripts/controllers/login_controller'
-
-import NotificationDialog from '../../components/dialog_components/notification_dialog'
-import {notificationShow} from '../../scripts/controllers/dialog_controller'
-import {toHome} from '../../scripts/utils/jump_page'
-
-import MoveBlock from '../../components/layout_components/page_blocks/move_block'
-
 class TestPage extends Component {
 
     constructor(props){
@@ -35,69 +12,59 @@ class TestPage extends Component {
             content:""
         }
     }
-    componentDidMount(){
+    // componentDidMount(){
 
-        this.setState({
-            token:SecureTransfer.getToken()
-        })
-    }
+    //     this.setState({
+    //         token:SecureTransfer.getToken()
+    //     })
+    // }
 
-    handleTestDialog(){
-        notificationShow("TEST",false,()=>{
-            toHome(this)
-            console.log('test')
-        })
-       // NotificationDialog.show()
-    }
-    handleTestToken(){
-        console.log(global.token)
-    }
+    // handleTestDialog(){
+    //     notificationShow("TEST",false,()=>{
+    //         toHome(this)
+    //         console.log('test')
+    //     })
+    //    // NotificationDialog.show()
+    // }
+    // handleTestToken(){
+    //     console.log(global.token)
+    // }
 
-    handleSubmitPost(e){
-        console.log(e.target.value)
-    }
+    // handleChangeTopic(e){
+    //     this.setState({content:e.target.value})
+    // }
+    // handleSubmitTopic(e){
+    //     let that = this
+    //     console.log(that.state.token)
+    //     axios.post('api/m/topic/createTopic/'+this.state.content,{
+            
+    //     },{
+    //         headers:{'Content-Type': 'application/json',
+    //         'token':that.state.token}
+    //     })
+    //     .then((data)=>{
+    //         console.log(data)
+    //     })
+    // }
 
     render() {
       return (
-        <div className="TestPage" style={{background:"#aaa"}}>
-            <HeaderPanel/>
+        <div className="TestPage" >
+            <UnderLineEditText></UnderLineEditText>
+            {/* <HeaderPanel/>
 
-            <TopBlock style={{height:"300px",marginBottom:"-100px",background:"#fb2"}}>
+            <TopBlock style={{height:"300px",marginBottom:"-100px"}}>
                 <PrimaryButton onClick={()=>this.handleTestDialog()}> Dialog </PrimaryButton>
                 <PrimaryButton onClick={()=>this.handleTestToken()}> Token </PrimaryButton>
                 <SecondaryButton onClick={()=>LoginConroller.userLogout()}>Logout</SecondaryButton>
-                <MoveBlock top="50" left="70"><CircleBlock radiu="30"/></MoveBlock>
-                
-                <div>
-                    
+                <CircleButton>6</CircleButton>
+                <div  style={{width:"300px",marginT:"100px"}}>
+                    <SingleLineEditText onChange={this.handleChangeTopic.bind(this)}>
+                    </SingleLineEditText>
+                    <PrimaryButton onClick={()=>this.handleSubmitTopic()}> Create </PrimaryButton>
                 </div>
-            </TopBlock>
-            <ContainerBlock style={{background:"#222"}}>
-                <SideBlock style={{background:"#123"}}>
-                    <LoginPanel style={{background:"#fff"}}/>
-                    <RegistePanel style={{background:"#fff"}}/>
-                    <UserInfo 
-                        user_name="Akalin"
-                        user_bias="you can't see me"
-                        user_folloer="0"
-                        user_folloing="0"
-                    
-                    />
-                    <Announcement/>
-                    
-
-                </SideBlock>
-                <MainBlock style={{background:"#321"}}>
-
-                    {/* test the topic page */}
-                    <PostList topic={this.state.topic}/>
-                    <PublishPanel topic={this.state.topic} token={this.state.token}/>
-                </MainBlock>
-            </ContainerBlock>
-            <FooterBlock style={{background:"#555",marginTop:"-20px"}}>
-
-            </FooterBlock>
-
+                
+            </TopBlock> */}
         </div>
       );
     }

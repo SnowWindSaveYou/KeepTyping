@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import './style.css';
 
 import {HeaderBlock} from '../../layout_components'
-import PrimaryButton from "../../ui_components/buttons/primary_btn";
-import SecondaryButton from "../../ui_components/buttons/secondary_btn";
+import SearchBar from '../../display_components/for_header/search_bar'
+import {PrimaryButton,SecondaryButton} from '@ui'
+
 import {LoginShow} from '@controller/dialog_controller';
 import {Link} from 'react-router-dom';
 
@@ -23,7 +24,7 @@ class HeaderPanel extends Component {
         <HeaderBlock>
             <div className="HeaderPanel">
                 <div className="to_left" style={{color:global.theme.primary_color,marginLeft:"10px"}}>
-                <Link to="/">Week9</Link> 
+                <Link to="/">KeepTyping!</Link> 
                 </div>
                 <LoginContext.Consumer>
                   {value=>(!value.login ? (
@@ -37,6 +38,9 @@ class HeaderPanel extends Component {
                     <li>More</li>
                     <li>Notice</li>
                     <li>My Profile</li>
+                    <li>
+                      <SearchBar>
+                      </SearchBar> </li>
                   </ul>) )}
                 </LoginContext.Consumer>
             </div>

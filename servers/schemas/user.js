@@ -15,7 +15,9 @@ const User = new Schema({
     },
     name:{
         type:String,
-        required:true
+        required:true,
+        index:true,
+        text:true
     },
     password:{
         type:String,
@@ -35,14 +37,26 @@ const User = new Schema({
     topics:{
         type:Array
     },
+    following_num:{
+        type:Number,
+        default:0
+    },
     following:[{
         type:Schema.Types.ObjectId,
         ref: 'user',
     }],
+    follower_num:{
+        type:Number,
+        default:0
+    },
     follower:[{
         type:Schema.Types.ObjectId,
         ref: 'user',
     }],
+    user_post_num:{
+        type:Number,
+        default:0
+    },
     user_posts:[{
         type:Schema.Types.ObjectId,
         ref: 'post',

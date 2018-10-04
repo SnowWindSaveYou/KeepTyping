@@ -17,10 +17,12 @@ class PrimaryButton extends Component {
     this.state = {
       curr_style: true,
       style:{ 
+        ...this.props.style,
         color: this.props.t_color1 ? this.props.t_color1  : "#fff",
-        background: this.props.color1 ? this.props.color1  : PRIMARY_COLOR
+        background: this.props.color1 ? this.props.color1  : PRIMARY_COLOR,
       },
       hoverStyle:{
+        ...this.props.style,
         color: this.props.t_color2 ? this.props.t_color2  : "#fff",
         background: this.props.color2 ? this.props.color2  : SECONDRY_COLOR
       }

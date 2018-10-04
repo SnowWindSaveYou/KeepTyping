@@ -31,6 +31,31 @@ var PostController ={
         
         return true;
     },
+    /**
+     * delete self reply, but is update state to 'delete'
+     * @param {*} postId
+     * @param {*} replyId 
+     * @param {*} authorId
+     */
+    deleteReply(postId,replyId,authorId){
+        PostModel
+        findById(postId)
+        .then((post)=>{
+            post.post_replys.findById(replyId,(err,reply)=>{
+                reply.reply_content = 'delete'
+                reply.save()
+            })
+            post_state = 'delete'
+            post.save()
+            return true;
+        })
+        .catch((err)=>{
+            return false;
+        })
+        //TODO: give notification to uper layer's author(post author)
+        
+        return true;
+    },
 
     /**
      * get the post and add the clicked count
@@ -41,7 +66,7 @@ var PostController ={
         PostModel
         .findOne({_id:postId},['post_author','post_title','post_content','post_clicked','updatedAt'])
         .populate({path:'post_author',select:{
-            name:1,avater:1
+            name:1,avater:1,bias:1,following:1,follower:1
         }})
         .exec((err,data)=>{
             callback(err,data);

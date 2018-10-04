@@ -16,7 +16,7 @@ class PostList extends Component {
             title={item.post_title}
             content={item.post_content}
             date={item.updatedAt}
-            reply_num={item.replyNum}
+            reply_num={item.post_reply_count}
         ></PostRow>
     }
     renderPostList(){

@@ -3,14 +3,45 @@ import {notificationShow} from './dialog_controller'
 import LoginController from './login_controller'
 
 var TopicController = {
-    
-    getPosts(topic,callback){
-        var posts = []
-        axios.get('/api/m/topic/getPosts/'+topic)
+    createTopic(topic,callback){
+        if(!localStorage.getItem('token')){
+            notificationShow("Please Login first","warn")
+        }
+        axios.post('/api/m/topic/createTopic/'+topic,{
+        },{
+            headers:{'Content-Type': 'application/json',
+            'token':localStorage.getItem('token')}
+        })
+        .then((data)=>{
+            if(data.data.success){
+                notificationShow("Topic is Created",true,()=>{
+                    document.location.href = "/t/"+topic
+                })
+            }
+        })
+    },
+    getTopic(topic,callback){
+        axios.get('/api/m/topic/getTopic/'+topic)
         .then(function(res){
-            posts = res.data
-            typeof callback === 'function' && callback.call(window,posts);
-            return posts;
+            if(res.data.success){
+                console.log(res.data.data)
+                callback(res.data.data)
+            }else{
+
+            }
+        }).catch(function(err){
+            console.log(err);
+        })
+    },
+    getPosts(topic,page=0,callback){
+        var posts = []
+        axios.get('/api/m/topic/getPosts/'+topic+'?page='+page)
+        .then(function(res){
+            if(res.data.success){
+                posts = res.data.data
+                typeof callback === 'function' && callback.call(window,posts);
+                return posts;
+            } 
         }).catch(function(err){
             console.log(err);
         })
@@ -30,7 +61,6 @@ var TopicController = {
             console.log(err)
         })
     }
-
 }
 
 export default TopicController;

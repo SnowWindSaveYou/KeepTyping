@@ -14,31 +14,31 @@ class SecondaryButton extends Component {
   constructor(props){
     super(props);
     this.state = {
-      color1: this.props.color1 ? this.props.color1  : PRIMARY_COLOR,
-      t_color1:this.props.t_color1 ? this.props.t_color1  : PRIMARY_COLOR,
-      t_color2:this.props.t_color2 ? this.props.t_color2  : "#fff",
+      curr_style: true,
       style:{ 
+        ...this.props.style,
         color: this.props.t_color1 ? this.props.t_color1  : PRIMARY_COLOR,
-        borderColor: this.props.color1 ? this.props.color1  : PRIMARY_COLOR
+        borderColor: this.props.color1 ? this.props.color1  : PRIMARY_COLOR,
+        border: "1px solid"
+      },
+      hoverStyle:{
+        ...this.props.style,
+        color: this.props.t_color2 ? this.props.t_color2  : "#fff",
+        background: this.props.color1 ? this.props.color1  : PRIMARY_COLOR
       }
-
     }
   }
-  handleMouseOver(e){
-    this.setState({style:{
-      color:this.state.t_color2,
-      background:this.state.color1}})
+  handleMouseOver(){
+    this.setState({curr_style:false})
   }
   handleMouseOut(){
-    this.setState({style:{
-      color:this.state.t_color1,
-      borderColor:this.state.color1}})
+    this.setState({curr_style:true })
   }
   render() {
     return (
       <a  className={ this.props.className + " SecondaryButton" }
           id={this.props.id}
-          style={this.state.style}
+          style={this.state.curr_style?this.state.style:this.state.hoverStyle }
           onClick={this.props.onClick? ()=>this.props.onClick():null}
           onMouseOver={this.handleMouseOver.bind(this)}
           onMouseLeave={this.handleMouseOut.bind(this)}>

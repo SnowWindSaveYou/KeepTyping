@@ -41,6 +41,23 @@ router.post('/postReply/:postId',(req,res,next)=>{
     }
 })
 
+/**
+ * Delete self post reply
+ */
+router.post('/deleteReply/:postId',(req,res,next)=>{
+    var tokenMsg = Token.checkToken(req.headers['token'] );
+    if(tokenMsg){
+        PostContoller.postReply(    req.params.postId,
+                                    tokenMsg.data.user_id, 
+                                    req.body.replyLever)
+        res.json({
+            success:true,
+            message:"post success",
+        })
+    }else{
+        res.json(tokenMsg)
+    }
+})
 
 router.get('/getSubReplys/:postId',(req,res,next)=>{
     // PostContoller.getReplys(req.params.postId, req.query.page,

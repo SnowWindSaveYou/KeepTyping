@@ -3,7 +3,7 @@ import React from 'react';
 function formateDate(dateStr){
     var today = new Date();
     var date = new Date(dateStr);
-    if(date.toLocaleDateString() == today.toLocaleDateString()){
+    if(date.toLocaleDateString() === today.toLocaleDateString()){
         return date.toLocaleTimeString();
     }else{
         return date.toLocaleDateString();
@@ -22,6 +22,14 @@ function formateDoc(doc){
         doc_elements.push(<p key={i}>{paragraph}</p>)
     })
     return doc_elements
+}
+/**
+ * format string list
+ * @param {*} semiList 
+ */
+function formateSemi(semiList){
+    var list = semiList.split(';');
+    return list
 }
 
 

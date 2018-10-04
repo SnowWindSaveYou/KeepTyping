@@ -13,6 +13,10 @@ const SubReply = new Schema({
     sub_content:{
         type:String,
         default: ''
+    },
+    sub_state:{
+        type:String,
+        default: 'normal'
     }
 },{ timestamps: true})
 
@@ -31,6 +35,10 @@ const Reply = new Schema({
         type:String,
         default: ''
     },
+    reply_state:{
+        type:String,
+        default: 'normal'
+    },
     reply_replys:[SubReply]
 
 },{ timestamps: true})
@@ -43,15 +51,18 @@ const Post = new Schema({
     post_author:{
         type:Schema.Types.ObjectId,
         ref: 'user',
-        required:true
+        required:true,
+        text:true
     },
     post_title:{
         type:String,
-        required:true
+        required:true,
+        text:true
     },
     post_content:{
         type:String,
-        default: ''
+        default: '',
+        text:true
     },
     post_state:{
         type:String,

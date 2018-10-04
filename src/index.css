@@ -40,6 +40,16 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.mg_left{
+  margin-left: 5px;
+}
+.mg_right{
+  margin-right: 5px;
+}
+
+.auto_width{
+  width: auto;
+}
 
 .pair_row{
   width: 100%; 

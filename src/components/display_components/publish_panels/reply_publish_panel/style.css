@@ -1,0 +1,20 @@
+.ReplyPublishPanel{
+    padding: 5px;
+    background-color: #ffffff
+}
+.ReplyPublishPanel .top{
+    margin-bottom: 3px;
+}
+.ReplyPublishPanel .bottom{
+    height: 16px;
+    padding: 5px;
+}
+.ReplyPublishPanel .notice{
+    color: #ccc;
+    margin-right: 10px;
+    margin-top: 10px;
+    float: right;
+}
+.ReplyPublishPanel #submit_post{
+    float: right;
+}

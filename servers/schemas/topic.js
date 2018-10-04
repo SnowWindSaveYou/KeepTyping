@@ -5,11 +5,17 @@ const Topic = new Schema({
         type:String,
         required:true,
         index:true,
-        unique:true
+        unique:true,
+        text:true
     },
     description:{
         type:String,
-        default:'welcome'
+        default:'welcome',
+        text:true
+    },
+    avater:{
+        type:String,
+        default:""
     },
     managers:[{
         type:Schema.Types.ObjectId,

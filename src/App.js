@@ -5,6 +5,7 @@ import TestPage from './page_templates/static_page/page_test';
 import TopicPage from './page_templates/topic_page';
 import PostPage from './page_templates/post_page';
 import HomePage from './page_templates/home_page';
+import SearchPage from './page_templates/search_page'
 import RegistePagePage from './page_templates/registe_page';
 
 import {LoginContext} from './Contexts'
@@ -14,7 +15,10 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-        login:localStorage.getItem('token') ? true:false
+        login:localStorage.getItem('token') ? true:false,
+        my_name:null,
+        my_topic:[],
+        my_following:[],
     }
   }
 
@@ -30,9 +34,14 @@ class App extends Component {
       <BrowserRouter basename="/">
         <Switch>
             <Route exact path="/" component={HomePage}   />   
+            <Route exact path="/t" component={HomePage} />   
+            <Route exact path="/p" component={HomePage} />  
+            <Route exact path="/search" component={HomePage} />   
             <Route path="/t/:name" component={TopicPage} />   
             <Route path="/p/:name" component={PostPage} />   
-            <Route path="/test" component={TestPage} />   
+            <Route path="/search/:keyword" component={SearchPage} />  
+
+            <Route path="/test" component={TestPage} />
             <Route path="/registe" component={RegistePagePage} />   
             <Route path="/*" component={Page404}/>   
         </Switch>

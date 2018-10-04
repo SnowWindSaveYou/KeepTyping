@@ -11,20 +11,58 @@ const Token = require('../scripts/utils/token')
  * @returns topic: topic description,manager, etc.
  */
 router.get('/getTopic/:topicName', (req, res) => {
-    TopicContoller.getTopic(req.param.topicName, (err, data) => {
-        res.json(data);
+    TopicContoller.getTopic(req.params.topicName, (err, data) => {
+        if(err){
+            res.json({
+                success:false,
+                message:"Topic Err"
+            });
+        }else if(!data){
+            res.json({
+                success:false,
+                message:"Topic not found"
+            });
+        }else{
+            res.json({
+                success:true,
+                message:"Topic",
+                data:data
+            });
+        }
     })
 })
-
-
 /**
  * create a new topic
  * @param topicName 
  * @returns topic: topic description,manager, etc.
  */
 router.post('/createTopic/:topicName', (req, res, next) => {
-    TopicContoller.createTopic(req.params.topicName)
-    res.json(true);
+    var tokenMsg = Token.checkToken(req.headers['token'] );
+    if(tokenMsg.success){
+        TopicContoller.createTopic(req.params.topicName,tokenMsg.data.user_id,(err,data)=>{
+            if(err){
+                if(err.code===11000){
+                    res.json({
+                        success:false,
+                        message:"Topic Exist",
+                    });
+                }else{
+                    res.json({
+                        success:false,
+                        message:"Topic Err",
+                    });
+                }
+            }else{
+                res.json({
+                    success:true,
+                    message:"Topic Create"
+                });
+            }
+        })
+    }else{
+        res.json(tokenMsg);
+    }
+
 })
 
 /**
@@ -45,11 +83,19 @@ router.post('/postPost/:topicName', (req, res) => {
                 req.params.topicName,
                 tokenMsg.data.user_id,
                 req.body.post_title,
-                req.body.post_content)
-            res.json({
-                success:true,
-                message:"post success"
-            });
+                req.body.post_content,(err,data)=>{
+                    if(err){
+                        res.json({
+                            success:false,
+                            message:"post failed"
+                        });
+                    }else{
+                        res.json({
+                            success:true,
+                            message:"post success"
+                        });
+                    }
+                })
         }else{
             res.json(tokenMsg);
         }
@@ -60,13 +106,25 @@ router.post('/postPost/:topicName', (req, res) => {
  * Get Posts in Topic
  * split search result by page
  * @param topicName, page
- * @returns posts:[post_author,post_title,post_content,post_clicked]
+ * @returns 
  */
 router.get('/getPosts/:topicName', (req, res) => {
-    TopicContoller.getPosts(req.params.topicName, 
-                            req.query.page, (err, data) => {
-                                res.json(data);
-                            })
+    console.log(req.query.page)
+    TopicContoller.getPosts(req.params.topicName, req.query.page, 
+        (err, data) => {
+            if(err){
+                res.json({
+                    success:false,
+                    message:err
+                });
+            }else{
+                res.json({
+                    success:true,
+                    message:'get posts',
+                    data:data
+                });
+            }
+        })
 });
 
 

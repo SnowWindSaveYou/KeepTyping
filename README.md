@@ -1,18 +1,12 @@
 ## KeepTyping 
 This appliction is a website for user communicate with the prople who have samilar interast.
-* To be start: `npm start`
 
-## Dependency
-``` json
-"dependencies": {
-  "react": "^16.4.2",
-  "react-dom": "^16.4.2",
-  "react-router": "^4.3.1",
-  "react-router-dom": "^4.3.1",
-  "react-scripts": "1.1.4"
-}
-```
-Looking `package.json` file for more detail`npm install -d`
+## To Start Web App
+`npm install` to update dependency first
+Looking `package.json` file for more detail 
+* To start MongoDB: `mongod --dbpath ./data/db`
+* To start Server: `node ./servers`
+* To start Web: `npm start`
 Looking `http://localhost:3000/#/test` for overview of all components
 
 ## Structure of App Resouse File

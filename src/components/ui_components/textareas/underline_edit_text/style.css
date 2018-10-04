@@ -1,0 +1,9 @@
+.UnderLineEditText{
+    position: relative;
+    min-height: 30px;
+    border: none;
+    box-sizing: border-box;
+}
+.UnderLineEditText:focus{
+    outline: none;
+}
