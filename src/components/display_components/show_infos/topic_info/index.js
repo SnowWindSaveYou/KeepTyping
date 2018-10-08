@@ -4,6 +4,8 @@ import { SubBlock, CircleBlock } from "@/components/layout_components";
 import {PrimaryButton,SecondaryButton} from '@ui'
 import defaultHead from '@/asset/default_head.png'
 import {LoginContext} from '@/Contexts'
+import TopicController from '@controller/topic_controller'
+import {notificationShow} from '@controller/dialog_controller'
 
 const TopicInfo = (props) => (
   <div>
@@ -35,9 +37,11 @@ const TopicInfo = (props) => (
     </div>
     <div className="bottom inner">
       <LoginContext.Consumer>
-              {value=>( value.login ? 
-                (<PrimaryButton style={{width:"100%"}}>SUBSCRIBE</PrimaryButton>):
-                (<SecondaryButton style={{width:"100%"}}>SUBSCRIBED</SecondaryButton>))}
+              {value=>( value.login && value.my_info ? 
+                (value.my_info.topics.indexOf(props.topic.title)!=-1 ?
+                  (<SecondaryButton style={{width:"100%"}}>SUBSCRIBED</SecondaryButton>):
+                  (<PrimaryButton style={{width:"100%"}} onClick={()=>TopicController.followTopic(props.topic.title)}>SUBSCRIBE</PrimaryButton>)
+                ):(<PrimaryButton style={{width:"100%"}} onClick={()=>notificationShow("Please Login","warn")}>SUBSCRIBE</PrimaryButton>))}
       </LoginContext.Consumer>
       {props.children}
     </div>

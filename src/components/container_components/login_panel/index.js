@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './style.css';
 import {SubBlock} from "../../layout_components";
 import PrimaryButton from "../../ui_components/buttons/primary_btn";
-
+import {LoginContext} from '@/Contexts'
 import LoginController from "../../../scripts/controllers/login_controller"
-import {SingleLineEditText} from "@/components/ui_components"
+import {UnderLineEditText} from "@/components/ui_components"
 
 class LoginPanel extends Component {
 
@@ -12,7 +12,7 @@ class LoginPanel extends Component {
         super(props);
         this.state = {
             accountID: "",
-            password: ""
+            password: "",
         }
     }
 
@@ -21,30 +21,33 @@ class LoginPanel extends Component {
     handleInputPasswordOnChange(e) {this.setState({ password: e.target.value })}
 
     handleLoginSubmit() {
-        LoginController.userLogin(this.state.accountID,this.state.password);
+        LoginController.userLogin(this.state.accountID,this.state.password,()=>{
+            this.props.onLogin()
+        });
     }
 
     render() {
         return (
+            <LoginContext.Consumer>
+            {value=>(!value.my_info|| !value.login ? (
+                <SubBlock className="LoginPanel" style={{background:global.theme.base_color}}>
+                    <h1 className="login_title" style={{color:global.theme.primary_color}}>Login to KeepTyping!</h1>
+                        <UnderLineEditText className="account_input" placeholder="Your Account"
+                            value={this.state.accountID}onChange={this.handleInputAccountOnChange.bind(this)}/>
+                        <br/>
+                        <UnderLineEditText  className="password_input" placeholder="Your Password" type="password"
+                        value={this.state.password} onChange={this.handleInputPasswordOnChange.bind(this)}/>
+                        <br/>
+                        <PrimaryButton className="login_submit" onClick={() => this.handleLoginSubmit()}>Login</PrimaryButton>
+                </SubBlock>
+            ):(
             <SubBlock className="LoginPanel" style={{background:global.theme.base_color}}>
-                <h3 style={{color:global.theme.primary_color}}>Login</h3>
-                <table>
-                    <tbody>
-                        <tr><td></td><td style={{width:"200px"}}></td></tr>
-                        <tr>
-                            <td>Account</td>
-                            <td><SingleLineEditText value={this.state.accountID}
-                                onChange={this.handleInputAccountOnChange.bind(this)}></SingleLineEditText> </td>
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><SingleLineEditText value={this.state.password}
-                                onChange={this.handleInputPasswordOnChange.bind(this)}></SingleLineEditText> </td>
-                        </tr>
-                        <tr><td><PrimaryButton onClick={() => this.handleLoginSubmit()}>Login</PrimaryButton></td></tr>
-                    </tbody>
-                </table>
+                <h1 className="login_title" style={{color:global.theme.primary_color}}>
+                WelCome to KeepTyping!
+                </h1>
             </SubBlock>
+            ))}</LoginContext.Consumer>
+
         )
     }
 }

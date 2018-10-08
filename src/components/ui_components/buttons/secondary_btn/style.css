@@ -20,6 +20,7 @@
     border: 1px solid;
     border-radius: 4px;
     box-sizing: border-box;
+    outline: none;
 }
 .SecondaryButton a{
     background-color: transparent;

@@ -6,7 +6,10 @@ import TopicPage from './page_templates/topic_page';
 import PostPage from './page_templates/post_page';
 import HomePage from './page_templates/home_page';
 import SearchPage from './page_templates/search_page'
+import UserPage from './page_templates/user_page'
 import RegistePagePage from './page_templates/registe_page';
+
+import LoginController from './scripts/controllers/login_controller';
 
 import {LoginContext} from './Contexts'
 
@@ -16,16 +19,32 @@ class App extends Component {
     super(props);
     this.state = {
         login:localStorage.getItem('token') ? true:false,
-        my_name:null,
-        my_topic:[],
-        my_following:[],
+        my_info:null,
+        check_login:true
     }
+
   }
 
   componentDidMount(){
-    let that = this;
+    if(this.state.check_login &&this.state.login){
+      LoginController.checkLoginState((data)=>{
+        this.setState({my_info:data})
+      })
+      this.setState({check_login:false})
+    }
     global.setLogin = (state)=>{
-      that.setState({login:state})
+      this.setState({login:state})
+    };
+    global.getMyInfo = ()=>{
+      LoginController.checkLoginState((data)=>{
+        this.setState({my_info:data})
+      })
+    };
+    global.pushTopic = (topic)=>{
+      console.log(topic)
+      console.log(this.state.my_info)
+      this.state.my_info.topics.push(topic)
+      this.setState({})
     };
   }
   render() {
@@ -39,6 +58,7 @@ class App extends Component {
             <Route exact path="/search" component={HomePage} />   
             <Route path="/t/:name" component={TopicPage} />   
             <Route path="/p/:name" component={PostPage} />   
+            <Route path="/u/:name" component={UserPage} />   
             <Route path="/search/:keyword" component={SearchPage} />  
 
             <Route path="/test" component={TestPage} />

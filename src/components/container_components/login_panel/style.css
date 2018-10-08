@@ -1,3 +1,23 @@
 .LoginPanel{
+    padding: 20px;
+}
+.LoginPanel .login_title{
+    margin-bottom: 10px;
+    line-height: 30px;
+    word-wrap:break-word；
+}
+
+.LoginPanel .account_input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.LoginPanel .password_input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+.LoginPanel .login_submit{
+    width: 100%;
     padding: 5px;
 }

@@ -60,6 +60,18 @@ var TopicController = {
         }).catch(function(err){
             console.log(err)
         })
+    },
+    followTopic(topic){
+        axios.get('/api/m/topic/followTopic/'+ topic,{
+            headers: {
+            'Token': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'} 
+        }).then(function(res){
+            LoginController.checkLogoutMsg(res.data.message);
+            global.pushTopic(topic)
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }
 

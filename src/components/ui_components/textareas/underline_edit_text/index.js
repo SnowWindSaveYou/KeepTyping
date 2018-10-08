@@ -65,15 +65,18 @@ class UnderLineEditText extends Component {
         this.refreshStyle();
     }
     render() {
+        var {className,onFocus,onBlur,onMouseOver,onMouseLeave,onChange,...others} = this.props;
         return (
-        <input className={this.props.className + " UnderLineEditText"} type={this.props.type ? this.props.type : "text"}
+        <input className={this.props.className + " UnderLineEditText"} 
+                type={this.props.type ? this.props.type : "text"}
                 style={this.state.inputStyle}
                 onFocus={this.handleFocus.bind(this)}
                 onBlur={this.handleBlur.bind(this)}
                 onMouseOver={this.handleMouseOver.bind(this)}
                 onMouseLeave={this.handleMouseOut.bind(this)}
                 onChange={this.props.onChange ? this.props.onChange: null} 
-                value={this.props.value} />
+                value={this.props.value} 
+                {...others}/>
         );
     }
 }

@@ -4,6 +4,8 @@ body {
   font-family: sans-serif;
 }
 
+a{text-decoration:none;outline: none;}
+
 .clearfix{
   clear: both;
   content: "";

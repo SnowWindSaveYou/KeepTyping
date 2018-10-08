@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 import '@/configs/theme'
+import '@/configs/setting'
 import './index.css';
 import App from './App';
 

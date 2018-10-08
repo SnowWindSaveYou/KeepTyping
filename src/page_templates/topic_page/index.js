@@ -5,11 +5,9 @@ import HeaderPanel from '../../components/container_components/header_panel';
 import PostList from '../../components/container_components/post_list';
 import PublishPanel from '../../components/display_components/publish_panels/post_publish_panel';
 import TopicInfo from '../../components/display_components/show_infos/topic_info';
-
 import TopicController from "@/scripts/controllers/topic_controller";
 import {LoginContext} from '@/Contexts'
-import PageNavigator from '../../components/display_components/navigators/page_navigator';
-import MenuNavigator from '../../components/display_components/navigators/menu_navigator';
+import {PageNavigator,MenuNavigator} from "@ui"
 
 class TopicPage extends Component {
   constructor(props) {
@@ -57,10 +55,12 @@ class TopicPage extends Component {
     }
   }
   handleNextPage(){
-    let that = this;
-    this.setState({page:this.state.page+1},()=>{
-      that.refreshPage()
-    })
+    if(this.state.page+1<this.state.topic.post_num/global.setting.post_row){
+      let that = this;
+      this.setState({page:this.state.page+1},()=>{
+        that.refreshPage()
+      })
+    }
   }
   handleChangePage(pageNum){
     let that = this;
@@ -87,6 +87,7 @@ class TopicPage extends Component {
             <PageNavigator
               page={this.state.page}
               style={{marginBottom: "5px"}}
+              count={this.state.topic.post_num}
               onLastPage={this.handleLastPage.bind(this)}
               onNextPage={this.handleNextPage.bind(this)}
               onChangePage={this.handleChangePage.bind(this)}

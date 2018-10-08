@@ -77,7 +77,6 @@ router.post('/postPost/:topicName', (req, res) => {
         });
     }else{
         tokenMsg = Token.checkToken(req.headers['token']);
-        console.log("tokenMsg",tokenMsg);
         if (tokenMsg.success) {
             TopicContoller.postPost(
                 req.params.topicName,
@@ -109,7 +108,6 @@ router.post('/postPost/:topicName', (req, res) => {
  * @returns 
  */
 router.get('/getPosts/:topicName', (req, res) => {
-    console.log(req.query.page)
     TopicContoller.getPosts(req.params.topicName, req.query.page, 
         (err, data) => {
             if(err){
@@ -127,6 +125,51 @@ router.get('/getPosts/:topicName', (req, res) => {
         })
 });
 
+
+router.get('/followTopic/:topicName', (req, res) => {
+    tokenMsg = Token.checkToken(req.headers['token']);
+    if (tokenMsg.success) {
+        TopicContoller.followTopic(
+            req.params.topicName,
+            tokenMsg.data.user_id,(err)=>{
+                if(err){
+                    res.json({
+                        success:false,
+                        message:"follow failed"
+                    });
+                }else{
+                    res.json({
+                        success:true,
+                        message:"follow success"
+                    });
+                }
+            })
+    }else{
+        res.json(tokenMsg);
+    }
+});
+router.post('/unfollowTopic/:topicName', (req, res) => {
+    tokenMsg = Token.checkToken(req.headers['token']);
+    if (tokenMsg.success) {
+        TopicContoller.unfollowTopic(
+            req.params.topicName,
+            tokenMsg.data.user_id,(err,data)=>{
+                if(err){
+                    res.json({
+                        success:false,
+                        message:"post failed"
+                    });
+                }else{
+                    res.json({
+                        success:true,
+                        message:"post success"
+                    });
+                }
+            })
+    }else{
+        res.json(tokenMsg);
+    }
+});
 
 
 

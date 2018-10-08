@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const session = require('express-session');
 const secureConnection = require('../scripts/utils/secure_connection');
-const token = require('../scripts/utils/token')
+const Token = require('../scripts/utils/token')
 const UserModel = require('../models/user');
+
+const UserController = require('../scripts/controllers/user_controller')
 
 router.use(session({
     secret :  'secret 0v0 2333', 
@@ -16,6 +18,21 @@ router.use(session({
 
 router.get('/', (req, res) => {
     res.send("login");
+});
+
+router.get('/checkLogin', (req, res) => {
+    var tokenMsg = Token.checkToken(req.headers['token'] );
+    if(tokenMsg){
+        UserController.getUserDetail(tokenMsg.data.user_id,(err,data)=>{
+            res.json({
+                success:true,
+                message:"login success",
+                data:data
+            })
+        })
+    }else{
+        res.json(tokenMsg)
+    }
 });
 
 /** 
@@ -71,7 +88,7 @@ router.post('/comformLogin',(req,res) =>{
                 hashed_password = secureConnection.makeHash(hashed_password + user_salt);
                 if(hashed_password === user_password){
                     // if ture, return the signatited token by secret
-                    my_token = token.createToken({
+                    my_token = Token.createToken({
                         user_id:user._id,
                         user_name:user.name,        
                     },100*60*60*24*7);

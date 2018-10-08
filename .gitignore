@@ -8,7 +8,8 @@
 
 # production
 /build
-/data
+/data/db
+/public/img/user_avater
 
 # misc
 .DS_Store

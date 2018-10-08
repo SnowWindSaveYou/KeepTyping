@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const TopicContoller = require('../scripts/controllers/topic_controller')
+const SearchContoller = require('../scripts/controllers/search_controller')
 
 const Token = require('../scripts/utils/token')
 
@@ -12,14 +12,14 @@ const Token = require('../scripts/utils/token')
  * @returns topic: topic description,manager, etc.
  */
 router.get('/getTopics/:keyword', (req, res) => {
-    TopicContoller.getTopics(req.params.keyword, (err, data) => {
+    SearchContoller.getTopics(req.params.keyword, (err, data) => {
         if(err){
             console.log(err)
             res.json({
                 success:false,
                 message:"Search Err"
             });
-        }else if(!data){
+        }else if(data===0){
             res.json({
                 success:false,
                 message:"No Result"
@@ -39,26 +39,26 @@ router.get('/getTopics/:keyword', (req, res) => {
  * @returns topic: topic description,manager, etc.
  */
 router.get('/getPosts/:keyword', (req, res) => {
-    // TopicContoller.getTopics(req.params.keyword, (err, data) => {
-    //     if(err){
-    //         console.log(err)
-    //         res.json({
-    //             success:false,
-    //             message:"Search Err"
-    //         });
-    //     }else if(!data){
-    //         res.json({
-    //             success:false,
-    //             message:"No Result"
-    //         });
-    //     }else{
-    //         res.json({
-    //             success:true,
-    //             message:"Topics",
-    //             data:data
-    //         });
-    //     }
-    // })
+    SearchContoller.getPosts(req.params.keyword, (err, data) => {
+        if(err){
+            console.log(err)
+            res.json({
+                success:false,
+                message:"Search Err"
+            });
+        }else if(data.length===0){
+            res.json({
+                success:false,
+                message:"No Result"
+            });
+        }else{
+            res.json({
+                success:true,
+                message:"Posts",
+                data:data
+            });
+        }
+    })
 })
 /**
  * get Topic info in database
@@ -66,26 +66,26 @@ router.get('/getPosts/:keyword', (req, res) => {
  * @returns topic: topic description,manager, etc.
  */
 router.get('/getUsers/:keyword', (req, res) => {
-    // TopicContoller.getTopics(req.params.keyword, (err, data) => {
-    //     if(err){
-    //         console.log(err)
-    //         res.json({
-    //             success:false,
-    //             message:"Search Err"
-    //         });
-    //     }else if(!data){
-    //         res.json({
-    //             success:false,
-    //             message:"No Result"
-    //         });
-    //     }else{
-    //         res.json({
-    //             success:true,
-    //             message:"Topics",
-    //             data:data
-    //         });
-    //     }
-    // })
+    SearchContoller.getUsers(req.params.keyword, (err, data) => {
+        if(err){
+            console.log(err)
+            res.json({
+                success:false,
+                message:"Search Err"
+            });
+        }else if(data.length===0){
+            res.json({
+                success:false,
+                message:"No Result"
+            });
+        }else{
+            res.json({
+                success:true,
+                message:"Users",
+                data:data
+            });
+        }
+    })
 })
 
 

@@ -12,7 +12,7 @@ class PostList extends Component {
         return <PostRow 
             key= {i}
             post_id={item._id}
-            author={item.post_author[0].name}
+            author={item.post_author[0]}
             title={item.post_title}
             content={item.post_content}
             date={item.updatedAt}
@@ -24,7 +24,17 @@ class PostList extends Component {
         for(var i in this.props.posts){
             post_list.push(this.renderPost(this.props.posts[i],i));
         }
-        
+        if(post_list.length===0){
+            return(
+                <SubBlock style={{background:global.theme.base_color,
+                                    color:global.theme.font_color,
+                                    padding:"20px",
+                                    textAlign:"center",
+                                    height:"120px"}}>
+                    There is No Post (oﾟ▽ﾟ)o
+                </SubBlock>
+            )
+        }
         return post_list;
     }
     render() {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import './style.css';
 import {SubBlock} from "../../../layout_components";
 import {formateDate} from '@utils/formater'
@@ -35,14 +36,14 @@ class PostRow extends Component {
                 onMouseLeave={this.handlerHoverOut.bind(this)}>
                 <div className="to_left" style={{width:"70%"}}>
                     {/* TODO: reset the connection to post by post id */}
-                    <a className="title" href={'/p/'+this.props.post_id} 
+                    <Link className="title" to={'/p/'+this.props.post_id} 
                         style={{color:PRIMARY_COLOR}}>
                         <span className="reply_num">{this.props.reply_num}</span>
-                        {this.props.title}</a>
+                        {this.props.title}</Link>
                     <div className="content" style={{width:"calc(100% - 30px)",wordWrap:"break-word"}}>{this.props.content}</div>
                 </div>
                 <div className="to_right">
-                    <a className="author" style={{color:SECONDARY_COLOR}} >{this.props.author}</a>
+                    <Link to={'/u/'+this.props.author._id} className="author" style={{color:SECONDARY_COLOR}} >{this.props.author.name}</Link>
                     <p className="date">{formateDate(this.props.date)}</p>
                 </div>
             </SubBlock>

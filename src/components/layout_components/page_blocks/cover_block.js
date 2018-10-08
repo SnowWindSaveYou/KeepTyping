@@ -14,7 +14,7 @@ const CoverBlock = (props) => {
                     width: "100%",
                     top: "0px",
                     left: "0px",
-                    zIndex: "100"
+                    zIndex: Number(props.zindex)|| "100"
                 }}>
             </div>
             <div {...other} style={{
@@ -22,7 +22,7 @@ const CoverBlock = (props) => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                zIndex: "101"
+                zIndex: Number(props.zindex)+1||"101"
             }}>{props.children} </div>
         </div>
 

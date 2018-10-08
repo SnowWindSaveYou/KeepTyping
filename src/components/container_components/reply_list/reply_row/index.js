@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import './style.css';
 import {SubBlock,CircleBlock} from "@/components/layout_components";
+import {UserAvater} from '@ui'
 import {formateDate,formateDoc} from '@utils/formater'
-
-import defaultHead from '@/asset/default_head.png'
 const PRIMARY_COLOR = global.theme.primary_color;
 const BACKGROUND_COLOR = global.theme.base_color;
 const FONT_COLOR = global.theme.font_color;
@@ -23,11 +23,10 @@ class ReplyRow extends Component {
                 key={this.props.postId}>
 
                 <div className="reply_left" >
-                    <CircleBlock className="user_head" radiu="35">
-                        <img style={{ width: "100%", height: "100%" }}
-                        src={this.props.user_pic ? this.props.user_pic : defaultHead}></img>
-                    </CircleBlock>
-                    <a className="reply_author" style={{color:PRIMARY_COLOR}} >{this.props.author}</a>
+                    <UserAvater className="user_head" 
+                        uid={this.props.author._id}
+                        src={this.props.author.avater}/>
+                    <Link to={'/u/'+this.props.author._id}  className="reply_author" style={{color:PRIMARY_COLOR}} >{this.props.author.name}</Link>
                 </div>
                 <div className="reply_right">
                     <div className="reply_content" style={{color:FONT_COLOR}}>

@@ -6,13 +6,26 @@ const PostModel = require('../../models/post')
 const PAGE_ROW_LIMIT = 10
 
 var TopicController = {
+    followTopic(topicName,userId,callback){
+        UserModel.findByIdAndUpdate(userId,{$push:{topics:topicName}},(err,res)=>{
+            if(!err){
+                TopicModel.findOneAndUpdate({title:topicName},{$inc:{member_num:1}}).exec()
+                callback()
+            }else{
+                callback(err)
+            }
+        })
+    },
+    unfollowTopic(topicName,userId,callback){
+        
+    },
     /**
      * Create a New Topic, the creator will be it's manager
      * @param {*} topicName 
      * @param {*} user_id 
      */
-    createTopic(topicName,user_id,callback){
-        var new_topic = new TopicModel({title:topicName,managers:[user_id]})
+    createTopic(topicName,userId,callback){
+        var new_topic = new TopicModel({title:topicName,managers:[userId]})
         new_topic.save((err,data)=>{
             callback(err,data)
         })
@@ -33,19 +46,7 @@ var TopicController = {
             callback(err,topic)
         })
     },
-    /**
-     * search topics by keyword
-     * @param {*} keyword 
-     * @param {*} callback 
-     */
-    getTopics(keyword,callback){
-        TopicModel.find({$text:{$search:keyword,$caseSensitive:false}},
-            ['title','description','member_num','post_num','tags'])
-        .limit(PAGE_ROW_LIMIT)
-        .exec((err,topic)=>{
-            callback(err,topic)
-        })
-    },
+
     /**
      * create a post under topic & update author's notification
      * @param {*} topic 

@@ -8,7 +8,7 @@ const LOGIN_URL = '/api/m/login/comformLogin';
 
 
 var LoginController = {
-    userLogin(account,password){
+    userLogin(account,password,callback){
         if(!account||!password){
             notificationShow("Please fill all space","warn")
             return;
@@ -47,7 +47,9 @@ var LoginController = {
                         // if login success, decode responde msg to get token
                         var decipherMsg = SecureTransfer.decodeMsg(res.data.data,DH_keys.my_secret,iv)
                         localStorage.setItem('token',decipherMsg,{path:'/'})  
-                        global.setLogin(true)    
+                        global.getMyInfo()
+                        global.setLogin(true)   
+                        callback() 
                         notificationShow("Login success",true)            
                     }else{
                         notificationShow(res.data.message,false)
@@ -60,6 +62,27 @@ var LoginController = {
         }).catch(function (err) {
             console.log(err);
         })
+    },
+    
+    checkLoginState(callback){
+        if(localStorage.getItem('token')){
+            axios.get('/api/m/login/checkLogin',
+            {
+                headers: {
+                'Token': localStorage.getItem('token'), 
+                'Content-Type': 'application/json'} 
+            }).then(function(res){
+                if(res.data.success){
+                    callback(res.data.data)
+                }else{
+                    this.checkLogoutMsg(res.data.message);
+                }
+            }).catch(function(err){
+                console.log(err)
+            })
+        }else{
+            this.userLogout()
+        }
     },
     userLogout(){
         localStorage.clear();

@@ -13,7 +13,7 @@ class ReplyList extends Component {
     renderPost(item, i){
         return <ReplyRow 
             key= {item._id}
-            author={item.reply_author.name}
+            author={item.reply_author}
             content={item.reply_content}
             date={item.updatedAt}
         ></ReplyRow>

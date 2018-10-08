@@ -6,12 +6,10 @@ const Topic = new Schema({
         required:true,
         index:true,
         unique:true,
-        text:true
     },
     description:{
         type:String,
         default:'welcome',
-        text:true
     },
     avater:{
         type:String,
@@ -47,4 +45,5 @@ const Topic = new Schema({
     }],
 },{ timestamps: true , collection:'topic'})
 
+Topic.index({title:'text',description:'text'});
 module.exports = Topic;

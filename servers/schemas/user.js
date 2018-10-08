@@ -32,11 +32,13 @@ const User = new Schema({
         default:""
     },
     bias:{
-        type:String
+        type:String,
+        default:"this person didn't leave any thing in here"
     },
-    topics:{
-        type:Array
-    },
+    topics:[{
+        type:String,
+        unique:true
+    }],
     following_num:{
         type:Number,
         default:0

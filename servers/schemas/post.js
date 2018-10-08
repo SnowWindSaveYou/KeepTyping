@@ -52,17 +52,17 @@ const Post = new Schema({
         type:Schema.Types.ObjectId,
         ref: 'user',
         required:true,
-        text:true
+        index:true,
     },
     post_title:{
         type:String,
         required:true,
-        text:true
+        index:true
     },
     post_content:{
         type:String,
         default: '',
-        text:true
+        index:true
     },
     post_state:{
         type:String,
@@ -82,8 +82,8 @@ const Post = new Schema({
     },
     post_replys:[Reply]
 },{ timestamps: true , collection:'post'})
+Post.index({post_content:'text',post_title:'text'});
 
-// module.exports = Post;
 module.exports = {
     Post,Reply,SubReply
 }
