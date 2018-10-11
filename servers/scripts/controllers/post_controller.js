@@ -78,9 +78,13 @@ var PostController ={
             name:1,avater:1,bias:1,following_num:1,follower_num:1
         }})
         .exec((err,data)=>{
-            callback(err,data);
-            data.post_clicked +=1;
-            data.save();
+            if(!data){
+                callback("post not exist",data);
+            }else{
+                callback(err,data);
+                data.post_clicked +=1;
+                data.save();
+            }
         })
     },
     /**
@@ -89,15 +93,16 @@ var PostController ={
      * @param {*} page 
      * @param {*} callback 
      */
-    getReplys(postId,page=0, callback){
+    getReplys(postId,page, callback){
+        console.log(page)
         var skipCount = page * PAGE_ROW_LIMIT;
         PostModel
-        .findOne({_id:postId},['post_replys'])
-        .populate({path:'post_replys.reply_author',select:{
-            name:1,avater:1
-        }})
-        .limit(PAGE_ROW_LIMIT)
-        .skip(skipCount)
+        .findOne({_id:postId},{'post_replys':{$slice: [skipCount,PAGE_ROW_LIMIT]}})
+        .populate(
+            {path:'post_replys.reply_author',select:{
+                name:1,avater:1
+            }}
+        )
         .exec((err,data)=>{
             callback(err,data);
         })

@@ -24,11 +24,19 @@ router.get('/checkLogin', (req, res) => {
     var tokenMsg = Token.checkToken(req.headers['token'] );
     if(tokenMsg){
         UserController.getUserDetail(tokenMsg.data.user_id,(err,data)=>{
-            res.json({
-                success:true,
-                message:"login success",
-                data:data
-            })
+            if(err || !data){
+                res.json({
+                    success:false,
+                    message:"login failed",
+                })
+
+            }else{
+                res.json({
+                    success:true,
+                    message:"login success",
+                    data:data
+                })
+            }
         })
     }else{
         res.json(tokenMsg)

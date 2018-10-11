@@ -15,7 +15,7 @@ class PrimaryButton extends Component {
   constructor(props){
     super(props);
     this.state = {
-      curr_style: true,
+      focus: true,
       style:{ 
         ...this.props.style,
         color: this.props.t_color1 ? this.props.t_color1  : "#fff",
@@ -29,17 +29,25 @@ class PrimaryButton extends Component {
     }
   }
   handleMouseOver(){
-    this.setState({curr_style:false})
+    this.setState({focus:false})
   }
   handleMouseOut(){
-    this.setState({curr_style:true })
+    this.setState({focus:true })
   }
   render() {
     return (
       <button  className={ this.props.className + " PrimaryButton" }
+          tabIndex="1"
           id={this.props.id}
-          style={this.state.curr_style ? this.state.style:this.state.hoverStyle}
+          style={this.state.focus ? this.state.style:this.state.hoverStyle}
+          
           onClick={this.props.onClick? ()=>this.props.onClick():null}
+          onKeyUp={(e)=>{
+            if(e.keyCode===13){
+                this.props.onClick();
+            }}}
+          onFocus={this.handleMouseOver.bind(this)}
+          onBlur={this.handleMouseOut.bind(this)}
           onMouseOver={this.handleMouseOver.bind(this)}
           onMouseLeave={this.handleMouseOut.bind(this)}>
         { this.props.children }

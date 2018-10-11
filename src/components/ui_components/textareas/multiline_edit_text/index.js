@@ -84,7 +84,9 @@ class MultiLineEditText extends Component {
                     >
                     {this.props.value==="" ? this.props.children:null}
                 </label>
-                <textarea id={this.props.id + "slet"} type={this.props.type ? this.props.type : "text"}
+                <textarea id={this.props.id + "slet"} 
+                        tabIndex="1"
+                        type={this.props.type ? this.props.type : "text"}
                         style={this.state.inputStyle}
                         onFocus={this.handleFocus.bind(this)}
                         onBlur={this.handleBlur.bind(this)}

@@ -53,7 +53,7 @@ class PostPage extends Component {
 
     /** handle the page swape */
     refreshPage(){
-      if(this.state.topic){
+      if(this.state.post){
         let that = this;
         PostController.getReplys(this.state.postId,this.state.page,(data)=>{
           that.setState({
@@ -87,7 +87,7 @@ class PostPage extends Component {
 
   render() {
     return (
-      <div className="PostPage" style={{ background: "#f2f2f2"}}>
+      <div className="PostPage" style={{ background: global.theme.back_color}}>
         <HeaderPanel />
         <TopBlock style={{ height: "300px", marginBottom: "-100px", background: "#fb2" }}></TopBlock>
         
@@ -126,9 +126,15 @@ class PostPage extends Component {
 
                     <div className="clearfix" ></div>
                   </div>
-                  <div className="manage_panel" style={{color:global.theme.font_light_color}}>
-                    <a>delete</a>
-                  </div>
+                  {/* <LoginContext.Consumer>
+                    {(value)=>value.login?(
+                      value.my_info._id===this.state.post.post_author._id?(
+                      <div className="manage_panel" style={{color:global.theme.font_light_color}}>
+                      <a>delete</a>
+                    </div>):null
+                    ):null}
+                  </LoginContext.Consumer> */}
+
 
                   <div className="post_content" 
                         style={{ padding:"10px",fontSize:"16px",width:"100%",wordWrap:"break-word",color:global.theme.font_color }}>

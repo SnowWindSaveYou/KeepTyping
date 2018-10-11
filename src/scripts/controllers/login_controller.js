@@ -65,6 +65,7 @@ var LoginController = {
     },
     
     checkLoginState(callback){
+        let that = this
         if(localStorage.getItem('token')){
             axios.get('/api/m/login/checkLogin',
             {
@@ -72,10 +73,11 @@ var LoginController = {
                 'Token': localStorage.getItem('token'), 
                 'Content-Type': 'application/json'} 
             }).then(function(res){
+                console.log(res.data)
                 if(res.data.success){
                     callback(res.data.data)
                 }else{
-                    this.checkLogoutMsg(res.data.message);
+                    that.checkLogoutMsg(res.data.message);
                 }
             }).catch(function(err){
                 console.log(err)
@@ -90,7 +92,8 @@ var LoginController = {
         global.setLogin(false);
     },
     checkLogoutMsg(msg){
-        if(["login state overdue","token not found"].includes(msg)){
+        console.log('let user logout')
+        if(["login state overdue","token not found","login failed"].includes(msg)){
             this.userLogout();
         }
     }

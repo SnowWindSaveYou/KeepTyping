@@ -37,6 +37,11 @@ class SecondaryButton extends Component {
   render() {
     return (
       <button  className={ this.props.className + " SecondaryButton" }
+          tabIndex="1"
+          onKeyUp={(e)=>{
+            if(e.keyCode===13){
+                this.props.onClick();
+            }}}
           id={this.props.id}
           style={this.state.curr_style?this.state.style:this.state.hoverStyle }
           onClick={this.props.onClick? ()=>this.props.onClick():null}

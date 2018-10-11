@@ -29,13 +29,20 @@ router.get('/getReplys/:postId',(req,res,next)=>{
 router.post('/postReply/:postId',(req,res,next)=>{
     var tokenMsg = Token.checkToken(req.headers['token'] );
     if(tokenMsg){
-        PostContoller.postReply(    req.params.postId,
-                                    tokenMsg.data.user_id, 
-                                    req.body.reply_content)
-        res.json({
+        if(req.body.reply_content.length<15){
+            res.json({
+                success:"warn",
+                message:"post too short",
+                })
+        }else{
+            PostContoller.postReply(    req.params.postId,
+                tokenMsg.data.user_id, 
+                req.body.reply_content)
+            res.json({
             success:true,
             message:"post success",
-        })
+            })
+        }
     }else{
         res.json(tokenMsg)
     }

@@ -148,7 +148,7 @@ router.get('/followTopic/:topicName', (req, res) => {
         res.json(tokenMsg);
     }
 });
-router.post('/unfollowTopic/:topicName', (req, res) => {
+router.get('/unfollowTopic/:topicName', (req, res) => {
     tokenMsg = Token.checkToken(req.headers['token']);
     if (tokenMsg.success) {
         TopicContoller.unfollowTopic(
@@ -157,12 +157,12 @@ router.post('/unfollowTopic/:topicName', (req, res) => {
                 if(err){
                     res.json({
                         success:false,
-                        message:"post failed"
+                        message:"follow failed"
                     });
                 }else{
                     res.json({
                         success:true,
-                        message:"post success"
+                        message:"unfollow success"
                     });
                 }
             })

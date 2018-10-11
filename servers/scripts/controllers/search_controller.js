@@ -41,7 +41,7 @@ var SearchController ={
             },
             {
                 $project: {
-                    'post_author.name':1,'post_author._id':1,
+                    'post_author.name':1,'post_author._id':1,'post_topic':1,
                     'post_state':{$not:['delete']},
                     "post_title": {$substrCP:["$post_title",0,60]},  
                     'post_content': {$substrCP:["$post_content",0,100]},

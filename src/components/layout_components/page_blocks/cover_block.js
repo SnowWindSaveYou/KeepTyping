@@ -2,9 +2,7 @@ import React from 'react';
 const CoverBlock = (props) => {
     var { onClick,background, ...other } = props;
     return (
-        <div style={{
-                
-            }}>
+        <div >
             <div className="CoverBlock"
                 onClick={onClick ? onClick : null}
                 style={{

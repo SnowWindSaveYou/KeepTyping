@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {TopBlock, MainBlock,SideBlock,ContainerBlock,FooterBlock, SubBlock} from '../../components/layout_components/page_blocks'
 import HeaderPanel from '../../components/container_components/header_panel';
 import TopicList from '../../components/container_components/topic_list';
-import PostList from '../../components/container_components/post_list';
+import ResultPostList from '../../components/container_components/result_post_list';
 import UserList from '../../components/container_components/user_list';
 
 import TopicController from "@/scripts/controllers/topic_controller";
@@ -36,6 +36,20 @@ class SearchPage extends Component {
         that.setState({topics:results})
       }
     })
+  }
+  componentDidUpdate(){
+    console.log(this.props.match.params.keyword)
+    var that = this
+    if(this.props.match.params.keyword!=this.state.keyword){
+      this.setState({keyword:this.props.match.params.keyword})
+      SearchController.getTopics(this.state.keyword,(results)=>{
+        if(results.length===0){
+          that.setState({topic_creator:true})
+        }else{
+          that.setState({topics:results})
+        }
+      })
+    }
   }
   createTopic(topic){
     TopicController.createTopic(topic,()=>{
@@ -115,7 +129,7 @@ class SearchPage extends Component {
 
             <SubBlock style={{background:global.theme.base_color,minHeight:"600px"}}>
             {this.state.fillter==="Topic"?(<TopicList topics={this.state.topics}></TopicList>):null}
-            {this.state.fillter==="Post"?(<PostList posts={this.state.posts}></PostList>):null}
+            {this.state.fillter==="Post"?(<ResultPostList posts={this.state.posts}></ResultPostList>):null}
             {this.state.fillter==="User"?(<UserList users={this.state.users}></UserList>):null}
             </SubBlock>
 

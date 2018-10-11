@@ -4,6 +4,7 @@
     height:auto;
     border-bottom: solid 1px #eee;
     background-color: #fff;
+    outline: none;
 }
 .PostRow .title{
     vertical-align: bottom;

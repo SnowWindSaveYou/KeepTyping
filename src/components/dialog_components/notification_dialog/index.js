@@ -8,7 +8,7 @@ const NotificationDialog = (props) =>  {
 
         return(
             <CoverBlock onClick={()=>{props.onClose(); props.onClick ?props.onClick():null}}>
-                <SubBlock className="NotificationDialog" 
+                <SubBlock className="NotificationDialog"        
                         onClick={()=>{console.log(props)}}
                         style={{minWidth:"250px",width:"auto",height:"70px",
                                 background:(()=>{

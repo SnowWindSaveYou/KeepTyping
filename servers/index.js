@@ -40,6 +40,7 @@ const RegisteRouter = require('./routers/registe_router');
 const TopicRouter = require('./routers/topic_router');
 const PostRouter = require('./routers/post_router');
 const SearchRouter = require('./routers/search_router');
+const UserRouter = require('./routers/user_router');
 
 
 app.get('/', (req, res) => {
@@ -57,6 +58,8 @@ app.use('/topic',TopicRouter);
 app.use('/post',PostRouter);
 // search 
 app.use('/search',SearchRouter);
+// user 
+app.use('/user',UserRouter);
 
 
 // get all users in database

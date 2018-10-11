@@ -18,6 +18,7 @@ class ReplyRow extends Component {
     render(){
         return (
             <SubBlock className="ReplyRow" 
+                tabIndex="1" 
                 {...this.props}
                 style={{background:BACKGROUND_COLOR}}
                 key={this.props.postId}>

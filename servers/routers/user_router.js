@@ -1,13 +1,72 @@
 const express = require('express');
 const router = express.Router();
-const token = require('../scripts/utils/token');
+const Token = require('../scripts/utils/token');
+const UserControlle = require('../scripts/controllers/user_controller')
 
-router.post('/createToken',(req,res) =>{
-    let msg = req.body;
-    res.json(token.createToken(msg,20));
+router.get('/getUser/:userId',(req,res) =>{
+    UserControlle.getUserOverView(req.params.userId,(err,data)=>{
+        if(!err){
+            res.json({
+                success:true,
+                message:"get the user posts",
+                data:data
+            })
+        }else{
+            res.json({
+                success:false,
+                message:"get the user posts",
+            })
+        }
+
+    })
 });
-router.post('/checkToken',(req,res) =>{
-    res.json(token.checkToken(req.headers['token'] ));
+
+router.get('/getUserPosts/:userId',(req,res) =>{
+    UserControlle.getUserPosts(req.params.userId, req.query.page ?req.query.page:0,(err,data)=>{
+        res.json({
+            success:true,
+            message:"get the user posts",
+            data:data
+        })
+    })
+});
+router.get('/getMyPosts',(req,res) =>{
+    tokenMsg = Token.checkToken(req.headers['token']);
+    if (tokenMsg.success) {
+        UserControlle.getUserPosts(tokenMsg.data.user_id, req.query.page ?req.query.page:0,(err,data)=>{
+            if(err){
+                res.json({
+                    success:false,
+                    message:"get failed"
+                });
+            }else{
+                res.json({
+                    success:true,
+                    message:"get the user posts",
+                    data:data
+                })
+            }
+        })
+    }else{
+        res.json(tokenMsg);
+    }
+});
+
+router.post('/uploadAvater',(req,res) =>{
+    
+});
+router.post('/updateName',(req,res) =>{
+    
+});
+router.post('/updateBias',(req,res) =>{
+    
+});
+
+router.post('/followUser',(req,res) =>{
+    
+});
+router.post('/unfollowUser',(req,res) =>{
+    
 });
 
 module.exports = router

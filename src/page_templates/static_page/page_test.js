@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import UnderLineEditText from '@ui/textareas/underline_edit_text'
+import {UnderLineEditText,PrimaryButton} from '@ui'
+import {LoginContext} from '../../Contexts'
 /** Components of page */
 class TestPage extends Component {
 
@@ -12,12 +13,10 @@ class TestPage extends Component {
             content:""
         }
     }
-    // componentDidMount(){
-
-    //     this.setState({
-    //         token:SecureTransfer.getToken()
-    //     })
-    // }
+    componentDidMount(){
+        let loginCtx= LoginContext.Consumer._currentValue 
+        console.log(loginCtx.my_info)
+    }
 
     // handleTestDialog(){
     //     notificationShow("TEST",false,()=>{
@@ -50,21 +49,9 @@ class TestPage extends Component {
     render() {
       return (
         <div className="TestPage" >
-            <UnderLineEditText></UnderLineEditText>
-            {/* <HeaderPanel/>
+            <PrimaryButton onClick={()=>{}}>
 
-            <TopBlock style={{height:"300px",marginBottom:"-100px"}}>
-                <PrimaryButton onClick={()=>this.handleTestDialog()}> Dialog </PrimaryButton>
-                <PrimaryButton onClick={()=>this.handleTestToken()}> Token </PrimaryButton>
-                <SecondaryButton onClick={()=>LoginConroller.userLogout()}>Logout</SecondaryButton>
-                <CircleButton>6</CircleButton>
-                <div  style={{width:"300px",marginT:"100px"}}>
-                    <SingleLineEditText onChange={this.handleChangeTopic.bind(this)}>
-                    </SingleLineEditText>
-                    <PrimaryButton onClick={()=>this.handleSubmitTopic()}> Create </PrimaryButton>
-                </div>
-                
-            </TopBlock> */}
+            </PrimaryButton>
         </div>
       );
     }

@@ -1,7 +1,7 @@
 global.theme = {
     back_color:"#f2f2f2",
     base_color:"#fff",
-    base_dark_color:"#fbfbfb",
+    base_dark_color:"#f6f6f6",
     base_light_color:"#ffffffcc",
     primary_color:"#FD5B78",
     primary_dark_color:"#FE4C40",

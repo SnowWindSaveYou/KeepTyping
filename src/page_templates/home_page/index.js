@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import * as layout from '../../components/layout_components/page_blocks'
-import {Link} from 'react-router-dom';
-import {LoginContext} from '@/Contexts'
+import BgImage from '@/asset/bg_res/cityshadow.jpg'
+import ReactSVG from 'react-svg';
+import SearchBar from '@display/for_header/search_bar'
+import HeaderPanel from '@/components/container_components/header_panel';
 
 class HomePage extends Component {
   constructor(props) {
@@ -15,18 +16,13 @@ class HomePage extends Component {
   render() {
     return (
       <div className="HomePage" style={{ background: "#f2f2f2",color:"#fff"}}>
-        <layout.CoverBlock>
-          HomePage
-          <div>
-            <Link to="/TEST"><button>Test</button></Link>
-            <Link to="/t/TEST"><button>Topic</button></Link>
-            <Link to="/registe"><button>Registe</button></Link>
-          </div>
-          <LoginContext.Consumer>
-            {value=>(<p>{value.login}</p>)}
-          </LoginContext.Consumer>
-          
-        </layout.CoverBlock>
+        <HeaderPanel/>
+        <img className="backgroundImage" src={BgImage}></img>
+        <div className="to_center">
+            <ReactSVG className="web_logo" src="/logo.svg" 
+              svgStyle={{position:"relative"}}/>
+            <SearchBar style={{width:"300px"}}/>
+        </div>
       </div>
     );
   }

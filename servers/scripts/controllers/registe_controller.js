@@ -17,6 +17,7 @@ var RegisteController ={
                             salt:new_salt
         },(err,docs)=>{
             if(err){
+                console.log(err);
                 if(err.code ===11000){
                     callback({
                         success:false,
@@ -28,8 +29,8 @@ var RegisteController ={
                         message:"registe failed"
                     })
                 }
-                console.log(err);
             }else{
+                console.log(docs);
                 callback({
                     success:true,
                     message:"registe sucessful",

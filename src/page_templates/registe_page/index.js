@@ -7,13 +7,6 @@ import RegistePanel from '@/components/container_components/registe_panel'
 import './style.css'
 
 class RegistePage extends Component {
-    constructor(props) {
-      super(props);
-      this.state={
-
-      }
-  
-    }
     componentDidMount() {
       global.setTitle("Registe to Global Keyborad Man Center!");
     }
@@ -22,8 +15,7 @@ class RegistePage extends Component {
         <div className="RegistePage">
             <img className="backgroundImage" src={BgImage}></img>
               <LoginContext.Consumer>
-              { (value)=>( 
-                !value.login ? 
+              { (value)=>( !value.login ? 
                 (<div className="to_center ">
                     <RegistePanel   title="Keep Typing" 
                     titleStyle={{color:global.theme.primary_color, fontSize:"45px",lineHeight:"45px"}}

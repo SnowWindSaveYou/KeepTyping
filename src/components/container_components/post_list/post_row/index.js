@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import {withRouter, Link } from "react-router-dom";
 import './style.css';
 import {SubBlock} from "../../../layout_components";
 import {formateDate} from '@utils/formater'
@@ -13,14 +13,16 @@ class PostRow extends Component {
     constructor(props){
         super(props);
         this.state={
+            focus:false,
+            focus_style:{backgroundColor:BACKGROUND_COLOR_HOVER},
             style:{backgroundColor:BACKGROUND_COLOR}
         }
     }
     handlerHover(){
-        this.setState({style:{backgroundColor:BACKGROUND_COLOR_HOVER}});
+        this.setState({focus:true});
     }
     handlerHoverOut(){
-        this.setState({style:{backgroundColor:BACKGROUND_COLOR}})
+        this.setState({focus:false})
     }
     handlerOnClick(){
         console.log('click:',this.state.post_id)
@@ -28,10 +30,16 @@ class PostRow extends Component {
     render(){
         return (
             <SubBlock className="PostRow" 
-                {...this.props}
+                tabIndex="1" 
                 key={this.props.postId} 
-                style={this.state.style}
+                style={this.state.focus? this.state.focus_style : this.state.style}
                 onClick={()=>this.handlerOnClick()}
+                onFocus={this.handlerHover.bind(this)}
+                onKeyUp={(e)=>{
+                    if(e.keyCode===13){
+                        this.props.history.push('/p/'+this.props.post_id)
+                    }}}
+                onBlur={this.handlerHoverOut.bind(this)}
                 onMouseOver={this.handlerHover.bind(this)}
                 onMouseLeave={this.handlerHoverOut.bind(this)}>
                 <div className="to_left" style={{width:"70%"}}>
@@ -51,4 +59,4 @@ class PostRow extends Component {
     }
 }
 
-export default PostRow;
+export default withRouter(PostRow) ;

@@ -67,8 +67,21 @@ var TopicController = {
             'Token': localStorage.getItem('token'), 
             'Content-Type': 'application/json'} 
         }).then(function(res){
-            LoginController.checkLogoutMsg(res.data.message);
-            global.pushTopic(topic)
+            if(!res.data.success){LoginController.checkLogoutMsg(res.data.message);}
+            else{global.followTopic(topic,true)}
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
+    unfollowTopic(topic){
+        axios.get('/api/m/topic/unfollowTopic/'+ topic,{
+            headers: {
+            'Token': localStorage.getItem('token'), 
+            'Content-Type': 'application/json'} 
+        }).then(function(res){
+            if(!res.data.success){LoginController.checkLogoutMsg(res.data.message);}
+            else{global.followTopic(topic,false)}
+            
         }).catch(function(err){
             console.log(err)
         })

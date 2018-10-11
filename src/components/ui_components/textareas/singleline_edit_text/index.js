@@ -65,6 +65,7 @@ class SingleLineEditText extends Component {
         return (
             <input 
                 {...this.props}
+                tabIndex="1"
                 className={this.props.className + " SingleLineEditText"} 
                 type={this.props.type ? this.props.type : "text"}
                 style={this.state.inputStyle}

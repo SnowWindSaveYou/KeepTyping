@@ -1,0 +1,11 @@
+.MyPage .my_topics{
+    width: 100%;
+    padding: 10px;
+    min-height: 100px;
+}
+.MyPage .main{
+    margin-top: 5px;
+    width: 100%;
+    display: block;
+    min-height: 500px;
+}

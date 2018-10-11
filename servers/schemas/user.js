@@ -37,7 +37,6 @@ const User = new Schema({
     },
     topics:[{
         type:String,
-        unique:true
     }],
     following_num:{
         type:Number,

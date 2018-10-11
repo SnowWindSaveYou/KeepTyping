@@ -17,7 +17,16 @@ var TopicController = {
         })
     },
     unfollowTopic(topicName,userId,callback){
-        
+        UserModel.findByIdAndUpdate(userId,{$pull:{topics:topicName}},(err,res)=>{
+            if(!err ){
+                if(res.topics.indexOf(topicName)!=-1){
+                    TopicModel.findOneAndUpdate({title:topicName},{$inc:{member_num:-1}}).exec()
+                }
+                callback()
+            }else{
+                callback(err)
+            }
+        })
     },
     /**
      * Create a New Topic, the creator will be it's manager

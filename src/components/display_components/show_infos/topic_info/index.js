@@ -39,7 +39,7 @@ const TopicInfo = (props) => (
       <LoginContext.Consumer>
               {value=>( value.login && value.my_info ? 
                 (value.my_info.topics.indexOf(props.topic.title)!=-1 ?
-                  (<SecondaryButton style={{width:"100%"}}>SUBSCRIBED</SecondaryButton>):
+                  (<SecondaryButton style={{width:"100%"}}  onClick={()=>TopicController.unfollowTopic(props.topic.title)}>SUBSCRIBED</SecondaryButton>):
                   (<PrimaryButton style={{width:"100%"}} onClick={()=>TopicController.followTopic(props.topic.title)}>SUBSCRIBE</PrimaryButton>)
                 ):(<PrimaryButton style={{width:"100%"}} onClick={()=>notificationShow("Please Login","warn")}>SUBSCRIBE</PrimaryButton>))}
       </LoginContext.Consumer>

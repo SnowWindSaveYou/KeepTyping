@@ -73,7 +73,7 @@ router.post('/registeUser',(req,res) =>{
                 }else{
                     res.json({
                         success:false,
-                        message:"registe session time out"
+                        message:result.message
                     });
                 }
             })
