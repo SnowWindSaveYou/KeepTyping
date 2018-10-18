@@ -1,3 +1,7 @@
+/**
+ * use to secure the data trafic
+ */
+
 import crypto from 'crypto';
 var SecureTransfer ={
     getRand(){

@@ -42,10 +42,11 @@ var PostController ={
         findById(postId)
         .then((post)=>{
             post.post_replys.findById(replyId,(err,reply)=>{
-                reply.reply_content = 'delete'
-                reply.save()
+                if(reply.reply_author===authorId){
+                    reply.reply_state = 'delete'
+                    reply.save()
+                }
             })
-            post_state = 'delete'
             post.save()
             return true;
         })
@@ -53,7 +54,6 @@ var PostController ={
             return false;
         })
         //TODO: give notification to uper layer's author(post author)
-        
         return true;
     },
 

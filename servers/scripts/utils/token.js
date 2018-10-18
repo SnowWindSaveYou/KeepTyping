@@ -43,7 +43,7 @@ var Token = {
         }
     },
     checkToken(token){
-        if(!token || token ==="undefined"){
+        if(!token || token ==="undefined" || typeof(token)==="undefined"){
             return {
                 success:false,
                 message:"token not found"

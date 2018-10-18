@@ -1,5 +1,11 @@
 
 import React from 'react';
+
+/**
+ * formate datetime from server
+ * if is todat show time, not today show date
+ * @param {*} dateStr 
+ */
 function formateDate(dateStr){
     var today = new Date();
     var date = new Date(dateStr);

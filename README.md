@@ -7,7 +7,7 @@ Looking `package.json` file for more detail
 * To start MongoDB: `mongod --dbpath ./data/db`
 * To start Server: `node ./servers`
 * To start Web: `npm start`
-Looking `http://localhost:3000/#/test` for overview of all components
+
 
 ## Structure of App Resouse File
 ```

@@ -11,7 +11,6 @@ function backLastPage(){
 }
 function toHome(){
     document.location.href = "/"
-    // that.props.history.push("/")
 }
 export{
     backLastPage,

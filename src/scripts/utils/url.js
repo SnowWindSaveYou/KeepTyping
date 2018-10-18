@@ -1,6 +1,9 @@
 
 
-
+/**
+ * split the query of url
+ * @param {*} props 
+ */
 function getQuerys(props){
     const raw_querys = props.location.search;   //?a=x&b=y&c=z...
     if(!raw_querys)return {}

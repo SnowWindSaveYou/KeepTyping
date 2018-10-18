@@ -50,13 +50,15 @@ router.post('/postReply/:postId',(req,res,next)=>{
 
 /**
  * Delete self post reply
+ * update the post state to delete
+ * json{reply_id}
  */
-router.post('/deleteReply/:postId',(req,res,next)=>{
+router.delete('/deleteReply/:postId',(req,res,next)=>{
     var tokenMsg = Token.checkToken(req.headers['token'] );
     if(tokenMsg){
-        PostContoller.postReply(    req.params.postId,
-                                    tokenMsg.data.user_id, 
-                                    req.body.replyLever)
+        PostContoller.deleteReply(  req.params.postId,
+                                    req.body.reply_id,
+                                    tokenMsg.data.user_id)
         res.json({
             success:true,
             message:"post success",

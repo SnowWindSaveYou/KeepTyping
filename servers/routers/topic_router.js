@@ -125,8 +125,11 @@ router.get('/getPosts/:topicName', (req, res) => {
         })
 });
 
-
-router.get('/followTopic/:topicName', (req, res) => {
+/**
+ * let user follow the topic
+ * update the topic and user's data
+ */
+router.post('/followTopic/:topicName', (req, res) => {
     tokenMsg = Token.checkToken(req.headers['token']);
     if (tokenMsg.success) {
         TopicContoller.followTopic(
@@ -148,7 +151,7 @@ router.get('/followTopic/:topicName', (req, res) => {
         res.json(tokenMsg);
     }
 });
-router.get('/unfollowTopic/:topicName', (req, res) => {
+router.post('/unfollowTopic/:topicName', (req, res) => {
     tokenMsg = Token.checkToken(req.headers['token']);
     if (tokenMsg.success) {
         TopicContoller.unfollowTopic(

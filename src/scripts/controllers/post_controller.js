@@ -1,10 +1,18 @@
+/**
+ * constrol the post action
+ * use _id of post
+ */
 import axios from 'axios';
 import {notificationShow} from '@/scripts/controllers/dialog_controller'
 import LoginController from './login_controller'
 
+const GET_POST_API = '/api/m/post/getPost/'
+const GET_REPLYS_API = '/api/m/post/getReplys/'
+const POST_REPLY_API = '/api/m/post/postReply/'
+
 var PostController = {
     getPost(postId,callback){
-        axios.get('/api/m/post/getPost/'+postId)
+        axios.get(GET_POST_API+postId)
         .then(function(res){
             let data = res.data.data
             typeof callback === 'function' && callback.call(window,data);
@@ -14,7 +22,7 @@ var PostController = {
         })
     },
     getReplys(postId,page=0,callback){
-        axios.get('/api/m/post/getReplys/'+postId + "?page="+page)
+        axios.get(GET_REPLYS_API +postId + "?page="+page)
         .then(function(res){
             let data = res.data.data
             typeof callback === 'function' && callback.call(window,data);
@@ -25,7 +33,7 @@ var PostController = {
     },
 
     postReply(postId,post_content){
-        axios.post('/api/m/post/postReply/'+ postId,{
+        axios.post(POST_REPLY_API+ postId,{
             reply_content:post_content
         },{
             headers: {

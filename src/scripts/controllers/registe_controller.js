@@ -1,3 +1,10 @@
+/**
+ * monitor the register of user
+ * secure the data trafic by CBC and HASH
+ * 
+ */
+
+
 import SecureTransfer from '../utils/secure_transfer';
 import axios from 'axios';
 import {notificationShow} from '@/scripts/controllers/dialog_controller'

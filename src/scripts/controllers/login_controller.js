@@ -1,3 +1,9 @@
+/**
+ * control the user login state
+ * secure the user data by CBC and HASH when user login
+ * check the login state when user info refresh
+ */
+
 import SecureTransfer from '../utils/secure_transfer';
 import CheckFormat from '../utils/check_format';
 import axios from 'axios';
@@ -5,7 +11,6 @@ import {notificationShow} from '@/scripts/controllers/dialog_controller'
 
 const CREATE_KEY_URL = '/api/m/login/createKey';
 const LOGIN_URL = '/api/m/login/comformLogin';
-
 
 var LoginController = {
     userLogin(account,password,callback){
@@ -63,7 +68,11 @@ var LoginController = {
             console.log(err);
         })
     },
-    
+    /**
+     * when user first time open page
+     * check the user login state and get the basic data 
+     * @param {*} callback 
+     */
     checkLoginState(callback){
         let that = this
         if(localStorage.getItem('token')){
@@ -86,11 +95,19 @@ var LoginController = {
             this.userLogout()
         }
     },
+    /**
+     * let user log out
+     */
     userLogout(){
         localStorage.clear();
         sessionStorage.clear();
         global.setLogin(false);
     },
+    /**
+     * check the err messege return by server
+     * if it means user not login, then make user logout
+     * @param {*} msg 
+     */
     checkLogoutMsg(msg){
         console.log('let user logout')
         if(["login state overdue","token not found","login failed"].includes(msg)){

@@ -52,21 +52,21 @@ router.get('/getMyPosts',(req,res) =>{
     }
 });
 
-router.post('/uploadAvater',(req,res) =>{
+// router.post('/uploadAvater',(req,res) =>{
     
-});
-router.post('/updateName',(req,res) =>{
+// });
+// router.post('/updateName',(req,res) =>{
     
-});
-router.post('/updateBias',(req,res) =>{
+// });
+// router.post('/updateBias',(req,res) =>{
     
-});
+// });
 
-router.post('/followUser',(req,res) =>{
+// router.post('/followUser',(req,res) =>{
     
-});
-router.post('/unfollowUser',(req,res) =>{
+// });
+// router.post('/unfollowUser',(req,res) =>{
     
-});
+// });
 
 module.exports = router

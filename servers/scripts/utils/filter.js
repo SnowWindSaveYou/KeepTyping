@@ -1,6 +1,9 @@
 const SymbolRegFunc = "[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]";
 
-
+/**
+ * check is this a name
+ * @param {*} data 
+ */
 const nameFilter = (data) =>{
     reg = /^([a-zA-Z0-9_-])+/;
     if (!reg.test(data.value)){ 
@@ -9,7 +12,3 @@ const nameFilter = (data) =>{
     return true;
 }
 
-const LengthFilter = (data) =>{
-    
-    return false
-}

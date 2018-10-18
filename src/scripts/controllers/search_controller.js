@@ -1,9 +1,17 @@
+/**
+ * control the search request of topic, post, user
+ * use keyword and return result by callback
+ */
+
 import axios from 'axios';
-// import {notificationShow} from './dialog_controller'
+
+const SEARCH_TOPICS_API = '/api/m/search/getTopics/'
+const SEARCH_POSTS_API = '/api/m/search/getPosts/'
+const SEARCG_USERS_API = '/api/m/search/getUsers/'
 
 var SearchController = {
     getTopics(keyword,callback){
-        axios.get('/api/m/search/getTopics/'+keyword)
+        axios.get(SEARCH_TOPICS_API + keyword)
         .then(function(res){
             console.log(res.data)
             if(res.data.success){
@@ -16,7 +24,7 @@ var SearchController = {
         })
     },
     getPosts(keyword,callback){
-        axios.get('/api/m/search/getPosts/'+keyword)
+        axios.get(SEARCH_POSTS_API+keyword)
         .then(function(res){
             console.log(res.data)
             if(res.data.success){
@@ -29,7 +37,7 @@ var SearchController = {
         })
     },
     getUsers(keyword,callback){
-        axios.get('/api/m/search/getUsers/'+keyword)
+        axios.get(SEARCG_USERS_API+keyword)
         .then(function(res){
             console.log(res.data)
             if(res.data.success){

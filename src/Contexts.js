@@ -1,3 +1,6 @@
+/**
+ * share the state on top layer
+ */
 import React from 'react';
 const LoginContext = React.createContext({
     login: false,

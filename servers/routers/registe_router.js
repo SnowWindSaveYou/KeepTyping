@@ -35,7 +35,8 @@ router.get('/createKey',(req,res) =>{
 });
 
 
-/** ser_password}
+/**
+ * 
  */
 router.post('/registeUser',(req,res) =>{
     let msg = req.body

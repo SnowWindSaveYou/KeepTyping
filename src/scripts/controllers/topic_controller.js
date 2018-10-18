@@ -2,12 +2,20 @@ import axios from 'axios';
 import {notificationShow} from './dialog_controller'
 import LoginController from './login_controller'
 
+const PAGE_QUERE = '?page='
+const CREATE_TOPIC_API = '/api/m/topic/createTopic/'
+const GET_TOPIC_API = '/api/m/topic/getTopic/'
+const GET_POSTS_API = '/api/m/topic/getPosts/'
+const POST_POST_API = '/api/m/topic/postPost/'
+const FOLLOW_TOPIC_API = '/api/m/topic/followTopic/'
+const UNFOLLOW_TOPIC_API = '/api/m/topic/unfollowTopic/'
+
 var TopicController = {
     createTopic(topic,callback){
         if(!localStorage.getItem('token')){
             notificationShow("Please Login first","warn")
         }
-        axios.post('/api/m/topic/createTopic/'+topic,{
+        axios.post(CREATE_TOPIC_API+topic,{
         },{
             headers:{'Content-Type': 'application/json',
             'token':localStorage.getItem('token')}
@@ -21,7 +29,7 @@ var TopicController = {
         })
     },
     getTopic(topic,callback){
-        axios.get('/api/m/topic/getTopic/'+topic)
+        axios.get(GET_TOPIC_API+topic)
         .then(function(res){
             if(res.data.success){
                 console.log(res.data.data)
@@ -35,7 +43,7 @@ var TopicController = {
     },
     getPosts(topic,page=0,callback){
         var posts = []
-        axios.get('/api/m/topic/getPosts/'+topic+'?page='+page)
+        axios.get(GET_POSTS_API + topic+ PAGE_QUERE +page)
         .then(function(res){
             if(res.data.success){
                 posts = res.data.data
@@ -47,7 +55,7 @@ var TopicController = {
         })
     },
     postPost(topic,post_title,post_content){
-        axios.post('/api/m/topic/postPost/'+ topic,{
+        axios.post(POST_POST_API+ topic,{
             post_title:post_title,
             post_content:post_content
         },{
@@ -62,7 +70,7 @@ var TopicController = {
         })
     },
     followTopic(topic){
-        axios.get('/api/m/topic/followTopic/'+ topic,{
+        axios.post(FOLLOW_TOPIC_API+ topic,{
             headers: {
             'Token': localStorage.getItem('token'), 
             'Content-Type': 'application/json'} 
@@ -74,7 +82,7 @@ var TopicController = {
         })
     },
     unfollowTopic(topic){
-        axios.get('/api/m/topic/unfollowTopic/'+ topic,{
+        axios.post(UNFOLLOW_TOPIC_API+ topic,{
             headers: {
             'Token': localStorage.getItem('token'), 
             'Content-Type': 'application/json'} 
