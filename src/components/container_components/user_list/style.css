@@ -1,0 +1,13 @@
+.UserList .user_row{
+    height: 80px;
+    padding: 20px;
+    margin-bottom: 1px;
+}
+.UserList .user_head{
+    position: absolute;
+    top:8px;
+    left:10px;
+}
+.UserList .middle{
+    margin-left:80px;
+}

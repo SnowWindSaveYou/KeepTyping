@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+a{text-decoration:none;outline: none;}
+
+.clearfix{
+  clear: both;
+  content: "";
+  display: table;
+}
+/** Format row style 
+* use 'float:left' items in row class div
+*/
+.row ::after{
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.block{
+  display: inline-block;
+}
+
+/** Format li in this ul horizontaly */
+.horizontal_ul li{
+  list-style-type:none;
+  float: left;
+}
+
+.to_left{
+  float: left;
+}
+.to_right{
+  float: right;
+}
+.to_center{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mg_left{
+  margin-left: 5px;
+}
+.mg_right{
+  margin-right: 5px;
+}
+
+.auto_width{
+  width: auto;
+}
+
+.pair_row{
+  width: 100%; 
+  clear: both;
+  content: "";
+  display: table;
+}
+.pair_part{
+  width: 50%;
+  float: left;
+}

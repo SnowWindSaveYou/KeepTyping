@@ -1,0 +1,12 @@
+
+.VerticalMenuNavigator{
+    height: 100%;
+    padding-bottom: 100px;
+}
+.VerticalMenuNavigator .menu_tab{
+    line-height: 45px;
+    height: 48px;
+    font-size: 18px;
+    display: block;
+    text-align: left;
+}

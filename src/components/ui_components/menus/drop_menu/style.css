@@ -1,0 +1,11 @@
+.DropMenu {
+    text-align: left
+
+}
+.DropMenu .menu_list{
+    position: relative;
+    width: auto;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

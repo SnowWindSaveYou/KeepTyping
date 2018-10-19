@@ -1,0 +1,23 @@
+global.theme = {
+  back_color: "#f2f2f2",
+  base_color: "#fff",
+  base_dark_color: "#f6f6f6",
+  base_light_color: "#ffffffcc",
+  primary_color: "#FD5B78",
+  primary_dark_color: "#FE4C40",
+  primary_light_color: "#ff94b1",
+  secondary_color: "#00a1d6",
+  secondary_dark_color: "#0887b2",
+  secondary_light_color: "#00c4ff",
+  thirdary_color: "#ffbb22",
+  thirdary_dark_color: "#da9e15",
+  thirdary_light_color: "#ffd065",
+  font_color: "#555",
+  font_dark_color: "#222",
+  font_light_color: "#ccc",
+  true_color: "#75b775",
+  false_color: "#e6544d",
+  warn_color: "#f9ab35",
+  notice_color: "#59acc5",
+  test_color: "#545454"
+};

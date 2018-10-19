@@ -1,0 +1,14 @@
+.PostPage .manage_panel{
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+}
+
+.PostPage .topic_title{
+    position: absolute;
+    width: auto;
+    top: -32px;
+    padding: 10px;
+    font-size: 20px;
+    z-index: 1;
+}

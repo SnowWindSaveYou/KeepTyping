@@ -1,0 +1,25 @@
+.CircleButton{
+    display: inline-block;
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    box-sizing: border-box;
+}
+.CircleButton a{
+    background-color: transparent;
+    text-decoration: none;
+}
+.CircleButton a:hover{
+    background-color: #000;
+    text-decoration: none;
+}

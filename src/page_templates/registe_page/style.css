@@ -1,0 +1,46 @@
+.RegistePage{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.backgroundImage{
+    position: absolute;; 
+    min-height:600px; 
+    height:100%;
+    min-width:1000px;
+    width:100%;
+    z-index: 0;
+
+}
+.RegistePage .ContainerBlock{
+    height: 100%;
+    width:380px;
+    padding: auto;
+    display: table;
+}
+.RegistePage .RegistePanel{
+    position: relative; 
+    width:320px;
+    height:360px;
+    line-height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.RegistePage .RegistePanel .top{
+    position: relative; 
+    top:0;
+    text-align: center;
+    line-height: 100%;
+}
+
+.RegistePage .RegistePanel .submitBtn{
+    width: 100%;
+    margin-bottom: -80px;
+}
+
+.RegistePage .toLogin{
+    text-align: center;
+    width: 100%;
+    padding:10px;
+    margin-top:30px;
+}

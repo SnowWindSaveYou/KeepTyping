@@ -1,0 +1,30 @@
+.HeaderPanel{
+    position: absolute;
+    display: inline;
+    line-height: 35px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#fff;
+    box-shadow: 0 1px 2px rgba(53, 53, 53, 0.1);
+}
+.HeaderPanel ::after{
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.HeaderPanel .to_left{
+    margin: 0px;
+    float: left;
+}
+.HeaderPanel .to_right{
+    margin: 0px;
+    float: right;  
+}
+.to_right li{
+    list-style-type:none;
+    float: right;
+    margin-right: 10px;
+}

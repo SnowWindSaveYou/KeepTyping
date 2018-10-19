@@ -1,0 +1,36 @@
+.SideLineButton{
+    position: relative;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    box-sizing: border-box;
+}
+.SideLineButton a{
+    background-color: transparent;
+    text-decoration: none;
+}
+.SideLineButton a:hover{
+    background-color: #000;
+    text-decoration: none;
+}
+.SideLineButton .sideline{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    height: 80%;
+    width:2px;
+}

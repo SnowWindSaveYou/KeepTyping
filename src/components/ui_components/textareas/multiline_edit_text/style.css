@@ -1,0 +1,39 @@
+.MultiLineEditText{
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    height: auto;
+    border: none;
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+}
+.MultiLineEditText .cover{
+    position: absolute;
+    line-height: 30px;
+    padding-left: 10px;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    pointer-events:none;
+}
+
+.MultiLineEditText textarea{
+    position: relative;
+    padding-inline-start: 5px;
+    line-height: 100%;
+    min-height: 100px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+.MultiLineEditText textarea:focus{
+    outline: none;
+}
